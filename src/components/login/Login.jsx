@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 
 
 export function Login() {
-
+// Se crea una variable que guarda el estado de la variable user
   const [user, setUser] = useState({
     email: "",
     password: "",

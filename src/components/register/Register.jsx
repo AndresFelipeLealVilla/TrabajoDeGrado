@@ -23,7 +23,7 @@ export function Register() {
     seterror('')
     try {
       await signup(user.email, user.password)
-      navigate('/')
+      navigate('/profile')
     } catch (error) {
       console.log(error.code)
       if (error.code === "auth/invalid-email") {
