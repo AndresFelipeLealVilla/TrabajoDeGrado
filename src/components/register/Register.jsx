@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useAuth } from "../../context/authContext";
 import {Link,useNavigate} from 'react-router-dom'
+import {Toaster, toast} from 'react-hot-toast'
 import "./Register.css"
 
 export function Register() {
@@ -12,7 +13,7 @@ export function Register() {
 
   const { signup } = useAuth()
   const navigate = useNavigate()
-  const [error, seterror] = useState()
+  const [Fail, setFail] = useState()
   
   const handleChange = ({target: {name, value}}) => {
     setUser({...user, [name]: value})
@@ -20,28 +21,38 @@ export function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    seterror('')
+    setFail('')
     try {
       await signup(user.email, user.password)
-      navigate('/profile')
+      toast.success('Usuario creado')
+      setTimeout( ()  => {navigate('/profile')}, 2000);
     } catch (error) {
       console.log(error.code)
       if (error.code === "auth/invalid-email") {
-        seterror("Correo invalido")
+        setFail("Correo invalido")
+        toast.error("Correo invalido")
+       
       }if (error.code === "auth/email-already-in-use") {
-        seterror("Correo ya registrado")
+        setFail("Correo ya registrado")
+        toast.error("Correo ya registrado")
+       
       }if (error.code === "auth/weak-password") {
-        seterror("Contraseña muy debil")
+        setFail("Contraseña muy debil")
+        toast.error("Contraseña muy debil")
+    
       }if (error.code === "auth/internal-error") {
-        seterror("Datos invalidos")
+        setFail("Datos invalidos")
+        toast.error("Datos invalidos")
+        
       }
       
   }
+  
   }
 
   return (
     <div>
-      {error && <p>{error}</p>}
+      {Fail && <p>{Fail}</p>}
       <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email</label>
       <input type="email" id="email" name="email" placeholder="youremail@correounivalle.edu.co" onChange={handleChange}/>
@@ -52,6 +63,7 @@ export function Register() {
       <button type="submit">Registrarse</button>
     </form>
     <p>Ya tengo una cuenta <Link to='/login'>Ir a login</Link></p>
+    <Toaster/>
     </div>
   )
 }

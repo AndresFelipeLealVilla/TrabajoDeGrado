@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useAuth } from "../../context/authContext";
 import {Link,useNavigate} from 'react-router-dom'
+import {Toaster, toast} from 'react-hot-toast'
 import "./Login.css"
 
 
@@ -13,7 +14,7 @@ export function Login() {
 
   const { login, loginWithGoogle, resetPassword } = useAuth()
   const navigate = useNavigate()
-  const [error, seterror] = useState()
+  const [Fail, setFail] = useState()
   
   const handleChange = ({target: {name, value}}) => {
     setUser({...user, [name]: value})
@@ -21,19 +22,29 @@ export function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    seterror('')
-    try {
+    setFail('')
+    
+    try { 
       await login(user.email, user.password)
-      navigate('/')
+      toast.success('Usuario logeado')
+      setTimeout( ()  => {navigate('/')}, 3000);
+
     } catch (error) {
       if (error.code === "auth/invalid-email") {
-        seterror("Correo invalido")
+        setFail("Correo invalido")
+        toast.error("Correo invalido")
       }if (error.code === "auth/user-not-found") {
-        seterror("Usuario no encontrado")
+        setFail("Usuario no encontrado")
+        toast.error("Usuario no encontrado")
       }if (error.code === "auth/wrong-password") {
-        seterror("Contraseña incorrecta")
+        setFail("Contraseña incorrecta")
+        toast.error("Contraseña incorrecta")
+      }if (error.code === "auth/internal-error") {
+        setFail("Datos invalidos")
+        toast.error("Datos invalidos")
       }
   }
+  
   }
 
   const handleGoogleLogin = async () => {
@@ -43,13 +54,13 @@ export function Login() {
 
   const handleResetPassword = async () => {
     if(!user.email) return
-      seterror("Ingrese un correo");
+      setFail("Ingrese un correo");
     
     try {
       await resetPassword(user.email)
-      seterror("Se ha enviado un correo para restablecer la contraseña");
+      setFail("Se ha enviado un correo para restablecer la contraseña");
     } catch (error) {
-      seterror("Correo invalido");
+      setFail("Correo invalido");
     }
   }
 
@@ -57,7 +68,8 @@ export function Login() {
     <div className="container">
       <div className="formulario">
         <h1>Iniciar sesión</h1>
-        {error && <p>{error}</p>}
+        {Fail && <p>{Fail}</p>}
+        
         <form onSubmit={handleSubmit}>
         <label htmlFor="email">Tu correo</label>
         <input type="email" id="email" name="email" placeholder="youremail@correounivalle.edu.co" onChange={handleChange}/>
@@ -73,6 +85,8 @@ export function Login() {
         <p>No tengo una cuenta <Link to='/register'>Registrarme</Link></p>
         <button className="button" onClick={handleGoogleLogin}>Inicio con google</button>
       </div>
+      <Toaster/>
     </div>
+
   )
 }
