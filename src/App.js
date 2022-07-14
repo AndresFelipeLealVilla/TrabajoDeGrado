@@ -1,10 +1,11 @@
 import {Routes, Route} from 'react-router-dom';
 import {Home} from './components/home/Home';
-import {Login} from './components/login/Login';
+import {Login} from './components/login/LoginR';
 import {Register} from './components/register/Register';
 import {AuthProvider} from './context/authContext';
 import {Profile} from './components/profile/Profile';
 import { ProtectedRoute } from './components/protectedRoute/ProtectedRoute';
+import './App.css';
 
 function App(){
   return (

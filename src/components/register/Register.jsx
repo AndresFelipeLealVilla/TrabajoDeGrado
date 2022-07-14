@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useAuth } from "../../context/authContext";
-import {useNavigate} from 'react-router-dom'
-
+import {Link,useNavigate} from 'react-router-dom'
+import "./Register.css"
 
 export function Register() {
 
@@ -35,6 +35,7 @@ export function Register() {
       }if (error.code === "auth/internal-error") {
         seterror("Datos invalidos")
       }
+      
   }
   }
 
@@ -50,6 +51,7 @@ export function Register() {
 
       <button type="submit">Registrarse</button>
     </form>
+    <p>Ya tengo una cuenta <Link to='/login'>Ir a login</Link></p>
     </div>
   )
 }
