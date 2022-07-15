@@ -27,7 +27,7 @@ export function Login() {
     try { 
       await login(user.email, user.password)
       toast.success('Usuario logeado')
-      setTimeout( ()  => {navigate('/')}, 3000);
+      setTimeout( ()  => {navigate('/')}, 2000);
 
     } catch (error) {
       if (error.code === "auth/invalid-email") {
