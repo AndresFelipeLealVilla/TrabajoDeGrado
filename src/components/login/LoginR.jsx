@@ -2,8 +2,8 @@ import { useState } from "react"
 import { useAuth } from "../../context/authContext";
 import {Link,useNavigate} from 'react-router-dom'
 import {Toaster, toast} from 'react-hot-toast'
-import "./Login.css"
-
+import './Login.css'
+import imagen from '../../img/Logo1.png'
 
 export function Login() {
 // Se crea una variable que guarda el estado de la variable user
@@ -53,23 +53,25 @@ export function Login() {
   }
 
   const handleResetPassword = async () => {
-    if(!user.email) return
-      setFail("Ingrese un correo");
-    
+    if(!user.email) return toast.error("Ingrese un correo");
+    setFail('Ingrese un correo')
+   
     try {
       await resetPassword(user.email)
       setFail("Se ha enviado un correo para restablecer la contraseña");
+      toast.success("Se ha enviado un correo para restablecer la contraseña");
     } catch (error) {
       setFail("Correo invalido");
+      toast.error("Correo invalido");
     }
   }
 
   return (
     <div className="container">
       <div className="formulario">
+      <img src={imagen} className='logo1'/>
+
         <h1>Iniciar sesión</h1>
-        {Fail && <p>{Fail}</p>}
-        
         <form onSubmit={handleSubmit}>
         <label htmlFor="email">Tu correo</label>
         <input type="email" id="email" name="email" placeholder="youremail@correounivalle.edu.co" onChange={handleChange}/>

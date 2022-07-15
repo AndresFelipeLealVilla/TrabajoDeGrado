@@ -1,32 +1,28 @@
-*{
-    box-sizing: border-box;
-}
-
 body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../../img/Fondo1.jpg');
+    background-size: cover; 
     font-family: "Muli", sans-serif;
-    background-color: #AA96DA;
-    
+    height: 100vh;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     overflow: hidden;
-    margin: 0;
+    
 }
-
-container{
-    background-color: #393e467d;
-    padding: 20px, 40px;
-    border-radius: 5px;
-}
-
+/***   Titulo Iniciar Sesión   ***/
 .container h1{
+    margin: 0;
+    padding: 0 0 20px;
     text-align: center;
+    font-size: 22px;
     margin-bottom: 30px;
 }
 
+/***  Botones de Inicio de sesión   ***/
 .button{
     cursor: pointer;
     display: inline-block;
@@ -57,31 +53,59 @@ container{
 }
 
 .formulario{
-    position: relative;
+    width: 350px;
+    height: 460px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
     margin: 20px 0 40px;
-    width: 300px;
+    padding: 70px 30px;
+    
+}
+
+.formulario .logo1{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 30px;
 }
 
 .formulario input{
+    width: 100%;
+    margin-bottom: 20px;
     background-color: transparent;
     border: 0;
-
     border-bottom: 2px solid #fff;
     display: block;
-    width: 100%;
-    padding: 15px 0;
+    height: 17px;
+    padding: 1px 0;
     font-size: 18px;
     color: #fff;
 }
 
 .formulario input:focus, .formulario input:valid{
-    outline: 0;
+    padding-top: 10px;
+    outline: 10px;
     border-bottom-color: lightblue;
 }
 
 .formulario label{
-    position: absolute;
-    left: 0;
+    margin:0;
+    padding: 0 0 5px;
+    font-weight: bold;
+    display: block;
+    position: relative;
+    left: 5;
     pointer-events: none;
 }
 

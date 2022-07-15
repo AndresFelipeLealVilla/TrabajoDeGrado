@@ -5,7 +5,7 @@ import {Register} from './components/register/Register';
 import {AuthProvider} from './context/authContext';
 import {Profile} from './components/profile/Profile';
 import { ProtectedRoute } from './components/protectedRoute/ProtectedRoute';
-import './App.css';
+
 
 function App(){
   return (

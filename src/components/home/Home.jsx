@@ -1,6 +1,5 @@
 import { useAuth } from "../../context/authContext"
 //import { useNavigate } from "react-router-dom";
-import './Home.css'
 
 export function Home() {
   const {user, logout, loading} = useAuth()
