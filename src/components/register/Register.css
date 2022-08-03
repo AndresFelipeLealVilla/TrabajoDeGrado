@@ -1,0 +1,134 @@
+.formularioRegister{
+    width: 350px;
+    height: 500px;
+    background: white;
+    color: rgb(0, 0, 0);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    margin: 20px 0 40px;
+    padding: 70px 30px;
+    border-radius: 5%;
+    
+}
+
+/***   Titulo Registro   ***/
+.formularioRegister .RegisterNombre{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
+/***  Formulario   ***/
+
+.formularioRegister{
+    width: 330px;
+    height: 320px;
+    background: white;
+    color: rgb(0, 0, 0);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    margin: 20px 0 40px;
+    padding: 70px 30px;
+    border: black;
+    border-radius: 3%;
+    
+}
+
+
+
+
+/***  Botón de Registro   ***/
+.buttonRegister{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    width: 48%;
+    height: 35px;
+    padding: 1px 1px;
+    font-family: inherit;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #dfdbdb;
+    margin:center;
+    color: rgb(206, 199, 199);
+    text-align: center;
+    text-decoration: none;
+    margin: 10px 70px; 
+    color:black;
+    border-color: black;
+    border: 1px solid black;
+    top: -20px; 
+}
+
+.buttonRegister:hover{
+    border-color: white;
+}
+
+.buttonRegister:focus{
+    outline: 0;
+}
+
+.buttonRegister:active{
+    transform: scale(0.98);
+}
+
+/***  Input   ***/
+.formularioRegister input{
+    position: top;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: rgb(235, 231, 231);
+    border: 1px solid #393e467d;
+    display: block;
+    height: 30px;
+    padding: 1px 0;
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+    position: relative;
+    top: -20px;
+}
+
+/***  Logo ***/
+.formularioRegister .logo1{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 30px;
+}
+
+
+/***  Link   ***/
+.formularioRegister .a:hover{
+    color: rgb(10, 65, 247);
+    text-decoration: none;
+    margin-top: 20px;
+}   
+
+.formularioRegister a{
+    color: rgb(6, 27, 97);
+    text-decoration: none;
+    margin-top: 20px;
+    position: relative;
+    top: -20px;
+}
+
+.formularioRegister a:hover{
+    color: rgb(10, 65, 247);
+    text-decoration: none;
+    margin-top: 20px;
+}
+

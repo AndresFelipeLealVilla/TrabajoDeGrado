@@ -1,4 +1,5 @@
 import { useAuth } from "../../context/authContext"
+import {database} from "../../Firebase" 
 //import { useNavigate } from "react-router-dom";
 
 export function Home() {
@@ -7,7 +8,6 @@ export function Home() {
   const handleLogout = async () => {
       await logout()
   };
-
   if (loading) {
     return <div>Loading...</div>
   }

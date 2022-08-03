@@ -68,26 +68,30 @@ export function Login() {
 
   return (
     <div className="container">
-      <div className="formulario">
+      <div className="formularioLogin">
       <img src={imagen} className='logo1'/>
 
-        <h1>Iniciar sesión</h1>
+        <h1 className="LoginNombre">Nombre Bot</h1>
+        
+        <div className="Login">
         <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Tu correo</label>
-        <input type="email" id="email" name="email" placeholder="youremail@correounivalle.edu.co" onChange={handleChange}/>
+        
+        <input type="email" id="email" name="email" placeholder="  Correo electrónico" onChange={handleChange}/>
 
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="******" onChange={handleChange}/>
+        
+        <input type="password" name="password" id="password" placeholder="  Contraseña" onChange={handleChange}/>
 
-        <button className="button" type="submit">Login</button>
-
-        <a href="#!" onClick={handleResetPassword}>Olvide mi contraseña</a>
+        <button className="buttonLogin" type="submit">Iniciar Sesión</button>
+        <hr className="linea"/>
+        <p><a href="#!" onClick={handleResetPassword}>¿Olvidaste tu contraseña?</a></p>
       
         </form>
-        <p>No tengo una cuenta <Link to='/register'>Registrarme</Link></p>
-        <button className="button" onClick={handleGoogleLogin}>Inicio con google</button>
-      </div>
-      <Toaster/>
+        </div>
+        <Toaster/>
+        
+        <p><Link to='/register' className="a">¿No tienes una cuenta?</Link></p>
+        <button className="buttonGoogle" onClick={handleGoogleLogin}>Inicio con google</button>
+        </div>
     </div>
 
   )

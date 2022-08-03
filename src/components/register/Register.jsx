@@ -2,7 +2,8 @@ import { useState } from "react"
 import { useAuth } from "../../context/authContext";
 import {Link,useNavigate} from 'react-router-dom'
 import {Toaster, toast} from 'react-hot-toast'
-
+import './Register.css'
+import imagen from '../../img/Logo1.png'
 
 export function Register() {
 
@@ -51,19 +52,20 @@ export function Register() {
   }
 
   return (
-    <div>
+    <div className="container">
+      <div className='formularioRegister'>
+      <img src={imagen} className='logo1'/>
       {Fail && <p>{Fail}</p>}
+      <h1 className="RegisterNombre">Registro</h1>
       <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="youremail@correounivalle.edu.co" onChange={handleChange}/>
+      <input type="email" id="email" name="email" placeholder="  Correo electrónico" onChange={handleChange}/>
+      <input type="password" name="password" id="password" placeholder="  Contraseña" onChange={handleChange}/>
 
-      <label htmlFor="password">Password</label>
-      <input type="password" name="password" id="password" placeholder="******" onChange={handleChange}/>
-
-      <button type="submit">Registrarse</button>
+      <button type="submit" className="buttonRegister">Registrarse</button>
     </form>
-    <p>Ya tengo una cuenta <Link to='/login'>Ir a login</Link></p>
+    <p> <Link to='/login'>¿Ya tienes una cuenta?</Link></p>
     <Toaster/>
+    </div>
     </div>
   )
 }

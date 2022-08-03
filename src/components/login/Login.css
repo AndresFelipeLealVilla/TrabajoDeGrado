@@ -14,7 +14,7 @@ body {
     
 }
 /***   Titulo Iniciar Sesión   ***/
-.container h1{
+.formularioLogin .LoginNombre{
     margin: 0;
     padding: 0 0 20px;
     text-align: center;
@@ -23,51 +23,101 @@ body {
 }
 
 /***  Botones de Inicio de sesión   ***/
-.button{
+.buttonLogin{
     cursor: pointer;
     display: inline-block;
-    width: 100%;
-    background: lightblue;
-    padding: 15px 32px;
+    position: relative;
+    width: 48%;
+    height: 35px;
+    padding: 1px 1px;
     font-family: inherit;
-    font-size: 16px;
-    border: 0;
+    font-size: 14px;
     border-radius: 5px;
-    background-color: #393e467d;
-    
-    color: #fff;
-    
+    background-color: #dfdbdb;
+    margin:center;
+    color: rgb(206, 199, 199);
     text-align: center;
     text-decoration: none;
-    
-    
-    margin: 4px 2px;  
+    margin: 10px 70px; 
+    color:black;
+    border-color: black;
+    border: 1px solid black;
+    top: -20px; 
 }
 
-.button:focus{
+.buttonLogin:hover{
+    border-color: white;
+}
+
+.buttonLogin:focus{
     outline: 0;
 }
 
-.button:active{
+.buttonLogin:active{
     transform: scale(0.98);
 }
 
-.formulario{
-    width: 350px;
-    height: 460px;
-    background: #000;
-    color: #fff;
-    top: 50%;
-    left: 50%;
+
+.buttonGoogle{
+    border-color: rgb(255, 255, 255);
+    height: 45px;
+    width: 100%;
+    background-image: url('../../img/LogoGoogle.png');
+    background-repeat:no-repeat;
+    background-size: 50px 45px;
+    background-color: white;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    position: relative;
+    border-radius: 5px;
+    top: -20px;
+}
+
+.buttonGoogle:hover{
+    border-color: blue;
+}
+
+.formularioLogin{
+    width: 330px;
+    height: 440px;
+    background: white;
+    color: rgb(0, 0, 0);
+    top: 45%;
+    left: 70%;
     position: absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     margin: 20px 0 40px;
     padding: 70px 30px;
+    border: black;
+    border-radius: 3%;
     
 }
 
-.formulario .logo1{
+
+.formularioLogin .a:hover{
+    color: rgb(10, 65, 247);
+    text-decoration: none;
+    margin-top: 20px;
+}   
+
+.formularioLogin a{
+    color: rgb(6, 27, 97);
+    text-decoration: none;
+    margin-top: 20px;
+    position: relative;
+    top: 25px;
+}
+
+.formularioLogin a:hover{
+    color: rgb(10, 65, 247);
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+
+.formularioLogin .logo1{
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -80,43 +130,27 @@ body {
     margin-bottom: 30px;
 }
 
-.formulario input{
+.formularioLogin input{
+    position: top;
     width: 100%;
-    margin-bottom: 20px;
-    background-color: transparent;
-    border: 0;
-    border-bottom: 2px solid #fff;
+    margin-bottom: 10px;
+    background-color: rgb(235, 231, 231);
+    border: 1px solid #393e467d;
     display: block;
-    height: 17px;
+    height: 30px;
     padding: 1px 0;
-    font-size: 18px;
-    color: #fff;
-}
-
-.formulario input:focus, .formulario input:valid{
-    padding-top: 10px;
-    outline: 10px;
-    border-bottom-color: lightblue;
-}
-
-.formulario label{
-    margin:0;
-    padding: 0 0 5px;
-    font-weight: bold;
-    display: block;
+    font-size: 12px;
+    color: rgb(0, 0, 0);
     position: relative;
-    left: 5;
-    pointer-events: none;
+    top: -20px;
 }
 
-.formulario label span{
-    display: inline-block;
-    font-size: 18px;
-    min-width: 5px;
-    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+.formularioLogin p{
+    position: relative;
+    top: -45px;
 }
 
-.formulario input:focus + label span, .formulario input:valid + label span{
-    color: lightblue;
-    transform: translateY(-30px);
+.Login .linea{
+    position: relative;
+    top: -20px;
 }
