@@ -1,5 +1,6 @@
 import { useAuth } from "../../context/authContext"
 import {database} from "../../Firebase" 
+import Navbar from "../navbar/Navbar"
 //import { useNavigate } from "react-router-dom";
 
 export function Home() {
@@ -13,11 +14,13 @@ export function Home() {
   }
   
   return (
+    
     <div>
+      <Navbar />
       <h1>Welcome {user.email}</h1>
       <button onClick={(handleLogout)}>
         Logout
       </button>
-      </div>
+    </div>
   )
 }

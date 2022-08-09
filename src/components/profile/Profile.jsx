@@ -3,21 +3,19 @@ import { getAuth } from 'firebase/auth'
 import './Profile.css'
 import {app} from '../../Firebase'
 import { getFirestore, collection, addDoc, getDocs, getDoc, doc, query, where } from "firebase/firestore";
-
-
+import { async } from '@firebase/util';
 
 
 export function Profile() {
 
   const email = getAuth().currentUser.email;
+  console.log(email)
   const db = getFirestore(app)
 
   
 // recibir datos de componente register
-
-
   const [estudiante, setEstudiante] = useState({
-    Correo: '',
+    Correo: email,
     Nombre: '',
     Apellido: '',
     NombreUsuario: '',
@@ -25,11 +23,14 @@ export function Profile() {
     Puntos: 20,
     Genero: '',
   });
- 
 
 
 
+// Create a reference to the cities collection
+const citiesRef = collection(db, "Estudiantes");
 
+// Create a query against the collection.
+const q = query(citiesRef, where("Correo", "==", email));
 
 const handleInputChange = async (e) => {
   const {name, value} = e.target;
@@ -39,25 +40,8 @@ const handleInputChange = async (e) => {
 
   const handleSubmit = async (e) => {  
     e.preventDefault();
-    importarDatos();
-    console.log(estudiante)
+    //console.log(estudiante)
   }
-
-  function importarDatos(props){
-    return(
-      <div>
-        {props.Nombre}
-       {props.Apellido}
-      {props.NombreUsuario}
-      {props.Edad}
-      {props.Puntos}
-      {props.Genero}
-      </div>
-  
-    );
-  }
-
-
 
 
   return (
@@ -69,10 +53,8 @@ const handleInputChange = async (e) => {
         <input name="Apellido" type="lastname" onChange={handleInputChange} placeholder=" Apellido "value={estudiante.Apellido}/>
         <input name="NombreUsuario" type="userName" onChange={handleInputChange} placeholder="  Nombre de usuario" value={estudiante.NombreUsuario} />
         <input name="Edad" type="age" onChange={handleInputChange} placeholder=" Edad " value={estudiante.Edad} />
-        <button className="buttonOK" onClick={handleSubmit} >Guardar</button>
-        
+        <button className="buttonOK" onClick={handleSubmit} >Guardar</button> 
       </form>
-
     </div>
   )
 }

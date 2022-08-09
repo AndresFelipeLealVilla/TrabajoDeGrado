@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore, collection, addDoc, getDocs, getDoc, doc, deleteDoc, setDoc } from "firebase/firestore";
 
@@ -20,9 +19,6 @@ const firebaseConfig = {
 
 // Inicializar Firebase
 export const app = initializeApp(firebaseConfig);
-
-// Obtener una instancia de Analytics
-export const analytics = getAnalytics(app);
 
 // Obtener una instancia de Auth, conexión a la autenticación
 export const auth = getAuth(app);

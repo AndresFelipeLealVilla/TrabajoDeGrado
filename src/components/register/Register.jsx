@@ -7,9 +7,12 @@ import './Register.css'
 import imagen from '../../img/Logo1.png'
 import { getFirestore, collection, addDoc} from "firebase/firestore";
 import {app} from '../../Firebase'
-import importarDatos from "../profile/Profile";
+import {Profile} from "../profile/Profile";
 
 export function Register() {
+
+
+//Usar importarDatos
 
 /************* Datos de entrada **************/
   const [user, setUser] = useState({
@@ -54,7 +57,6 @@ export function Register() {
           console.log(error)
         }
         setUser({...user});
-        exportarDatos();
       toast.success('Usuario creado')
       setTimeout( ()  => {navigate('/')}, 2000);}
     } catch (error) {
@@ -88,9 +90,8 @@ export function Register() {
   }
 
   // exportar user para que se pueda usar en el componente
-  function exportarDatos () {
-    return (
-    <importarDatos Nombre = 'pedro'
+
+    <Profile Nombre = 'pedro'
      Apellido = 'ramirez'
      Correo = 'pera@correo.com'
      NombreUsuario = 'pera69'
@@ -98,8 +99,6 @@ export function Register() {
      Puntos = '16'
     Genero = 'Niño'/>
      
-
-    );}
 
 /* ********* Render ******** */
   return (

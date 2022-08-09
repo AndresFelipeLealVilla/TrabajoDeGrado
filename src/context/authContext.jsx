@@ -8,9 +8,6 @@ import {createUserWithEmailAndPassword,
     sendPasswordResetEmail} from 'firebase/auth';
 import {auth} from '../Firebase'; 
 
-const MyEstadoGlobalContext = createContext({ mostrar: false, setMostrar: () => {} 
-});
-export {MyEstadoGlobalContext};
 
 // creacion del contexto
 export const AuthContext = createContext()
