@@ -3,15 +3,14 @@ import { useState } from "react"
 import { useAuth } from "../../context/authContext";
 import {Link,useNavigate} from 'react-router-dom'
 import {Toaster, toast} from 'react-hot-toast'
-import './Register.css'
-import imagen from '../../img/Logo1.png'
 import { getFirestore, collection, addDoc} from "firebase/firestore";
 import {app} from '../../Firebase'
-import {Profile} from "../profile/Profile";
+import {getAuth, updateProfile} from 'firebase/auth'
+import './Register.css'
+import imagen from '../../img/Logo1.png'
+
 
 export function Register() {
-
-
 //Usar importarDatos
 
 /************* Datos de entrada **************/
@@ -31,6 +30,8 @@ export function Register() {
   const navigate = useNavigate()
   const [Fail, setFail] = useState()
   const db = getFirestore(app)
+  const auth = getAuth();
+  
   
 /* ****** Actualizar datos de usuario ****** */
   const handleChange = ({target: {name, value}}) => {
@@ -48,7 +49,8 @@ export function Register() {
       toast.error('Todos los campos son obligatorios')
     }else{
       await signup(user.Email, user.Password)
-
+      updateProfile(auth.currentUser, {
+        displayName: user.NombreUsuario})
       e.preventDefault();
       try {
         user.Password = '';
@@ -91,17 +93,9 @@ export function Register() {
 
   // exportar user para que se pueda usar en el componente
 
-    <Profile Nombre = 'pedro'
-     Apellido = 'ramirez'
-     Correo = 'pera@correo.com'
-     NombreUsuario = 'pera69'
-     Edad = '25'
-     Puntos = '16'
-    Genero = 'Niño'/>
-     
-
 /* ********* Render ******** */
   return (
+    
     <div className="container">
       <div className='formularioRegister'>
         <img src={imagen} alt='' className='logo1'/>
@@ -117,8 +111,8 @@ export function Register() {
 
           <select id="Genero" name="Genero" onChange={handleChange}>
             <option value=" " id=" "> Selecciona</option>
-            <option value="Niño" id="Niño">Masculino</option>
-            <option value="Niña" id="Niña">Femenino</option>
+            <option value="Hombre" id="Hombre">Masculino</option>
+            <option value="Hombre" id="Mujer">Femenino</option>
             <option value="NoDefinido" id="NoDefinido">No Definido</option>
           </select>
 

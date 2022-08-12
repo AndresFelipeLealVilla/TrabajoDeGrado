@@ -15,11 +15,9 @@ export function Login() {
     password: "",
   })
 
-
 /** ************* Context ************** */
   const { login, loginWithGoogle, resetPassword } = useAuth()
   const navigate = useNavigate()
-  const [Fail, setFail] = useState()
 
 /* ****** Actualizar datos de usuario ****** */
   const handleChange = ({target: {name, value}}) => {
@@ -29,23 +27,18 @@ export function Login() {
 /* ********* Iniciar sesion ******** */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFail('')
     try { 
       await login(user.email, user.password)
       toast.success('Usuario logeado')
       setTimeout( ()  => {navigate('/')}, 2000);
     } catch (error) {
       if (error.code === "auth/invalid-email") {
-        setFail("Correo invalido")
         toast.error("Correo invalido")
       }if (error.code === "auth/user-not-found") {
-        setFail("Usuario no encontrado")
         toast.error("Usuario no encontrado")
       }if (error.code === "auth/wrong-password") {
-        setFail("Contraseña incorrecta")
         toast.error("Contraseña incorrecta")
       }if (error.code === "auth/internal-error") {
-        setFail("Datos invalidos")
         toast.error("Datos invalidos")
       }
     }
@@ -60,13 +53,10 @@ export function Login() {
 /* ********* Reiniciar contraseña ******** */
   const handleResetPassword = async () => {
     if(!user.email) return toast.error("Ingrese un correo");
-    setFail('Ingrese un correo')
     try {
       await resetPassword(user.email)
-      setFail("Se ha enviado un correo para restablecer la contraseña");
       toast.success("Se ha enviado un correo para restablecer la contraseña");
     } catch (error) {
-      setFail("Correo invalido");
       toast.error("Correo invalido");
     }
   }

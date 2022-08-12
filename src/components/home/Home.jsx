@@ -1,26 +1,28 @@
-import { useAuth } from "../../context/authContext"
-import {database} from "../../Firebase" 
+import { useAuth } from "../../context/authContext" 
 import Navbar from "../navbar/Navbar"
+import './Home.css'
+import ImagenHombre from '../../img/imgProfile/Hombre.png'
+import ImagenMujer from '../../img/imgProfile/Mujer.png'
+import ImagenNoDefinida from '../../img/imgProfile/Silueta.png'
+
 //import { useNavigate } from "react-router-dom";
 
 export function Home() {
-  const {user, logout, loading} = useAuth()
-  
-  const handleLogout = async () => {
-      await logout()
-  };
+  const {user, loading} = useAuth()
+
   if (loading) {
     return <div>Loading...</div>
   }
   
-  return (
-    
+  return ( 
     <div>
       <Navbar />
-      <h1>Welcome {user.email}</h1>
-      <button onClick={(handleLogout)}>
-        Logout
-      </button>
+      <div className="Total">
+          Progreso Total
+      </div>
+      <div className="Posiciones">
+        Tabla de posiciones
+      </div>
     </div>
   )
 }

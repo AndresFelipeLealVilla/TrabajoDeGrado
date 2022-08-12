@@ -4,7 +4,7 @@ import {Login} from './components/login/LoginR';
 import {Register} from './components/register/Register';
 import {AuthProvider} from './context/authContext';
 import {Profile} from './components/profile/Profile';
-import { ProtectedRoute } from './components/protectedRoute/ProtectedRoute';
+import {ProtectedRoute} from './components/protectedRoute/ProtectedRoute';
 
 
 function App(){
