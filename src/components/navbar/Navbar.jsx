@@ -14,16 +14,11 @@ import ImagenNoDefinida from '../../img/imgProfile/Silueta.png'
 
 const Navbar = () => {
 
-    const navigate = useNavigate()
     const {logout} = useAuth()
     const user = getAuth().currentUser;
     const email = getAuth().currentUser.email;
     
     const [genero, setGenero] = useState ('')
-
-    const handleSubmit = () => {
-        navigate('/profile')
-    }
 
     const handleLogout = async () => {
         await logout()
