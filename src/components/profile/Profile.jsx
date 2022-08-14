@@ -7,6 +7,8 @@ import Navbar from "../navbar/Navbar"
 import ImagenHombre from '../../img/imgProfile/HombreG.PNG'
 import ImagenMujer from '../../img/imgProfile/MujerG.PNG'
 import ImagenNoDefinida from '../../img/imgProfile/SiluetaG.PNG'
+import imagen1 from '../../img/Logo1.png'
+import fondo from '../../img/imgProfile/fondoPerfil.PNG'
 
 export function Profile() {
   const email = getAuth().currentUser.email;
@@ -62,10 +64,8 @@ const handleInputChange = async (e) => {
         const querySnapshot = await getDocs(qu);
         querySnapshot.forEach((doc) => {
         console.log(doc.data());
-        console.log(doc.Correo, " => ", doc.data());
         setGenero(doc.data().Genero)
         setEstudiante(doc.data())
-        console.log(genero)
         if (genero === 'Hombre') {
             setImagenPerfil(ImagenHombre)
             console.log('es hombre')
@@ -80,7 +80,7 @@ const handleInputChange = async (e) => {
         );
     }
     obtenerEstudiante();
-},[email, datosEstudiante, genero, estudiante])
+},[email, datosEstudiante, genero])
 
 
 
@@ -91,45 +91,93 @@ const handleInputChange = async (e) => {
     
     <div>
       <Navbar/>
-      <div className='Perfil'>
-        <div className='Perfil-container'>
+      <div className="container">
+      <div className='otroPerfil'>
+        <div className='margen'>
+          <img src={fondo} alt='fondoSperfil' className='ImgSPerfil'/>
+          <img src={imagen1} alt='Logo' className='LogoApp'/>
+          <p className='NombreLogo'>NombreLogo</p>
           <img src={imagenPerfil} alt='imagen perfil' className='ImgPerfil'/>
+          <p className='Nombre'>NombreUsuario</p>
           <table className='tabla1'>
             <tbody>
               <tr>
-                <td>Nombre: {estudiante.Nombre}</td>
+                <td><span className='etiqueta'>Nombre:</span> {estudiante.Nombre}</td>
               </tr>
               <tr>
-                <td>Apellido: {estudiante.Apellido}</td>
+                <td><span className='etiqueta'>Apellido:</span>{estudiante.Apellido}</td>
               </tr>
               <tr>
-                <td>Nombre de Usuario: {estudiante.NombreUsuario}</td>
+                <td><span className='etiqueta'>Edad:</span> {estudiante.Edad}</td>
               </tr>
               <tr>
-                <td>Edad: {estudiante.Edad}</td>
-              </tr>
-              <tr>
-                <td>Genero: {estudiante.Genero}</td>
+                <td><span className='etiqueta'>Genero:</span>{estudiante.Genero}</td>
               </tr>
             </tbody>
           </table>
 
-          <table className='tabla2'>
+            <ul>
+              <li className='perforado1'><hr className='argolla'></hr></li>
+              <li className='perforado1'></li>
+              <li className='perforado1'></li>
+              <li className='perforado1'></li>
+              <li className='perforado1'></li>
+              <li className='perforado1'></li>
+              <li className='perforado1'></li>
+              <li className='perforado1'></li>
+              <li className='perforado1'></li>
+              <li className='perforado1'></li>
+              <li className='perforado1'></li>
+              <li className='perforado1'></li>
+            </ul>
+
+        </div>
+      </div>
+
+
+      <div className='Perfil'>
+        <div className='margen'>
+          <img src={fondo} alt='fondoSperfil' className='ImgSPerfil'/>
+          <img src={imagen1} alt='Logo' className='LogoApp'/>
+          <p className='NombreLogo'>NombreLogo</p>
+          <img src={imagenPerfil} alt='imagen perfil' className='ImgPerfil'/>
+          <p className='Nombre'>NombreUsuario</p>
+          <table className='tabla1'>
             <tbody>
               <tr>
-                <td>Puntos: {estudiante.Puntos}</td>
+                <td><span className='etiqueta'>Nombre:</span> {estudiante.Nombre}</td>
               </tr>
               <tr>
-                <td>Posición: {estudiante.Edad}</td>
+                <td><span className='etiqueta'>Apellido:</span>{estudiante.Apellido}</td>
               </tr>
               <tr>
-                <td>Trofeos: {estudiante.Puntos}</td>
+                <td><span className='etiqueta'>Edad:</span> {estudiante.Edad}</td>
+              </tr>
+              <tr>
+                <td><span className='etiqueta'>Genero:</span>{estudiante.Genero}</td>
               </tr>
             </tbody>
           </table>
-          <button className='btn-editar' onClick={handleSubmit}>Editar</button>
-        </div>        
+        
+
+        <ul>
+              <li className='perforado2'><hr className='argolla'></hr></li>
+              <li className='perforado2'></li>
+              <li className='perforado2'></li>
+              <li className='perforado2'></li>
+              <li className='perforado2'></li>
+              <li className='perforado2'></li>
+              <li className='perforado2'></li>
+              <li className='perforado2'></li>
+              <li className='perforado2'></li>
+              <li className='perforado2'></li>
+              <li className='perforado2'></li>
+              <li className='perforado2'></li>
+            </ul>
+            </div>
       </div>
+      </div>
+
 
       <form className='formularioPerfil'>
         <input name="Email" type="Email" placeholder=" Email" onChange={handleInputChange} value={email} readOnly/>
