@@ -33,9 +33,15 @@
     font-family: cursive;
     color: rgb(0, 0, 0);
     position: absolute;
-    top: 320px;
-    left: 40px;
+    top: 250px;
+    left: 35px;
     width: 60%;
+}
+
+.nombreUser{
+    position: absolute;
+    top: 10px;
+    left: 64px;
 }
 
 .etiqueta{
@@ -185,8 +191,18 @@
     font-size: 20px;
     font-family: cursive;
     position: absolute;
-    top: 47%;
+    top: 27%;
     left: 27%;
+    font-weight: bold;
+}
+
+.Correo{
+    color:rgb(0, 0, 0);
+    font-size: 19px;
+    font-family: cursive;
+    position: absolute;
+    top: 33%;
+    left: 3%;
     font-weight: bold;
 }
 

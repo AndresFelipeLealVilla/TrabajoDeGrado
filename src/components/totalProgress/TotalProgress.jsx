@@ -6,6 +6,10 @@ import NObjetos from '../../img/imgTrofeo/NObjetos.png'
 import NMetodos from '../../img/imgTrofeo/NMetodos.png'
 import NAtributos from '../../img/imgTrofeo/NAtributos.png'
 import NMedalla from '../../img/imgMedalla/NMedalla.jpg'
+import Clases from '../../img/imgTrofeo/Clases.png'
+import Objetos from '../../img/imgTrofeo/Objetos.png'
+import Metodos from '../../img/imgTrofeo/Metodos.png'
+import Atributos from '../../img/imgTrofeo/Atributos.png'
 
 
 
