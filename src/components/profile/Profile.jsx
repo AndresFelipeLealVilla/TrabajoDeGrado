@@ -7,7 +7,6 @@ import {app} from '../../Firebase'
 import Navbar from "../navbar/Navbar"
 import imagen1 from '../../img/Logo1.png'
 import fondo from '../../img/imgProfile/fondoPerfil.PNG'
-import TotalProgress from "../totalProgress/TotalProgress"
 
 export function Profile() {
 
@@ -63,7 +62,6 @@ const obtenerEstudiante = async () => {
   return (    
     <div>
       <Navbar/>
-      <TotalProgress/>
       <div className="container">
       <div className='otroPerfil'>
         <div className='margen'>

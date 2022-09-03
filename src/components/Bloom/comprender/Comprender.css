@@ -1,0 +1,63 @@
+.container-Bloom{
+    align-items: center;
+    justify-content: center;
+    border-color: black;
+    width: 940px;
+    height: 500px;
+    border-style: solid;
+    top: 90px;
+    left: 20px;
+    position: absolute;
+}
+
+.diagrama{
+    border-color: black;
+    border-style: solid;
+    top: 20px;
+    left: 20px;
+    position: absolute;
+    width: 330px;
+    height: 463px;
+    justify-content: center;
+    text-align: center;
+}
+
+.opciones1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    left: 400px;
+    top: 60px;
+    position: relative;
+    border-color: black;
+    border-style: solid;
+    height: 150px;
+    width: 300px;
+    margin: 5px;
+   padding: 0;
+   list-style-type: none;
+   orientation: horizontal;
+   display: flex;
+    align-items: right;
+    gap: 3rem;
+}
+
+.opciones2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    left: 550px;
+    top: -362px;
+    position: relative;
+    border-color: black;
+    border-style: solid;
+    height: 150px;
+    width: 300px;
+    margin: 5px;
+   padding: 0;
+   list-style-type: none;
+   orientation: horizontal;
+   display: flex;
+    align-items: right;
+    gap: 3rem;
+}

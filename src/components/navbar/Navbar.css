@@ -76,15 +76,69 @@ li {
   .nav__active {
     transform: translateX(0%);
   }
-  
-  /* Toggle Icon Animation */
-  
-  .toggle .line1 {
-    transform: rotate(-45deg) translate(-4px, 5px);
-  }
-  .toggle .line2 {
-    opacity: 0;
-  }
-  .toggle .line3 {
-    transform: rotate(45deg) translate(-4px, -5px);
-  }
+
+
+  .ProgresoTotal{
+    width: 530px;
+    height: 60px;
+    background: whitesmoke;
+    color: rgb(0, 0, 0);
+    top: 40px;
+    left: 81vw;
+    position: relative;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    margin: 20px 0 40px;
+    padding: 60px 30px;
+    border: black;
+    align-items: left;    
+}
+
+.Medalla{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 15px;
+    left: 13px;
+    border-radius: 50%;
+
+}
+
+.Trofeos{
+    margin: 0;
+   padding: 0;
+   list-style-type: none;
+   orientation: horizontal;
+   display: flex;
+    align-items: right;
+    gap: 3rem;
+    top: 5vh;
+    left: 75vw;
+    position: absolute;
+
+
+}
+
+.Trofeos .item{
+    width: 15px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    position: relative;
+    orientation: horizontal;
+    padding-left: 7px;
+    left: -45px;
+}
+
+.Trofeos .Trofeo{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    position: relative;
+    border-color: gray;
+    border-style: solid;
+}

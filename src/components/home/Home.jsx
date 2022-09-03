@@ -1,7 +1,11 @@
 import { useAuth } from "../../context/authContext" 
 import Navbar from "../navbar/Navbar"
 import './Home.css'
-import TotalProgress from "../totalProgress/TotalProgress"
+import Chatbot from "../chatbot/Chatbot"
+import { render } from "@testing-library/react"
+import ComprenderClase from "../Bloom/comprender/ComprenderClase"
+import AnalizarMetodosAtributos from "../Bloom/analizar/AnalizarMetodosAtributos"
+import EvaluarClase from "../Bloom/evaluar/EvaluarClase"
 //import { useNavigate } from "react-router-dom";
 
 export function Home() {
@@ -10,11 +14,13 @@ export function Home() {
   if (loading) {
     return <div>Loading...</div>
   }
+
   
   return ( 
     <div>
       <Navbar />
-      <TotalProgress/>
+      <Chatbot/>
+      <EvaluarClase/>
     </div>
   )
 }

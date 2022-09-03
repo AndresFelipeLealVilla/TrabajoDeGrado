@@ -1,0 +1,61 @@
+.Container-draganddrop{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    color: black;
+}
+
+.bloque{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 180px;
+    top: 18px;
+    position: relative;
+    border-color: black;
+    border-style: solid;
+    height: 400px;
+    margin: 5px;
+   padding: 0;
+   list-style-type: none;
+   orientation: horizontal;
+   display: flex;
+    align-items: right;
+    gap: 3rem;
+}
+
+
+.container-Bloom{
+    align-items: center;
+    justify-content: center;
+    border-color: black;
+    width: 940px;
+    height: 500px;
+    border-style: solid;
+    top: 90px;
+    left: 20px;
+    position: absolute;
+}
+
+.orientacion{
+    border-color: black;
+    border-style: solid;
+    top: 20px;
+    left: 20px;
+    position: absolute;
+    width: 330px;
+    height: 463px;
+    justify-content: center;
+    text-align: center;
+}
+
+.btn-Bloom{
+    border-color: black;
+    border-style: solid;
+    top: 440px;
+    left: 620px;
+    position: absolute;
+    width: 70px;
+    height: 43px;
+    justify-content: center;
+}
