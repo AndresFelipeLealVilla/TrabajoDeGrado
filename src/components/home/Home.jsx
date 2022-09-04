@@ -6,6 +6,8 @@ import { render } from "@testing-library/react"
 import ComprenderClase from "../Bloom/comprender/ComprenderClase"
 import AnalizarMetodosAtributos from "../Bloom/analizar/AnalizarMetodosAtributos"
 import EvaluarClase from "../Bloom/evaluar/EvaluarClase"
+import ProyeccionProgress from "../progressBar/ProyeccionProgress"
+import Positions from "../PositionsTable/Positions"
 //import { useNavigate } from "react-router-dom";
 
 export function Home() {
@@ -21,6 +23,8 @@ export function Home() {
       <Navbar />
       <Chatbot/>
       <EvaluarClase/>
+      <ProyeccionProgress/>
+      <Positions/>
     </div>
   )
 }

@@ -7,6 +7,9 @@ import {app} from '../../Firebase'
 import Navbar from "../navbar/Navbar"
 import imagen1 from '../../img/Logo1.png'
 import fondo from '../../img/imgProfile/fondoPerfil.PNG'
+import hombre from '../../img/imgProfile/HombreG.PNG'
+import mujer from '../../img/imgProfile/MujerG.PNG'
+import silueta from '../../img/imgProfile/SiluetaG.PNG'
 
 export function Profile() {
 
@@ -84,16 +87,47 @@ const obtenerEstudiante = async () => {
               <tr>
                 <td><span className='etiqueta'>Genero:</span>{estudiante.Genero}</td>
               </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div className='Perfil'>
+        <div className='margen'>
+          <img src={fondo} alt='fondoSperfil' className='ImgSPerfil'/>
+          <img src={imagen1} alt='Logo' className='LogoApp'/>
+          <p className='NombreLogo'>NombreLogo</p>
+          <p className='Nombre'>{estudiante.NombreUsuario}</p>
+          <p className='Correo'>{estudiante.Email}</p>
+          <table className='tabla1'>
+            <tbody>
               <tr>
                 <td><span className='etiqueta'>Puntos:</span>{estudiante.Puntos}</td>
               </tr>
               <tr>
                 <td><span className='etiqueta'>Trofeos:</span>{estudiante.Trofeos}</td>
               </tr>
+              <img  className='ImgPerfil' src={estudiante.Genero === 'Hombre'
+                ? hombre
+                : estudiante.Genero === 'Mujer'
+                ? mujer
+                : silueta} alt='Logo'/>
             </tbody>
           </table>
         </div>
+
+
+        
+
+
+
+
       </div>
+
+
+
+
 
     </div>
       <form className='formularioPerfil'>

@@ -61,30 +61,6 @@
 
 }
 
-/*.argolla{
-    height: 100px;
-    width: 100px;
-    background: transparent;
-    border-radius: 0px 500px 0px 0px;
-    border: solid 5px grey;
-    margin: 10px;
-}
-
-*/
-
-.perforado2{
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #000000;
-    top: -10%;
-    left: -15%;
-    position: relative;
-    orientation: vertical;
-    margin: 15px;
-
-}
-
 
 
 .btn-editar{
@@ -171,7 +147,7 @@
     width: 100px;
     height: 100px;
     position: absolute;
-    top: 40%;
+    top: -100px;
     left: 47%;
     border-radius: 50%;
 }
