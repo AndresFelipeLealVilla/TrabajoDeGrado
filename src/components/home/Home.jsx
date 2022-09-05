@@ -2,29 +2,41 @@ import { useAuth } from "../../context/authContext"
 import Navbar from "../navbar/Navbar"
 import './Home.css'
 import Chatbot from "../chatbot/Chatbot"
-import { render } from "@testing-library/react"
-import ComprenderClase from "../Bloom/comprender/ComprenderClase"
-import AnalizarMetodosAtributos from "../Bloom/analizar/AnalizarMetodosAtributos"
-import EvaluarClase from "../Bloom/evaluar/EvaluarClase"
 import ProyeccionProgress from "../progressBar/ProyeccionProgress"
 import Positions from "../PositionsTable/Positions"
-//import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import Mecanica from "../mecanica/Mecanica"
+import Carousel from '../mecanica/Carousel'
 
 export function Home() {
+  const [state, setState] = useState(0);
   const {loading} = useAuth()
 
   if (loading) {
     return <div>Loading...</div>
   }
 
-  
+  const incrementar = () => {
+    setState(state + 1);
+  }
+  const boton = <button defaultChecked={false} onClick={incrementar}>Incrementar</button>
+
   return ( 
-    <div>
+    
+    <> 
       <Navbar />
       <Chatbot/>
-      <EvaluarClase/>
       <ProyeccionProgress/>
       <Positions/>
-    </div>
+      <div className="container-Bloom">
+      {state === 0 ? <Carousel/> : <Mecanica/>}
+      {state === 0 ? boton : null}
+      </div>
+
+      
+      
+    </>
   )
+
+
 }

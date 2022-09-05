@@ -31,3 +31,14 @@
     
 }
 
+.container-Bloom{
+    align-items: center;
+    justify-content: center;
+    border-color: black;
+    width: 940px;
+    height: 500px;
+    border-style: solid;
+    top: 90px;
+    left: 20px;
+    position: absolute;
+}
