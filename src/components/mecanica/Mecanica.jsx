@@ -22,44 +22,52 @@ import AplicarAtributo from '../Bloom/aplicar/AplicarAtributo'
 import ComprenderAtributo from '../Bloom/comprender/ComprenderAtributo'
 import CrearAtributo from '../Bloom/crear/CrearAtributo'
 import EvaluarAtributo from '../Bloom/evaluar/EvaluarAtributo'
+import { render } from 'react-dom'
 
 function Mecanica() {
-    const [fase, setFase] = useState(0);
-    const [tema, setTema] = useState(null);
+    const [fase, setFase] = useState(2);
+    const [tema, setTema] = useState('Clases');
     const [componente, setComponente] = useState(null);
 
     const Clases = () => {
-        setTema("Clase")
+        setTema("Clases")
+        cambio(tema, fase)
+        setFase(2)
     }
     const Objetos = () => {
-        setTema("Objeto")
+        setTema("Objetos")
+        cambio(tema, fase)
     }
     const Metodos = () => {
-        setTema("Metodo")
+        setTema("Metodos")
+        cambio(tema, fase)
     }
     const Atributos = () => {
-        setTema("Atributo")
+        setTema("Atributos")
+        cambio(tema, fase)
     }
 
-    const botonClase = <button onClick={Clases} className="botonClase">Clase</button>
-    const botonObjetos = <button onClick={Objetos} className="botonObjetos">Objetos</button>
-    const botonMetodos = <button onClick={Metodos} className="botonMetodos">Metodos</button>
-    const botonAtributos = <button onClick={Atributos} className="botonAtributos">Atributos</button>
-    const Eleccion = [botonClase, botonObjetos, botonMetodos, botonAtributos];
-
     const cambio = (fase, tema) => {
-        if (tema === "Clase" && fase === 1) {
-            <AnalizarClase/>
-        }if (tema === "Clase" && fase === 2) {
-            <AplicarClase/>
-        }if (tema === "Clase" && fase === 3) {
-            <ComprenderClase/>
+        if (tema === "Clases" && fase === 1) {
+            return (
+            <AnalizarClase/>)
+            
+        }if (tema === "Clases" && fase === 2) {
+            render(
+            <AplicarClase/>)
+
+        }if (tema === "Clases" && fase === 3) {
+            render(
+            <ComprenderClase/>)
         }if (tema === "Clase" && fase === 4) {
-            <CrearClase/>
+            render(
+            <CrearClase/>)
         }if (tema === "Clase" && fase === 5) {
-            <EvaluarClase/>
+            render(
+            <EvaluarClase/>)
         }if (tema === "Objeto" && fase === 1) {
-            <AnalizarObjeto/>
+            render(
+            <AnalizarObjeto/>)
         }if (tema === "Objeto" && fase === 2) {
             <AplicarObjeto/>
         }if (tema === "Objeto" && fase === 3) {
@@ -91,12 +99,49 @@ function Mecanica() {
         }
 
     }
+
+
+    const botonClase = <button onClick={Clases} className="botonClase">Clase</button>
+    const botonObjetos = <button onClick={Objetos} className="botonObjetos">Objetos</button>
+    const botonMetodos = <button onClick={Metodos} className="botonMetodos">Metodos</button>
+    const botonAtributos = <button onClick={Atributos} className="botonAtributos">Atributos</button>
+    const Eleccion = [botonClase, botonObjetos, botonMetodos, botonAtributos];
+
+    
+
+    const contador = () => {
+        if (fase < 5) {
+            setFase(fase + 1)
+        } else {
+            setFase(1)
+        }
+    }
             
     
 
   return (
     <div>
-        {fase === null ? (Eleccion, cambio) : null}
+        {tema === "Clases" && fase === 1 ? <AnalizarClase/> : 
+        (tema === "Clases" && fase === 2 ? <AplicarClase/> : 
+        (tema === "Clases" && fase === 3 ? <ComprenderClase/> : 
+        (tema === "Clases" && fase === 4 ? <CrearClase/> : 
+        (tema === "Clases" && fase === 5 ? <EvaluarClase/> : 
+        (tema === "Objetos" && fase === 1 ? <AnalizarObjeto/> : 
+        (tema === "Objetos" && fase === 2 ? <AplicarObjeto/> : 
+        (tema === "Objetos" && fase === 3 ? <ComprenderObjeto/> : 
+        (tema === "Objetos" && fase === 4 ? <CrearObjeto/> : 
+        (tema === "Objetos" && fase === 5 ? <EvaluarObjeto/> : 
+        (tema === "Metodos" && fase === 1 ? <AnalizarMetodo/> : 
+        (tema === "Metodos" && fase === 2 ? <AplicarMetodo/> : 
+        (tema === "Metodos" && fase === 3 ? <ComprenderMetodo/> : 
+        (tema === "Metodos" && fase === 4 ? <CrearMetodo/> : 
+        (tema === "Metodos" && fase === 5 ? <EvaluarMetodo/> : 
+        (tema === "Atributos" && fase === 1 ? <AnalizarAtributo/> : 
+        (tema === "Atributos" && fase === 2 ? <AplicarAtributo/> : 
+        (tema === "Atributos" && fase === 3 ? <ComprenderAtributo/> : 
+        (tema === "Atributos" && fase === 4 ? <CrearAtributo/> : 
+        (tema === "Atributos" && fase === 5 ? <EvaluarAtributo/> : null )))))))))))))))))))}
+            
       <h1>{Eleccion}</h1>
     </div>
   )
