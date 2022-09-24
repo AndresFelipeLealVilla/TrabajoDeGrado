@@ -14,31 +14,16 @@
     
 }
 
-.Posiciones{
-    width: 250px;
-    height: 440px;
-    background: white;
-    color: rgb(0, 0, 0);
-    top: 61%;
-    left: 91%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    margin: 20px 0 40px;
-    padding: 70px 30px;
-    border: black;
-    border-radius: 3%;
-    
-}
 
-.container-Bloom{
+
+.container-Bloom1{
     align-items: center;
     justify-content: center;
     border-color: black;
-    width: 940px;
-    height: 500px;
     border-style: solid;
-    top: 90px;
-    left: 20px;
     position: absolute;
+    width: 70%;
+    height: 80%;
+    top: 15%;
+    left: 2%;
 }

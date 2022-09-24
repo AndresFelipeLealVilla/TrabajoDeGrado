@@ -9,6 +9,7 @@ function Positions() {
 const db = getFirestore(app)
 const datosEstudiante = collection(db, "Estudiantes");
 const qu = query(datosEstudiante, where("Puntos", ">", 0));
+const [ciclo, setCiclo] = useState(0);
 
 const [estudiantes, setEstudiantes] = useState([]);
 
@@ -21,21 +22,13 @@ const obtenerEstudiante = async () => {
   }
   );
   setEstudiantes(docs)
+  ordenar();
   console.log(estudiantes)};
 
 
   /* ************ Traer datos al cargar el perfil ************* */    
-  useEffect (() => {
-    try {
-      obtenerEstudiante();
-      ordenar();   
-    } catch (error) {
-      console.log(error)
-    }
-      
-},[]);
 
-const numero = 1;
+
 
 const [posicion, setPosicion] = useState([]);
 
@@ -45,24 +38,30 @@ function ordenar() {
   console.log(posicion);
 }
 
+
+
+
+
+
   return (
     <div className='Posiciones'>
         <table className='tablaPosiciones'>
           <thead>
             <tr>
-              <th>Posición</th>
-              <th>Nombre</th>
-              <th>Puntos</th>
+              <th className='titulosPosicion'>Nombre</th>
+              <th className='titulosPosicion'>Puntos</th>
             </tr>
           </thead>
             <tbody>
+              <div className='resultadosposicion'>
               {posicion.map((posicion, index) => (
                 <tr key={posicion.id}>
-                  <td>{}</td>
-                  <td>{posicion.Nombre}</td>
-                  <td>{posicion.Puntos}</td>
+                  <td className='posicion'>{posicion.Nombre}</td>
+                  <td className='posicion'>{posicion.Puntos}</td>
                 </tr>
               ))}
+              </div>
+              <button className='Actualizar' onClick={obtenerEstudiante}></button>
             </tbody>
           </table>
     </div>

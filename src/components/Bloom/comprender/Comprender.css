@@ -1,16 +1,4 @@
-.container-Bloom{
-    align-items: center;
-    justify-content: center;
-    border-color: black;
-    width: 940px;
-    height: 500px;
-    border-style: solid;
-    top: 90px;
-    left: 20px;
-    position: absolute;
-}
-
-.diagrama{
+.pregunta{
     border-color: black;
     border-style: solid;
     top: 20px;
@@ -22,42 +10,70 @@
     text-align: center;
 }
 
-.opciones1{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    left: 400px;
-    top: 60px;
-    position: relative;
-    border-color: black;
-    border-style: solid;
-    height: 150px;
-    width: 300px;
-    margin: 5px;
-   padding: 0;
-   list-style-type: none;
-   orientation: horizontal;
-   display: flex;
-    align-items: right;
-    gap: 3rem;
+.diagrama{
+    top: 20%;
+    left: 0%;
+    position: absolute;
+    width: 330px;
+    height: 280px;
+    justify-content: center;
+    text-align: center;
 }
 
-.opciones2{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    left: 550px;
-    top: -362px;
-    position: relative;
+.opcion1{
+    top: 4%;
+    left: 38%;
+    position: absolute;
+    width: 30%;
+    height: 40%;
     border-color: black;
     border-style: solid;
-    height: 150px;
-    width: 300px;
-    margin: 5px;
-   padding: 0;
-   list-style-type: none;
-   orientation: horizontal;
-   display: flex;
-    align-items: right;
-    gap: 3rem;
+}
+
+.img1{
+    top: 0%;
+    left: 0%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.opcion2{
+    top: 4%;
+    left: 69%;
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    border-color: black;
+    border-style: solid;
+}
+
+.opcion3{
+    top: 47%;
+    left: 38%;
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    border-color: black;
+    border-style: solid;
+}
+
+.opcion4{
+    top: 47%;
+    left: 69%;
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    border-color: black;
+    border-style: solid;
+}
+
+.evaluar-comprenderClase{
+    position: absolute;
+    top: 91%;
+    left: 65%;
+    width: 7%;
+    height: 5%;
 }

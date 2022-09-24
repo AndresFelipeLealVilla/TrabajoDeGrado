@@ -10,6 +10,7 @@ import fondo from '../../img/imgProfile/fondoPerfil.PNG'
 import hombre from '../../img/imgProfile/HombreG.PNG'
 import mujer from '../../img/imgProfile/MujerG.PNG'
 import silueta from '../../img/imgProfile/SiluetaG.PNG'
+import { render } from '@testing-library/react';
 
 export function Profile() {
 
@@ -18,6 +19,7 @@ export function Profile() {
   const user = getAuth().currentUser;
   const datosEstudiante = collection(db, "Estudiantes");
   const qu = query(datosEstudiante, where("Email", "==", user.email));
+  const [activador, setActivador] = useState(0)
   
   const [estudiante, setEstudiante] = useState({
     Correo: user.email,
@@ -50,10 +52,16 @@ const obtenerEstudiante = async () => {
 
 
 /* ************ Función actualizar base de datos ************* */
-  const ActualizarDatos = async (e) => {  
+  const ActualizarDatos = async (e) => { 
     e.preventDefault();
  
   }
+
+
+/* ************* Activar la opcion de actualizar ************* */
+const activarActualizacion = () => {
+  setActivador(1)
+}
 
 /* ************ Traer datos al cargar el perfil ************* */    
   useEffect (() => {
@@ -63,16 +71,27 @@ const obtenerEstudiante = async () => {
 
 /* ************ Return del perfil ************* */
   return (    
-    <div>
+    <div className='Container'>
       <Navbar/>
-      <div className="container">
-      <div className='otroPerfil'>
-        <div className='margen'>
-          <img src={fondo} alt='fondoSperfil' className='ImgSPerfil'/>
+      <div className='margenExterior'>
+        <div className='margenInterior'>
+
+          <img src={fondo} alt='fondoSperfil' className='fondo'/>
+
           <img src={imagen1} alt='Logo' className='LogoApp'/>
-          <p className='NombreLogo'>NombreLogo</p>
-          <p className='Nombre'>{estudiante.NombreUsuario}</p>
-          <p className='Correo'>{estudiante.Email}</p>
+          <p className='Nombre-Logo'>NombreLogo</p>
+
+          <div className='container-datos'>
+            <img  className='Img-Perfil' src={estudiante.Genero === 'Hombre'
+                ? hombre
+                : estudiante.Genero === 'Mujer'
+                ? mujer
+                : silueta} alt='Logo'/> 
+            <p className='nombreUser'>{estudiante.NombreUsuario}</p>
+            <p className='Correo'>{estudiante.Email}</p>
+          </div>
+          
+
           <table className='tabla1'>
             <tbody>
               <tr>
@@ -89,18 +108,8 @@ const obtenerEstudiante = async () => {
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
 
-
-      <div className='Perfil'>
-        <div className='margen'>
-          <img src={fondo} alt='fondoSperfil' className='ImgSPerfil'/>
-          <img src={imagen1} alt='Logo' className='LogoApp'/>
-          <p className='NombreLogo'>NombreLogo</p>
-          <p className='Nombre'>{estudiante.NombreUsuario}</p>
-          <p className='Correo'>{estudiante.Email}</p>
-          <table className='tabla1'>
+          <table className='tabla2'>
             <tbody>
               <tr>
                 <td><span className='etiqueta'>Puntos:</span>{estudiante.Puntos}</td>
@@ -108,36 +117,30 @@ const obtenerEstudiante = async () => {
               <tr>
                 <td><span className='etiqueta'>Trofeos:</span>{estudiante.Trofeos}</td>
               </tr>
-              <img  className='ImgPerfil' src={estudiante.Genero === 'Hombre'
-                ? hombre
-                : estudiante.Genero === 'Mujer'
-                ? mujer
-                : silueta} alt='Logo'/>
+              <tr>
+                <td><span className='etiqueta'>Posición:</span>{estudiante.Trofeos}</td>
+              </tr>
             </tbody>
           </table>
+
+          <button className='buttonEdit' onClick={activarActualizacion}>Editar</button>
         </div>
-
-
-        
-
-
-
-
       </div>
 
-
-
-
-
+        {activador === 0 ? null : 
+          <div>
+            <form className='FormularioActualizacion'>
+              <input name="Email" type="Email" placeholder=" Email" onChange={handleInputChange} value={user.email} readOnly/>
+              <input name="Nombre" type="name" placeholder=" Nombre" onChange={handleInputChange} value={estudiante.Nombre}/>
+              <input name="Apellido" type="lastname" placeholder=" Apellido" onChange={handleInputChange} value={estudiante.Apellido}/>
+              <input name="NombreUsuario" type="userName"  placeholder="  Nombre de usuario" onChange={handleInputChange} value={estudiante.NombreUsuario} />
+              <input name="Edad" type="age" placeholder=" Edad " onChange={handleInputChange} value={estudiante.Edad} />
+              <button className="buttonOK" onClick={ActualizarDatos} >Actualizar</button> 
+            </form>
+          </div>}
     </div>
-      <form className='formularioPerfil'>
-        <input name="Email" type="Email" placeholder=" Email" onChange={handleInputChange} value={user.email} readOnly/>
-        <input name="Nombre" type="name" placeholder=" Nombre" onChange={handleInputChange} value={estudiante.Nombre}/>
-        <input name="Apellido" type="lastname" placeholder=" Apellido" onChange={handleInputChange} value={estudiante.Apellido}/>
-        <input name="NombreUsuario" type="userName"  placeholder="  Nombre de usuario" onChange={handleInputChange} value={estudiante.NombreUsuario} />
-        <input name="Edad" type="age" placeholder=" Edad " onChange={handleInputChange} value={estudiante.Edad} />
-        <button className="buttonOK" onClick={ActualizarDatos} >Actualizar</button> 
-      </form>
-    </div>
+
+      
+
   )
 }

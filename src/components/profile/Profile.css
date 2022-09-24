@@ -1,10 +1,102 @@
-.formularioPerfil{
+.margenExterior{
+    position:absolute;
+    width: 50%;
+    height: 70%;
+    top: 15%;
+    left: 10%;
+    border-color: #000000;
+    border-style: solid;
+    border-radius: 3%;
+}
+
+.margenInterior{
+    position:absolute;
+    width: 97%;
+    height: 97%;
+    top: 1%;
+    left: 1%;
+    border-color: #000000;
+    border-style: solid;
+    border-radius: 3%;
+    
+}
+
+.fondo{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 2%;
+}
+
+.LogoApp{
+    width: 10%;
+    height: 14%;
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    border-radius: 50%;
+}
+
+.Nombre-Logo{
+    color:rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: cursive;
+    position: absolute;
+    top: 3%;
+    left: 14%;
+    font-weight: bold;
+}
+
+.container-datos{
+    position: absolute;
+    border-color: #000000;
+    border-style: solid;
+    width: 60%;
+    height: 20%;
+    top: 25%;
+    left: 22%;
+    border-radius: 3%;
+}
+
+.Img-Perfil{
+    width: 18%;
+    height: 80%;
+    top: 50%;
+    left: 10%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    border: black;
+    border-radius: 50%;
+    border: black solid;
+}
+
+.nombreUser{
+    color:rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: cursive;
+    position: absolute;
+    left: 20%;
+    font-weight: bold;
+}
+
+.Correo{
+    color:rgb(0, 0, 0);
+    font-size: 19px;
+    font-family: cursive;
+    position: absolute;
+    top: 33%;
+    left: 20%;
+    font-weight: bold;
+}
+
+.FormularioActualizacion{
     width: 300px;
     height: 300px;
     background: white;
     color: rgb(0, 0, 0);
     top: 45%;
-    left: 70%;
+    left: 75%;
     position: absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
@@ -15,178 +107,116 @@
     
 }
 
-.ImgPerfil{
-    width: 150px;
-    height: 150px;
-    top: 30%;
-    left: 85%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    border: black;
-    border-radius: 3%;
-    border: black solid;
-}
-
 .tabla1{
     font-size: 20px;
     font-family: cursive;
     color: rgb(0, 0, 0);
     position: absolute;
-    top: 250px;
-    left: 35px;
+    top: 60%;
+    left: 10%;
     width: 60%;
 }
 
-.nombreUser{
+.tabla2{
+    font-size: 20px;
+    font-family: cursive;
+    color: rgb(0, 0, 0);
     position: absolute;
-    top: 10px;
-    left: 64px;
+    top: 60%;
+    left: 60%;
+    width: 60%;
 }
 
 .etiqueta{
     font-weight: bold;
 }
 
-.perforado1{
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: #000000;
-        top: 10%;
-        left: 80%;
-        position: relative;
-        orientation: vertical;
-        margin: 15px;
-
-}
-
-
-
-.btn-editar{
-    width: 60px;
-    height: 30px;
+.FormularioActualizacion{
+    width: 25%;
+    height: 55%;
+    background: white;
     color: rgb(0, 0, 0);
-    top: 80%;
-    left: 15%;
+    top: 42%;
+    left: 80%;
     position: absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
-    margin: 20px 0 20px;
-    padding: 20px 20px;
+    margin: 20px 0 40px;
+    padding: 70px 30px;
     border: black;
-    border-radius: 10%;
-}
-
-.otroPerfil{
-    width: 350px;
-    height: 500px;
-    background: rgb(173, 173, 173);
-    color: rgb(0, 0, 0);
-    top: 50%;
-    left: 15%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    margin: 20px 0 40px;
-    padding: 70px 30px;
-    border: rgb(0, 0, 0) solid 3px;
     border-radius: 3%;
-    font-size: 30px;
 }
 
-.Perfil{
-    width: 350px;
-    height: 500px;
-    background: rgb(173, 173, 173);
-    color: rgb(0, 0, 0);
-    top: 50%;
-    left: 41%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    margin: 20px 0 40px;
-    padding: 70px 30px;
-    border: rgb(0, 0, 0) solid 3px;
-    border-radius: 3%;
-    font-size: 30px;
+.buttonOK{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    width: 48%;
+    height: 35px;
+    padding: 1px 1px;
+    font-family: inherit;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #dfdbdb;
+    margin:center;
+    color: rgb(206, 199, 199);
+    text-align: center;
+    text-decoration: none;
+    margin: 10px 70px; 
+    color:black;
+    border-color: black;
+    border: 1px solid black;
+    top: -30px;
+    left: 10px; 
 }
 
-.margen{
+.buttonOK:hover{
+    border-color: white;
+}
+
+.buttonOK:focus{
+    outline: 0;
+}
+
+.buttonOK:active{
+    transform: scale(0.98);
+}
+
+.FormularioActualizacion input{
+    position: top;
     width: 100%;
-    height: 100%;
-    max-height: 500px;
-    position: absolute;
-    top: 3%;
-    left: 3%;
-    background-repeat: no-repeat;
-    border-radius: 3%;
-
+    margin-bottom: 10px;
+    background-color: rgb(235, 231, 231);
+    border: 1px solid #393e467d;
+    display: block;
+    height: 30px;
+    padding: 1px 0;
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+    position: relative;
+    top: -20px;
 }
 
-.ImgSPerfil{
-    width: 320px;
-    height: 470px;
+.buttonEdit{
+    cursor: pointer;
+    display: inline-block;
     position: absolute;
-    top: 0%;
-    left: 0%;
-    border-radius: 3%;
-    border: black solid 3px;
-}
-
-.LogoApp{
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 8%;
-    left: 23%;
+    width: 10%;
+    height: 13%;
+    padding: 1px 1px;
+    font-family: inherit;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #dfdbdb;
+    margin:center;
+    color: rgb(206, 199, 199);
+    text-align: center;
+    text-decoration: none;
+    margin: 10px 70px; 
+    color:black;
+    border-color: black;
+    border: 1px solid black;
+    top: 83%;
+    left: 78%; 
     border-radius: 50%;
 }
-
-.ImgPerfil{
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: -100px;
-    left: 47%;
-    border-radius: 50%;
-}
-
-.NombreLogo{
-    color:rgb(0, 0, 0);
-    font-size: 20px;
-    font-family: cursive;
-    position: absolute;
-    top: 7%;
-    left: 38%;
-    font-weight: bold;
-}
-
-.Nombre{
-    color:rgb(0, 0, 0);
-    font-size: 20px;
-    font-family: cursive;
-    position: absolute;
-    top: 27%;
-    left: 27%;
-    font-weight: bold;
-}
-
-.Correo{
-    color:rgb(0, 0, 0);
-    font-size: 19px;
-    font-family: cursive;
-    position: absolute;
-    top: 33%;
-    left: 3%;
-    font-weight: bold;
-}
-
-
-
-
-
-
-
-
-

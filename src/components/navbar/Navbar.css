@@ -51,7 +51,7 @@ li {
     margin: 0.4rem;
     background: rgb(204, 204, 204);
     transition: 0.3s ease-in;
-    position: relative;
+    position: absolute;
     left: 100px;
   }
   
@@ -61,7 +61,7 @@ li {
       cursor: pointer;
     }
     .nav__menu {
-      position: fixed;
+      position: absolute;
       top: 7vh;
       right: 0;
       height: 93vh;

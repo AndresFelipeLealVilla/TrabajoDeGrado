@@ -1,0 +1,74 @@
+.imagen1, .imagen2{
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 0%;
+    left: 10%;
+    right: 10%;
+}
+
+
+
+.Atras{
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    top: 45%;
+    left: 0;
+}
+
+.Siguiente{
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    top: 45%;
+    right: 0;
+}
+
+
+
+
+.botonSelector {
+    padding: 12px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #000000;
+    border-radius: 8%;
+}
+
+.botonSelector:hover {
+    background-color: #326cc2;
+    color: white;
+}
+
+.botonSelector:nth-child(1){
+    position: absolute;
+    top: 30%;
+    left: 35%;
+}
+
+.botonSelector:nth-child(2){
+    position: absolute;
+    top: 30%;
+    left: 55%;
+}
+
+.botonSelector:nth-child(3){
+    position: absolute;
+    top: 55%;
+    left: 35%;
+}
+
+.botonSelector:nth-child(4){
+    position: absolute;
+    top: 55%;
+    left: 55%;
+}

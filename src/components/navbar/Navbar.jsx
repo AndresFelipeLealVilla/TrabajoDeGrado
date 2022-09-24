@@ -5,7 +5,6 @@ import {getAuth} from 'firebase/auth'
 import {Link} from 'react-router-dom'
 import './Navbar.css'
 import imagen from '../../img/Logo1.png'
-import TotalProgress from "../totalProgress/TotalProgress"
 import NClases from '../../img/imgTrofeo/NClases.png'
 import NObjetos from '../../img/imgTrofeo/NObjetos.png'
 import NMetodos from '../../img/imgTrofeo/NMetodos.png'
@@ -15,6 +14,7 @@ import Clases from '../../img/imgTrofeo/Clases.png'
 import Objetos from '../../img/imgTrofeo/Objetos.png'
 import Metodos from '../../img/imgTrofeo/Metodos.png'
 import Atributos from '../../img/imgTrofeo/Atributos.png'
+import Medalla1 from '../../img/imgMedalla/Medalla1.png'
 
 
 const Navbar = () => {

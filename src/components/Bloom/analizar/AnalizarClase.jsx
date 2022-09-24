@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 const itemsFromBackend = [
-  { id: "primero", content: "First task" },
+  { id: "primero", content: "Instancia de la clase" },
   { id: "Segundo", content: "Second task" },
   { id: "Tercero", content: "Third task" },
   { id: "Cuarto", content: "Fourth task" },

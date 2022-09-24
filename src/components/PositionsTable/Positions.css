@@ -1,7 +1,77 @@
 .Posiciones{
-    border-color: black;
     border-style: solid;
     position: absolute;
-    top: 300px;
-    left: 1200px;
+    top: 15%;
+    left: 78%;
+    width: 20%;
+    height: 80%;
+    color: black;
+}
+
+.titulosPosicion:nth-child(1){
+    position: absolute;
+    top: 0;
+    left: 3%;
+    width: 100%;
+    height: 10%;
+    text-align: left;
+    font-size: 1em;
+}
+
+.titulosPosicion:nth-child(2){
+    position: absolute;
+    top: 0;
+    left: 40%;
+    width: 100%;
+    height: 10%;
+    text-align: left;
+    font-size: 1em;
+}
+
+.titulosPosicion:nth-child(3){
+    position: absolute;
+    top: 0;
+    left: 80%;
+    width: 100%;
+    height: 10%;
+    text-align: left;
+    font-size: 1em;
+}
+
+
+.numeros{
+    position: relative;
+    top: 0%;
+    left: -15%;
+    width: 10%;
+    height: 30%;
+    orientation: vertical;
+    color: black;
+    align-items: center;
+    margin: 2px;
+}
+
+.posicion:nth-child(1){
+    position: relative;
+    top: 0%;
+    left: 20%;
+    width: 10%;
+    height: 30%;
+}
+
+.posicion:nth-child(2){
+    position: relative;
+    top: 0%;
+    left: 15%;
+    width: 10%;
+    height: 30%;
+}
+
+.resultadosposicion{
+    position: absolute;
+    top: 1%;
+    left: 10%;
+    width: 100%;
+    height: 30%;
+    margin: 10px;
 }

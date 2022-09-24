@@ -19,7 +19,7 @@ export function Home() {
   const incrementar = () => {
     setState(state + 1);
   }
-  const boton = <button defaultChecked={false} onClick={incrementar}>Incrementar</button>
+  const boton = <button defaultChecked={false} onClick={incrementar}>Saltar</button>
 
   return ( 
     
@@ -28,7 +28,7 @@ export function Home() {
       <Chatbot/>
       <ProyeccionProgress/>
       <Positions/>
-      <div className="container-Bloom">
+      <div className="container-Bloom1">
       {state === 0 ? <Carousel/> : <Mecanica/>}
       {state === 0 ? boton : null}
       </div>
