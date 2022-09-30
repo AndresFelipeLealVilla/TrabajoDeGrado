@@ -1,31 +1,46 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import './Analizar.css'
+import preguntaAnalizarClase from '../../../img/taxonomia/3Analizar/PreguntaAnalizarClase.png'
 
 const itemsFromBackend = [
-  { id: "primero", content: "Instancia de la clase" },
-  { id: "Segundo", content: "Second task" },
-  { id: "Tercero", content: "Third task" },
-  { id: "Cuarto", content: "Fourth task" },
-  { id: "Quinto", content: "Fifth task" }
+  { id: "primero", content: "Nombre" },
+  { id: "Segundo", content: "Atributos" },
+  { id: "Tercero", content: "Métodos" },
+  { id: "Cuarto", content: "Zona privada" },
+  { id: "Quinto", content: "Zona pública" },
+  { id: "Sexto", content: "Constructor" }
 ];
 
 const columnsFromBackend = {
   1: {
-    name: "Analizar",
+    name: "",
     items: itemsFromBackend
   },
   2: {
-    name: "To do ",
+    name: "",
     items: []
   },
   3: {
-    name: "In Progress",
+    name: "",
     items: []
   },
   4: {
-    name: "Done",
+    name: "",
     items: []
-  }
+  },
+  5: {
+    name: "",
+    items: []
+  },
+  6: {
+    name: "",
+    items: []
+  },
+  7: {
+    name: "",
+    items: []
+  },
 };
 
 const onDragEnd = (result, columns, setColumns) => {
@@ -65,38 +80,38 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-function AnalizarClase() {
+function AnalizarMetodosAtributos() {
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
-    <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+    <div className='container-BloomAnalizarClase'>
+        <img src={preguntaAnalizarClase} alt='preguntaAnalizarClase' className='preguntaAnalizarClase'/>
+    <div className="Container-draganddrop">
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
       >
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center"
-              }}
-              key={columnId}
-            >
+            <div className="bloqueAnalizarClase" key={columnId}>
               <h2>{column.name}</h2>
-              <div style={{ margin: 8 }}>
+              <div>
                 <Droppable droppableId={columnId} key={columnId}>
                   {(provided, snapshot) => {
                     return (
-                      <div
+                      <div  className="container"
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                         style={{
                           background: snapshot.isDraggingOver
                             ? "lightblue"
                             : "lightgrey",
-                          padding: 4,
-                          width: 250,
-                          minHeight: 500
+                          padding: -10,
+                          width: 150,
+                          height: 30,
+                          top: -70,
+                          position: "relative",
+                          margin:"0",
+                          
+
                         }}
                       >
                         {column.items.map((item, index) => {
@@ -114,9 +129,9 @@ function AnalizarClase() {
                                     {...provided.dragHandleProps}
                                     style={{
                                       userSelect: "none",
-                                      padding: 16,
+                                      padding: 8,
                                       margin: "0 0 8px 0",
-                                      minHeight: "50px",
+                                      minHeight: "15px",
                                       backgroundColor: snapshot.isDragging
                                         ? "#263B4A"
                                         : "#456C86",
@@ -141,8 +156,15 @@ function AnalizarClase() {
           );
         })}
       </DragDropContext>
+      <div className="orientacionAnalizarClase">
+      <h2>Analizar:</h2>
+      <p>pregunta</p>
+     </div>
+    </div>
+    
     </div>
   );
 }
 
-export default AnalizarClase;
+export default AnalizarMetodosAtributos;
+

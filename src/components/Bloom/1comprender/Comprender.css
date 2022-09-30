@@ -1,0 +1,118 @@
+/* ********************    Clases    ************************ */
+
+.preguntaComprenderClase{
+    border-color: black;
+    border-style: solid;
+    top: 1%;
+    left: 0.5%;
+    position: absolute;
+    width: 30%;
+    height: 97%;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.diagramaClase{
+    top: 40%;
+    left: 10%;
+    position: absolute;
+    width: 80%;
+    height: 50%;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+    border-radius: 3%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ClaseComprenderOpcion1{
+    top: 2%;
+    left: 32%;
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+
+.ClaseComprenderOpcion1:hover{
+    transform: scale(2);
+    left: 50%;
+    top: 30%;
+    z-index: 2;
+}
+
+
+.ClaseComprenderOpcion2{
+    top: 2%;
+    left: 69%;
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ClaseComprenderOpcion2:hover{
+    scale: 2;
+    left: 50%;
+    top: 30%;
+    z-index: 2;
+}
+
+.ClaseComprenderOpcion3{
+    top: 52%;
+    left: 32%;
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ClaseComprenderOpcion3:hover{
+    scale: 2;
+    left: 50%;
+    top: 30%;
+    z-index: 2;
+}
+
+.ClaseComprenderOpcion4{
+    top: 52%;
+    left: 69%;
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    border-style: solid;
+    z-index: 500px;
+    border-radius: 5%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+
+}
+
+.ClaseComprenderOpcion4:hover{
+    transform: scale(2);
+    left: 50%;
+    top: 30%;
+    z-index: 2;
+}
+
+/* ********************    Objetos    ************************ */
+
+/* ********************    Métodos    ************************ */
+
+/* ********************    Atributos    ************************ */

@@ -72,3 +72,12 @@
     top: 55%;
     left: 55%;
 }
+
+.evaluar-comprenderClase{
+    position: absolute;
+    top: 91%;
+    left: 5%;
+    width: 20%;
+    height: 5%;
+    z-index: 10%;
+}

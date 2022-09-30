@@ -1,11 +1,14 @@
 .Posiciones{
-    border-style: solid;
     position: absolute;
     top: 15%;
     left: 78%;
     width: 20%;
     height: 80%;
     color: black;
+    border-radius: 3%;
+    border-color:gray;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
 }
 
 .titulosPosicion:nth-child(1){

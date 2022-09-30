@@ -61,7 +61,7 @@ const Navbar = () => {
         <img src={NMedalla} alt='NAtributos' className='Trofeo'/>
         </li>
         <li className='item'>
-          <img src={NClases} alt='NClases' className='Trofeo'/>
+          <img src={Clases} alt='NClases' className='Trofeo'/>
         </li>
         <li className='item'>
           <img src={NObjetos} alt='NObjetos' className='Trofeo'/>

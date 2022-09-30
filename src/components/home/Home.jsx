@@ -26,7 +26,6 @@ export function Home() {
     <> 
       <Navbar />
       <Chatbot/>
-      <ProyeccionProgress/>
       <Positions/>
       <div className="container-Bloom1">
       {state === 0 ? <Carousel/> : <Mecanica/>}

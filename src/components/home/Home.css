@@ -22,8 +22,9 @@
     border-color: black;
     border-style: solid;
     position: absolute;
-    width: 70%;
-    height: 80%;
-    top: 15%;
+    width: 75%;
+    height: 87%;
+    top: 11%;
     left: 2%;
+    border-radius: 2%;
 }

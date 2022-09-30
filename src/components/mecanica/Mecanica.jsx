@@ -1,27 +1,28 @@
 import React, {useState} from 'react'
-import AnalizarClase from '../Bloom/analizar/AnalizarClase'
-import AplicarClase from '../Bloom/aplicar/AplicarClase'
-import ComprenderClase from '../Bloom/comprender/ComprenderClase'
-import CrearClase from '../Bloom/crear/CrearClase'
-import EvaluarClase from '../Bloom/evaluar/EvaluarClase'
+import ComprenderClase from '../Bloom/1comprender/ComprenderClase'
+import AplicarClase from '../Bloom/2aplicar/AplicarClase'
+import AnalizarClase from '../Bloom/3analizar/AnalizarClase'
+import EvaluarClase from '../Bloom/4evaluar/EvaluarClase'
+import CrearClase from '../Bloom/5crear/CrearClase'
 
-import AnalizarObjeto from '../Bloom/analizar/AnalizarObjeto'
-import AplicarObjeto from '../Bloom/aplicar/AplicarObjeto'
-import ComprenderObjeto from '../Bloom/comprender/ComprenderObjeto'
-import CrearObjeto from '../Bloom/crear/CrearObjeto'
-import EvaluarObjeto from '../Bloom/evaluar/EvaluarObjeto'
+import ComprenderObjeto from '../Bloom/1comprender/ComprenderObjeto'
+import AplicarObjeto from '../Bloom/2aplicar/AplicarObjeto'
+import AnalizarObjeto from '../Bloom/3analizar/AnalizarObjeto'
+import EvaluarObjeto from '../Bloom/4evaluar/EvaluarObjeto'
+import CrearObjeto from '../Bloom/5crear/CrearObjeto'
 
-import AnalizarMetodo from '../Bloom/analizar/AnalizarMetodo'
-import AplicarMetodo from '../Bloom/aplicar/AplicarMetodo'
-import ComprenderMetodo from '../Bloom/comprender/ComprenderMetodo'
-import CrearMetodo from '../Bloom/crear/CrearMetodo'
-import EvaluarMetodo from '../Bloom/evaluar/EvaluarMetodo'
+import ComprenderMetodo from '../Bloom/1comprender/ComprenderMetodo'
+import AplicarMetodo from '../Bloom/2aplicar/AplicarMetodo'
+import AnalizarMetodo from '../Bloom/3analizar/AnalizarMetodo'
+import EvaluarMetodo from '../Bloom/4evaluar/EvaluarMetodo'
+import CrearMetodo from '../Bloom/5crear/CrearMetodo'
 
-import AnalizarAtributo from '../Bloom/analizar/AnalizarAtributo'
-import AplicarAtributo from '../Bloom/aplicar/AplicarAtributo'
-import ComprenderAtributo from '../Bloom/comprender/ComprenderAtributo'
-import CrearAtributo from '../Bloom/crear/CrearAtributo'
-import EvaluarAtributo from '../Bloom/evaluar/EvaluarAtributo'
+import ComprenderAtributo from '../Bloom/1comprender/ComprenderAtributo'
+import AplicarAtributo from '../Bloom/2aplicar/AplicarAtributo'
+import AnalizarAtributo from '../Bloom/3analizar/AnalizarAtributo'
+import EvaluarAtributo from '../Bloom/4evaluar/EvaluarAtributo'
+import CrearAtributo from '../Bloom/5crear/CrearAtributo'
+
 
 function Mecanica() {
     const [fase, setFase] = useState(0);
@@ -29,18 +30,22 @@ function Mecanica() {
 
     const Clases = () => {
         setTema("Clases")
+        setEvaluador(1)
         contador()
     }
     const Objetos = () => {
         setTema("Objetos")
+        setEvaluador(1)
         contador()
     }
     const Metodos = () => {
         setTema("Metodos")
+        setEvaluador(1)
         contador()
     }
     const Atributos = () => {
         setTema("Atributos")
+        setEvaluador(1)
         contador()
     }
 
@@ -52,7 +57,15 @@ function Mecanica() {
     const botonAtributos = <button onClick={Atributos} className="botonSelector">Atributos</button>
     const Eleccion = [botonClase, botonObjetos, botonMetodos, botonAtributos];
 
-    
+    const [evaluador, setEvaluador] = useState(0)
+  const evaluar = () => {
+    setEvaluador(1);
+  }
+
+    const revisar = () => {
+    setEvaluador(1);
+    contador()
+    }
 
     const contador = () => {
         if (fase < 5) {
@@ -61,34 +74,38 @@ function Mecanica() {
             setFase(0)
         }
     }
-            
+    
+    const botonEvaluar = <button onClick={revisar} className='evaluar-comprenderClase'>Evaluar</button>
     
 
   return (
     <div>
-        {fase === 0 ? <h1>{Eleccion}</h1>: 
-        (tema === "Clases" && fase === 1 ? <ComprenderClase/>  : 
+        {fase === 0 ? <h1>{Eleccion}</h1>:
+        (tema === "Clases" && fase === 1 ? <ComprenderClase/> : 
         (tema === "Clases" && fase === 2 ? <AplicarClase/> : 
-        (tema === "Clases" && fase === 3 ? <AnalizarClase/>: 
-        (tema === "Clases" && fase === 4 ? <CrearClase/> : 
-        (tema === "Clases" && fase === 5 ? <EvaluarClase/> : 
-        (tema === "Objetos" && fase === 1 ? <AnalizarObjeto/> : 
+        (tema === "Clases" && fase === 3 ? <AnalizarClase/>:
+        (tema === "Clases" && fase === 4 ? <EvaluarClase/> : 
+        (tema === "Clases" && fase === 5 ? <CrearClase/> :
+
+        (tema === "Objetos" && fase === 1 ? <ComprenderObjeto/> :
         (tema === "Objetos" && fase === 2 ? <AplicarObjeto/> : 
-        (tema === "Objetos" && fase === 3 ? <ComprenderObjeto/> : 
-        (tema === "Objetos" && fase === 4 ? <CrearObjeto/> : 
-        (tema === "Objetos" && fase === 5 ? <EvaluarObjeto/> : 
-        (tema === "Metodos" && fase === 1 ? <AnalizarMetodo/> : 
-        (tema === "Metodos" && fase === 2 ? <AplicarMetodo/> : 
-        (tema === "Metodos" && fase === 3 ? <ComprenderMetodo/> : 
-        (tema === "Metodos" && fase === 4 ? <CrearMetodo/> : 
-        (tema === "Metodos" && fase === 5 ? <EvaluarMetodo/> : 
-        (tema === "Atributos" && fase === 1 ? <AnalizarAtributo/> : 
-        (tema === "Atributos" && fase === 2 ? <AplicarAtributo/> : 
-        (tema === "Atributos" && fase === 3 ? <ComprenderAtributo/> : 
-        (tema === "Atributos" && fase === 4 ? <CrearAtributo/> : 
-        (tema === "Atributos" && fase === 5 ? <EvaluarAtributo/> : null ))))))))))))))))))))}
+        (tema === "Objetos" && fase === 3 ? <AnalizarObjeto/> : 
+        (tema === "Objetos" && fase === 4 ? <EvaluarObjeto/> :
+        (tema === "Objetos" && fase === 5 ? <CrearObjeto/> : 
+         
+        (tema === "Metodos" && fase === 1 ? <ComprenderMetodo/> :
+        (tema === "Metodos" && fase === 2 ? <AplicarMetodo/> :
+        (tema === "Metodos" && fase === 3 ? <AnalizarMetodo/> : 
+        (tema === "Metodos" && fase === 4 ? <EvaluarMetodo/> :
+        (tema === "Metodos" && fase === 5 ? <CrearMetodo/> : 
+         
+        (tema === "Atributos" && fase === 1 ? <ComprenderAtributo/> :
+        (tema === "Atributos" && fase === 2 ? <AplicarAtributo/> :
+        (tema === "Atributos" && fase === 3 ? <AnalizarAtributo/> : 
+        (tema === "Atributos" && fase === 4 ? <EvaluarAtributo/> :
+        (tema === "Atributos" && fase === 5 ? <CrearAtributo/> : null ))))))))))))))))))))}
             
-      
+        {evaluador === 1 ? botonEvaluar : null}  
     </div>
   )
 }

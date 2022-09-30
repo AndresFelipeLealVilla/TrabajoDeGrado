@@ -1,28 +1,27 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import './Evaluar.css'
+import './Aplicar.css'
 
 const itemsFromBackend = [
-  { id: "primero", content: "First task" },
-  { id: "Segundo", content: "Second task" },
-  { id: "Tercero", content: "Third task" },
-  { id: "Cuarto", content: "Fourth task" },
-  { id: "Quinto", content: "Fifth task" }
+  { id: "primero", content: "Plantilla para crear objetos" },
+  { id: "Segundo", content: "Instancia de clase" },
+  { id: "Tercero", content: "Estructura de programación" },
+  { id: "Cuarto", content: "Acción que realiza un objeto" },
+  { id: "Quinto", content: "Creación de datos comunes a todos los objetos" },
+  { id: "Sexto", content: "Contiene al constructor" }
+
 ];
 
 const columnsFromBackend = {
   1: {
-    name: "",
+    name: "Opciones",
     items: itemsFromBackend
   },
   2: {
-    name: "",
+    name: "Caracteristicas de las Clase",
     items: []
   },
-  3: {
-    name: "",
-    items: []
-  },
+
 };
 
 const onDragEnd = (result, columns, setColumns) => {
@@ -62,37 +61,49 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-function AnalizarMetodosAtributos() {
+function AplicarClase() {
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
-    <div className='container-Bloom'>
-    <div className="Container-draganddrop">
+    <div className="containerAplicarClase">
+    
+    <div className='PreguntaAplicarClase'>
+      <span>Pregunta </span>
+             
+    </div>
+
+    <div style={{ display: "flex", justifyContent: "center", height: "10%", color:"black", position:"absolute", left:"40%", top:"0%"}}>
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
       >
+
+
+
+
+
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
-            <div className="bloque" key={columnId}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
+              }}
+              key={columnId}
+            >
               <h2>{column.name}</h2>
-              <div>
+              <div style={{ margin: 8 }}>
                 <Droppable droppableId={columnId} key={columnId}>
                   {(provided, snapshot) => {
                     return (
-                      <div  className="container"
+                      <div
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                         style={{
                           background: snapshot.isDraggingOver
                             ? "lightblue"
                             : "lightgrey",
-                          padding: -10,
                           width: 150,
-                          height: 30,
-                          top: -70,
-                          position: "relative",
-                          margin:"0",
-                          
-
+                          minHeight: 350,
                         }}
                       >
                         {column.items.map((item, index) => {
@@ -110,9 +121,9 @@ function AnalizarMetodosAtributos() {
                                     {...provided.dragHandleProps}
                                     style={{
                                       userSelect: "none",
-                                      padding: 8,
+                                      padding: 6,
                                       margin: "0 0 8px 0",
-                                      minHeight: "15px",
+                                      minHeight: "5px",
                                       backgroundColor: snapshot.isDragging
                                         ? "#263B4A"
                                         : "#456C86",
@@ -137,15 +148,19 @@ function AnalizarMetodosAtributos() {
           );
         })}
       </DragDropContext>
-      <div className="orientacion">
-      <h2>Evaluar:</h2>
-      <p>prueba de texto</p>
-     </div>
-     <button className="btn-Bloom">Analizar</button>
+
+
+
+      
+    </div>
+
     </div>
     
-    </div>
   );
 }
 
-export default AnalizarMetodosAtributos;
+
+
+
+
+export default AplicarClase;

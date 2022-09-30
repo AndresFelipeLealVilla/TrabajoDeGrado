@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('../../img/Fondo1.jpg');
+    background: white;
     background-size: cover; 
     font-family: "Muli", sans-serif;
     height: 100vh;

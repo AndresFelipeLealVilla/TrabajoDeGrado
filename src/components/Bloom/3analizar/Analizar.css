@@ -1,0 +1,144 @@
+/*  ***************** Clases ******************** */
+.preguntaAnalizarClase{
+    border-color: black;
+    border-style: solid;
+    top: 1%;
+    left: 30%;
+    position: absolute;
+    width: 69%;
+    height: 97%;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 3%;
+}
+
+.bloqueAnalizarClase{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 40%;
+    top: 1%;
+    position: relative;
+    border-color: black;
+    border-style: outset;
+    height: 33px;
+    margin: 5px;
+   padding: 0;
+   list-style-type: none;
+   orientation: horizontal;
+   display: flex;
+    align-items: right;
+    gap: 1.8rem;
+    border-radius: 3%;
+}
+
+
+.bloqueAnalizarClase:nth-child(1){
+    position: absolute;
+    left: 1%;
+    top: 1%;
+    width: 15%;
+    height: 45%;
+}
+/* Nombre Clase */
+.bloqueAnalizarClase:nth-child(2){
+    position: absolute;
+    left: 65%;
+    top: 10%;
+    width: 15%;
+    height: 5%;
+    border-radius: 3%;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+}
+
+/* Atributos */
+.bloqueAnalizarClase:nth-child(3){
+    position: absolute;
+    left: 72%;
+    top: 22%;
+    width: 15%;
+    height: 5%;
+    border-radius: 3%;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+}
+
+/* Constructor */
+.bloqueAnalizarClase:nth-child(4){
+    position: absolute;
+    left: 32%;
+    top: 43%;
+    width: 15%;
+    height: 5%;
+    border-radius: 3%;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+}
+
+/* Zona privada */
+.bloqueAnalizarClase:nth-child(5){
+    position: absolute;
+    left: 32%;
+    top: 23%;
+    width: 15%;
+    height: 5%;
+    border-radius: 3%;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+}
+
+/* Métodos */
+.bloqueAnalizarClase:nth-child(6){
+    position: absolute;
+    left: 80%;
+    top: 53%;
+    width: 15%;
+    height: 5%;
+    border-radius: 3%;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+}
+
+/* Zona Pública */
+.bloqueAnalizarClase:nth-child(7){
+    position: absolute;
+    left: 32%;
+    top: 63%;
+    width: 15%;
+    height: 5%;
+    border-radius: 5%;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+}
+
+.container-Bloom{
+    align-items: center;
+    justify-content: center;
+    border-color: rgb(0, 0, 0);
+    width: 4%;
+    height: 50px;
+    border-style: solid;
+    top: 90px;
+    left: 20px;
+    position: absolute;
+    border-radius: 3%;
+}
+
+.orientacionAnalizarClase{
+    border-color: black;
+    border-style: solid;
+    top: 51%;
+    left: 0.5%;
+    position: absolute;
+    width: 30%;
+    height: 47%;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+    border-radius: 3%;
+}
+
+
