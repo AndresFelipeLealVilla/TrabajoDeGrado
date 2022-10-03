@@ -19,10 +19,7 @@ const columnsFromBackend = {
     name: "",
     items: []
   },
-  3: {
-    name: "",
-    items: []
-  },
+
 };
 
 const onDragEnd = (result, columns, setColumns) => {
@@ -65,7 +62,7 @@ const onDragEnd = (result, columns, setColumns) => {
 function EvaluarClase() {
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
-    <div className='container-Bloom'>
+
     <div className="Container-draganddrop">
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
@@ -144,7 +141,6 @@ function EvaluarClase() {
      <button className="btn-Bloom">Analizar</button>
     </div>
     
-    </div>
   );
 }
 

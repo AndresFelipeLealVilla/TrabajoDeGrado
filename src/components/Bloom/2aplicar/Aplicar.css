@@ -1,5 +1,21 @@
 /* *************************   Clases ************************ */
 
+
+.evaluar-AplicarClase{
+    position: absolute;
+    z-index: 100;
+}
+
+
+
+.Prueba{
+    position: absolute;
+    top:0%;
+    left:0%;
+    z-index: 1000;
+    color: black;
+}
+
 .PreguntaAplicarClase{
     border-color: black;
     border-style: solid;

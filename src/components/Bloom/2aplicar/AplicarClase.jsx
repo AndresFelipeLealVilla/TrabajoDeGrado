@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import './Aplicar.css'
+import { useStopwatch } from "react-timer-hook";
+import swal from 'sweetalert'
+
+
+/* Creación drag and drop */
 
 const itemsFromBackend = [
-  { id: "primero", content: "Plantilla para crear objetos" },
+  { id: "Primero", content: "Plantilla para crear objetos" },
   { id: "Segundo", content: "Instancia de clase" },
   { id: "Tercero", content: "Estructura de programación" },
   { id: "Cuarto", content: "Acción que realiza un objeto" },
@@ -49,6 +54,7 @@ const onDragEnd = (result, columns, setColumns) => {
   } else {
     const column = columns[source.droppableId];
     const copiedItems = [...column.items];
+    
     const [removed] = copiedItems.splice(source.index, 1);
     copiedItems.splice(destination.index, 0, removed);
     setColumns({
@@ -61,13 +67,107 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-function AplicarClase() {
+function AplicarClase(props) {
+
+
+  /* Temporizador */
+
+const stopwatchOffset = new Date();
+stopwatchOffset.setSeconds(stopwatchOffset.getSeconds() + 300);
+const {
+  seconds,
+  pause,
+  isRunning,
+
+} = useStopwatch({ autoStart: true, offsetTimestamp: stopwatchOffset });
+const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
+
+  const [puntos, setPuntos] = useState(0);
+
+  const mensajeCorrecto = (points) => {
+    swal({
+      icon: "success",
+      title: "¡Gran Trabajo!",
+
+      text: "Obtuviste: " + points + " puntos y tu tiempo es de: " + secondTime + " segundos",
+      button: "OK",
+    });
+
+  };
+
+  const mensajeIncorrecto = () => {
+    swal({
+      icon: "error",
+      title: "¡Upss!",
+      text: "Recuerda usar el chatbot para obtener ayuda, ¡Intentalo de nuevo! "+ puntos + secondTime,
+      button: "OK",
+    });
+  };
+
+  const [arreglo, setArreglo] = useState ([]);
+
+  const evaluarAplicarClase = () => {
+    if (arreglo.length >= 4){
+        setArreglo([]);        
+    }
+    if (arreglo.length === 0){
+      arreglo.push(columns[2].items[0].id);
+      arreglo.push(columns[2].items[1].id);
+      arreglo.push(columns[2].items[2].id);
+      arreglo.push(columns[2].items[3].id);
+      console.log(arreglo)
+
+      if(arreglo.includes("Primero")){
+          if(arreglo.includes("Tercero")){
+              if(arreglo.includes("Quinto")){
+                  if(arreglo.includes("Sexto")){
+                      pause();
+                      if (secondTime < 20){
+                          setPuntos(10);
+                          mensajeCorrecto(10);
+                      }
+                      if (secondTime >=20 && secondTime < 40){
+                          setPuntos(7);
+                          mensajeCorrecto(7);
+                      }
+                      if (secondTime >=40 && secondTime < 60){
+                          setPuntos(5);
+                          mensajeCorrecto(5);
+                      }
+                      props.evento();
+                    }
+                    else{
+                        mensajeIncorrecto();
+                    }
+                }
+                else{
+                    mensajeIncorrecto();
+                }
+            }
+        else{
+            mensajeIncorrecto();
+        }
+    }
+    else{
+        mensajeIncorrecto();
+    }
+  }
+}
+
+
+            
+
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
     <div className="containerAplicarClase">
-    
+      <button onClick={evaluarAplicarClase} className='evaluar-AplicarClase'>Evaluar</button>
+      <div style={{ fontSize: "100px", zIndex:"100" }}>
+        <span className='Timer'>{secondTime}</span>
+        <p>{isRunning ? "Running" : "Not running"}</p>
+      </div>
     <div className='PreguntaAplicarClase'>
-      <span>Pregunta </span>
+
+      <span className="Prueba"></span>
              
     </div>
 

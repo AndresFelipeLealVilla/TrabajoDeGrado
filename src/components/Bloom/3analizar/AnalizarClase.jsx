@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import './Analizar.css'
-import preguntaAnalizarClase from '../../../img/taxonomia/3Analizar/PreguntaAnalizarClase.png'
+import preguntaAnalizarClase from '../../../img/taxonomia/3Analizar/ClaseVehiculoAnalizarClase.png'
+import { useStopwatch } from "react-timer-hook";
+import swal from 'sweetalert'
 
 const itemsFromBackend = [
-  { id: "primero", content: "Nombre" },
+  { id: "Primero", content: "Nombre" },
   { id: "Segundo", content: "Atributos" },
   { id: "Tercero", content: "Métodos" },
   { id: "Cuarto", content: "Zona privada" },
@@ -80,11 +82,101 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-function AnalizarMetodosAtributos() {
+function AnalizarMetodosAtributos(props) {
+
+
+
+  /* Temporizador */
+
+  const stopwatchOffset = new Date();
+  stopwatchOffset.setSeconds(stopwatchOffset.getSeconds() + 300);
+  const {
+    seconds,
+    pause,
+    isRunning,
+  
+  } = useStopwatch({ autoStart: true, offsetTimestamp: stopwatchOffset });
+  const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
+  
+    const [puntos, setPuntos] = useState(0);
+  
+    const mensajeCorrecto = (points) => {
+      swal({
+        icon: "success",
+        title: "¡Gran Trabajo!",
+  
+        text: "Obtuviste: " + points + " puntos y tu tiempo es de: " + secondTime + " segundos",
+        button: "OK",
+      });
+  
+    };
+  
+    const mensajeIncorrecto = () => {
+      swal({
+        icon: "error",
+        title: "¡Upss!",
+        text: "Recuerda usar el chatbot para obtener ayuda, ¡Intentalo de nuevo! "+ puntos + secondTime,
+        button: "OK",
+      });
+    };
+  
+    const [arreglo, setArreglo] = useState ([]);
+  
+    const evaluarAnalizarClase = () => {
+      if(columns[2].items[0].id === "Primero"){
+        if(columns[3].items[0].id === "Segundo"){
+          if(columns[4].items[0].id === "Sexto"){
+            if(columns[5].items[0].id === "Cuarto"){
+              if(columns[6].items[0].id === "Tercero"){
+                if(columns[7].items[0].id === "Quinto"){
+                  if (secondTime < 20){
+                    setPuntos(10);
+                    mensajeCorrecto(10);
+                  }
+                  if (secondTime >=20 && secondTime < 40){
+                    setPuntos(7);
+                    mensajeCorrecto(7);
+                  }
+                  if (secondTime >=40 && secondTime < 60){
+                    setPuntos(5);
+                    mensajeCorrecto(5);
+                  }
+                  props.evento();
+                }
+                else{
+                  mensajeIncorrecto();
+                }
+              }
+              else{
+                mensajeIncorrecto();
+              }
+            }
+            else{
+              mensajeIncorrecto();
+            }
+          }
+          else{
+            mensajeIncorrecto();
+          }
+        }
+        else{
+          mensajeIncorrecto();
+        }
+      }
+      else{
+        mensajeIncorrecto();
+      }
+    }
+
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
     <div className='container-BloomAnalizarClase'>
         <img src={preguntaAnalizarClase} alt='preguntaAnalizarClase' className='preguntaAnalizarClase'/>
+        <button onClick={evaluarAnalizarClase} className='evaluar-AplicarClase'>Evaluar</button>
+      <div style={{ fontSize: "100px", zIndex:"100" }}>
+        <span className='Timer'>{secondTime}</span>
+        <p>{isRunning ? "Running" : "Not running"}</p>
+      </div>
     <div className="Container-draganddrop">
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}

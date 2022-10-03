@@ -22,6 +22,7 @@ import AplicarAtributo from '../Bloom/2aplicar/AplicarAtributo'
 import AnalizarAtributo from '../Bloom/3analizar/AnalizarAtributo'
 import EvaluarAtributo from '../Bloom/4evaluar/EvaluarAtributo'
 import CrearAtributo from '../Bloom/5crear/CrearAtributo'
+import Temporizador from '../temporizador/Temporizador'
 
 
 function Mecanica() {
@@ -75,17 +76,17 @@ function Mecanica() {
         }
     }
     
-    const botonEvaluar = <button onClick={revisar} className='evaluar-comprenderClase'>Evaluar</button>
+    
     
 
   return (
     <div>
         {fase === 0 ? <h1>{Eleccion}</h1>:
-        (tema === "Clases" && fase === 1 ? <ComprenderClase/> : 
-        (tema === "Clases" && fase === 2 ? <AplicarClase/> : 
-        (tema === "Clases" && fase === 3 ? <AnalizarClase/>:
-        (tema === "Clases" && fase === 4 ? <EvaluarClase/> : 
-        (tema === "Clases" && fase === 5 ? <CrearClase/> :
+        (tema === "Clases" && fase === 1 ? <ComprenderClase evento={contador}/> : 
+        (tema === "Clases" && fase === 2 ? <AplicarClase evento={contador} /> : 
+        (tema === "Clases" && fase === 3 ? <AnalizarClase evento={contador} />:
+        (tema === "Clases" && fase === 4 ? <EvaluarClase evento={contador} /> : 
+        (tema === "Clases" && fase === 5 ? <CrearClase evento={contador} /> :
 
         (tema === "Objetos" && fase === 1 ? <ComprenderObjeto/> :
         (tema === "Objetos" && fase === 2 ? <AplicarObjeto/> : 
@@ -104,8 +105,6 @@ function Mecanica() {
         (tema === "Atributos" && fase === 3 ? <AnalizarAtributo/> : 
         (tema === "Atributos" && fase === 4 ? <EvaluarAtributo/> :
         (tema === "Atributos" && fase === 5 ? <CrearAtributo/> : null ))))))))))))))))))))}
-            
-        {evaluador === 1 ? botonEvaluar : null}  
     </div>
   )
 }

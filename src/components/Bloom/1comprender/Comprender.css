@@ -29,8 +29,8 @@
 }
 
 .ClaseComprenderOpcion1{
-    top: 2%;
-    left: 32%;
+    top: 0%;
+    left: 34%;
     position: absolute;
     width: 30%;
     height: 40%;
@@ -45,14 +45,28 @@
 .ClaseComprenderOpcion1:hover{
     transform: scale(2);
     left: 50%;
-    top: 30%;
+    top: 22%;
     z-index: 2;
 }
 
+.ClaseComprenderOpcion1:active{
+    border-color: black;
+    background-color: black;
+    border-width: 50%;
+}
+
+.ClaseComprenderOpcion1:visited{
+    background-color: black;
+    background: black;
+    border-color: black;
+    background-color: black;
+    border-width: 50%;
+    
+}
 
 .ClaseComprenderOpcion2{
-    top: 2%;
-    left: 69%;
+    top: 0%;
+    left: 67%;
     position: absolute;
     width: 30%;
     height: 40%;
@@ -66,13 +80,13 @@
 .ClaseComprenderOpcion2:hover{
     scale: 2;
     left: 50%;
-    top: 30%;
+    top: 22%;
     z-index: 2;
 }
 
 .ClaseComprenderOpcion3{
-    top: 52%;
-    left: 32%;
+    top: 42%;
+    left: 34%;
     position: absolute;
     width: 30%;
     height: 40%;
@@ -86,13 +100,13 @@
 .ClaseComprenderOpcion3:hover{
     scale: 2;
     left: 50%;
-    top: 30%;
+    top: 22%;
     z-index: 2;
 }
 
 .ClaseComprenderOpcion4{
-    top: 52%;
-    left: 69%;
+    top: 42%;
+    left: 67%;
     position: absolute;
     width: 30%;
     height: 40%;
@@ -107,8 +121,25 @@
 .ClaseComprenderOpcion4:hover{
     transform: scale(2);
     left: 50%;
-    top: 30%;
+    top: 22%;
     z-index: 2;
+}
+
+.evaluar-comprenderClase{
+    position: absolute;
+    top: 91%;
+    left: 5%;
+    width: 20%;
+    height: 5%;
+    z-index: 10%;
+}
+
+.Seleccionador{
+    position: absolute;
+    top: 90%;
+    left: 35%;
+    z-index: 100;
+    color: BLACK;
 }
 
 /* ********************    Objetos    ************************ */
