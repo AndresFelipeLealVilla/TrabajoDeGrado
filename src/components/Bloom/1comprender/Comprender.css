@@ -143,6 +143,101 @@
 }
 
 /* ********************    Objetos    ************************ */
+.preguntaComprenderObjeto{
+    border-color: black;
+    border-style: solid;
+    top: 1%;
+    left: 0.5%;
+    position: absolute;
+    width: 30%;
+    height: 97%;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+
+.ObjetoComprenderOpcion1{
+    top: 45%;
+    left: 40%;
+    position: absolute;
+    width: 20%;
+    height: 10%;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+
+.ObjetoComprenderOpcion2{
+    top: 45%;
+    left: 67%;
+    position: absolute;
+    width: 20%;
+    height: 10%;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ObjetoComprenderOpcion3{
+    top: 67%;
+    left: 40%;
+    position: absolute;
+    width: 20%;
+    height: 10%;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ObjetoComprenderOpcion4{
+    top: 67%;
+    left: 67%;
+    position: absolute;
+    width: 20%;
+    height: 10%;
+    border-style: solid;
+    z-index: 500px;
+    border-radius: 5%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+
+}
+
+.evaluar-comprenderObjeto{
+    position: absolute;
+    top: 91%;
+    left: 5%;
+    width: 20%;
+    height: 5%;
+    z-index: 10%;
+}
+
+.Seleccionador{
+    position: absolute;
+    top: 90%;
+    left: 35%;
+    z-index: 100;
+    color: BLACK;
+}
+
+.opcionesComprenderObjetos{
+    position: absolute;
+    top: 3%;
+    left: 32%;
+    width: 65%;
+    height: 35%;
+    z-index: 100;
+    border-radius: 3%;
+}
 
 /* ********************    Métodos    ************************ */
 

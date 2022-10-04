@@ -88,11 +88,11 @@ function Mecanica() {
         (tema === "Clases" && fase === 4 ? <EvaluarClase evento={contador} /> : 
         (tema === "Clases" && fase === 5 ? <CrearClase evento={contador} /> :
 
-        (tema === "Objetos" && fase === 1 ? <ComprenderObjeto/> :
-        (tema === "Objetos" && fase === 2 ? <AplicarObjeto/> : 
-        (tema === "Objetos" && fase === 3 ? <AnalizarObjeto/> : 
-        (tema === "Objetos" && fase === 4 ? <EvaluarObjeto/> :
-        (tema === "Objetos" && fase === 5 ? <CrearObjeto/> : 
+        (tema === "Objetos" && fase === 1 ? <ComprenderObjeto evento={contador} /> :
+        (tema === "Objetos" && fase === 2 ? <AplicarObjeto evento={contador} /> : 
+        (tema === "Objetos" && fase === 3 ? <AnalizarObjeto evento={contador} /> : 
+        (tema === "Objetos" && fase === 4 ? <EvaluarObjeto evento={contador} /> :
+        (tema === "Objetos" && fase === 5 ? <CrearObjeto evento={contador} /> : 
          
         (tema === "Metodos" && fase === 1 ? <ComprenderMetodo/> :
         (tema === "Metodos" && fase === 2 ? <AplicarMetodo/> :

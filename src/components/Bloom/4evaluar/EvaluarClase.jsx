@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import './Evaluar.css'
+import imagen1 from '../../../img/taxonomia/4Evaluar/Evaluar1.png'
 
 const itemsFromBackend = [
-  { id: "primero", content: "First task" },
+  { id: "primero", content: <img src={imagen1} alt='preguntaEvaluarClase' className='preguntaEvaluarClase'/> },
   { id: "Segundo", content: "Second task" },
   { id: "Tercero", content: "Third task" },
   { id: "Cuarto", content: "Fourth task" },
@@ -63,13 +64,13 @@ function EvaluarClase() {
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
 
-    <div className="Container-draganddrop">
+    <div className="Container-draganddropEvaluarClase">
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
       >
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
-            <div className="bloque" key={columnId}>
+            <div className="bloqueEvaluarClase" key={columnId}>
               <h2>{column.name}</h2>
               <div>
                 <Droppable droppableId={columnId} key={columnId}>
@@ -82,9 +83,9 @@ function EvaluarClase() {
                           background: snapshot.isDraggingOver
                             ? "lightblue"
                             : "lightgrey",
-                          padding: -10,
-                          width: 150,
-                          height: 30,
+                          padding: 0,
+                          width: 300,
+                          height: 200,
                           top: -70,
                           position: "relative",
                           margin:"0",
@@ -109,7 +110,10 @@ function EvaluarClase() {
                                       userSelect: "none",
                                       padding: 8,
                                       margin: "0 0 8px 0",
-                                      minHeight: "15px",
+                                      minHeight: "85px",
+                                      width: "100px",
+                                      left: 0,
+                                      position: "absolute",
                                       backgroundColor: snapshot.isDragging
                                         ? "#263B4A"
                                         : "#456C86",
