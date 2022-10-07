@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import './Analizar.css'
 import preguntaAnalizarClase from '../../../img/taxonomia/3Analizar/ClaseVehiculoAnalizarClase.png'
-import { useStopwatch } from "react-timer-hook";
 import swal from 'sweetalert'
+import './Analizar.css'
+import ProyeccionProgress from "../../progressBar/ProyeccionProgress";
+import ProgressButton from "../../progressBar/ProgressButton";
 
 const itemsFromBackend = [
   { id: "Primero", content: "Nombre" },
@@ -83,44 +84,29 @@ const onDragEnd = (result, columns, setColumns) => {
 };
 
 function AnalizarMetodosAtributos(props) {
-
-
-
-  /* Temporizador */
-
-  const stopwatchOffset = new Date();
-  stopwatchOffset.setSeconds(stopwatchOffset.getSeconds() + 300);
-  const {
-    seconds,
-    pause,
-    isRunning,
-  
-  } = useStopwatch({ autoStart: true, offsetTimestamp: stopwatchOffset });
-  const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
-  
+/* Declaraciones */  
     const [puntos, setPuntos] = useState(0);
+    const [state , setState] = useState(40);
   
-    const mensajeCorrecto = (points) => {
-      swal({
-        icon: "success",
-        title: "¡Gran Trabajo!",
-  
-        text: "Obtuviste: " + points + " puntos y tu tiempo es de: " + secondTime + " segundos",
-        button: "OK",
-      });
-  
-    };
-  
-    const mensajeIncorrecto = () => {
-      swal({
-        icon: "error",
-        title: "¡Upss!",
-        text: "Recuerda usar el chatbot para obtener ayuda, ¡Intentalo de nuevo! "+ puntos + secondTime,
-        button: "OK",
-      });
-    };
-  
-    const [arreglo, setArreglo] = useState ([]);
+/* Mensaje Correcto */
+  const mensajeCorrecto = (points) => {
+    swal({
+      icon: "success",
+      title: "¡Gran Trabajo!",
+      text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
+      button: "OK",
+    });
+  };
+
+/* Mensaje Incorrecto */
+  const mensajeIncorrecto = () => {
+    swal({
+      icon: "error",
+      title: "¡Upss!",
+      text: "Recuerda usar el chatbot para obtener ayuda",
+      button: "OK",
+    });
+   };
   
     const evaluarAnalizarClase = () => {
       if(columns[2].items[0].id === "Primero"){
@@ -129,34 +115,23 @@ function AnalizarMetodosAtributos(props) {
             if(columns[5].items[0].id === "Cuarto"){
               if(columns[6].items[0].id === "Tercero"){
                 if(columns[7].items[0].id === "Quinto"){
-                  if (secondTime < 20){
-                    setPuntos(10);
-                    mensajeCorrecto(10);
-                  }
-                  if (secondTime >=20 && secondTime < 40){
-                    setPuntos(7);
-                    mensajeCorrecto(7);
-                  }
-                  if (secondTime >=40 && secondTime < 60){
                     setPuntos(5);
                     mensajeCorrecto(5);
-                  }
-                  props.evento();
                 }
                 else{
-                  mensajeIncorrecto();
+                    mensajeIncorrecto();
                 }
               }
               else{
-                mensajeIncorrecto();
+                  mensajeIncorrecto();
               }
             }
             else{
-              mensajeIncorrecto();
+                mensajeIncorrecto();
             }
           }
           else{
-            mensajeIncorrecto();
+              mensajeIncorrecto();
           }
         }
         else{
@@ -166,17 +141,14 @@ function AnalizarMetodosAtributos(props) {
       else{
         mensajeIncorrecto();
       }
+      props.evento();
     }
 
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
     <div className='container-BloomAnalizarClase'>
         <img src={preguntaAnalizarClase} alt='preguntaAnalizarClase' className='preguntaAnalizarClase'/>
-        <button onClick={evaluarAnalizarClase} className='evaluar-AplicarClase'>Evaluar</button>
-      <div style={{ fontSize: "100px", zIndex:"100" }}>
-        <span className='Timer'>{secondTime}</span>
-        <p>{isRunning ? "Running" : "Not running"}</p>
-      </div>
+        <button onClick={evaluarAnalizarClase} className='evaluarAnalizarClase'>Evaluar</button>
     <div className="Container-draganddrop">
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
@@ -225,8 +197,8 @@ function AnalizarMetodosAtributos(props) {
                                       margin: "0 0 8px 0",
                                       minHeight: "15px",
                                       backgroundColor: snapshot.isDragging
-                                        ? "#263B4A"
-                                        : "#456C86",
+                                        ? "red"
+                                        : "#f44336",
                                       color: "white",
                                       ...provided.draggableProps.style
                                     }}
@@ -249,11 +221,26 @@ function AnalizarMetodosAtributos(props) {
         })}
       </DragDropContext>
       <div className="orientacionAnalizarClase">
-      <h2>Analizar:</h2>
-      <p>pregunta</p>
      </div>
     </div>
-    
+    <div className="contenedorBarra">
+      <h2 className="porcentaje"
+        style={{
+          color: state === 100 ? "#e84118" : "Black"
+        }}
+      >
+        {state === 100
+          ? "Completo"
+          : `${state}%`}
+      </h2>
+      <ProyeccionProgress width={state} />
+      <ProgressButton
+        progress={state}
+        makeProgress={() => {
+          state < 100 ? setState(state + 20) : setState(0);
+        }}
+      />
+    </div>
     </div>
   );
 }

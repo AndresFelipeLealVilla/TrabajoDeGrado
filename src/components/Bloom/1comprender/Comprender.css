@@ -15,7 +15,7 @@
 }
 
 .diagramaClase{
-    top: 40%;
+    top: 37%;
     left: 10%;
     position: absolute;
     width: 80%;
@@ -29,7 +29,7 @@
 }
 
 .ClaseComprenderOpcion1{
-    top: 0%;
+    top: 5%;
     left: 34%;
     position: absolute;
     width: 30%;
@@ -43,29 +43,14 @@
 
 
 .ClaseComprenderOpcion1:hover{
-    transform: scale(2);
+    transform: scale(1.5);
     left: 50%;
     top: 22%;
     z-index: 2;
 }
 
-.ClaseComprenderOpcion1:active{
-    border-color: black;
-    background-color: black;
-    border-width: 50%;
-}
-
-.ClaseComprenderOpcion1:visited{
-    background-color: black;
-    background: black;
-    border-color: black;
-    background-color: black;
-    border-width: 50%;
-    
-}
-
 .ClaseComprenderOpcion2{
-    top: 0%;
+    top: 5%;
     left: 67%;
     position: absolute;
     width: 30%;
@@ -78,14 +63,14 @@
 }
 
 .ClaseComprenderOpcion2:hover{
-    scale: 2;
+    transform: scale(1.5);
     left: 50%;
     top: 22%;
     z-index: 2;
 }
 
 .ClaseComprenderOpcion3{
-    top: 42%;
+    top: 47%;
     left: 34%;
     position: absolute;
     width: 30%;
@@ -98,14 +83,14 @@
 }
 
 .ClaseComprenderOpcion3:hover{
-    scale: 2;
+    transform: scale(1.5);
     left: 50%;
     top: 22%;
     z-index: 2;
 }
 
 .ClaseComprenderOpcion4{
-    top: 42%;
+    top: 47%;
     left: 67%;
     position: absolute;
     width: 30%;
@@ -119,22 +104,29 @@
 }
 
 .ClaseComprenderOpcion4:hover{
-    transform: scale(2);
+    transform: scale(1.5);
     left: 50%;
     top: 22%;
     z-index: 2;
 }
 
-.evaluar-comprenderClase{
+.evaluarcomprenderClase{
     position: absolute;
-    top: 91%;
-    left: 5%;
-    width: 20%;
-    height: 5%;
+    top: 88%;
+    left: 10%;
+    width: 10%;
+    height: 7%;
     z-index: 10%;
+    background-color: #f44336;
+    border-radius: 7%;
+    border-color: #f44336;
 }
 
-.Seleccionador{
+.evaluarcomprenderClase:hover{
+    border-color: black;
+}
+
+.SeleccionadorComprenderClase{
     position: absolute;
     top: 90%;
     left: 35%;
@@ -212,13 +204,20 @@
 
 }
 
-.evaluar-comprenderObjeto{
+.evaluarComprenderObjeto{
     position: absolute;
-    top: 91%;
-    left: 5%;
-    width: 20%;
-    height: 5%;
+    top: 88%;
+    left: 10%;
+    width: 10%;
+    height: 7%;
     z-index: 10%;
+    background-color: #f44336;
+    border-radius: 7%;
+    border-color: #f44336;
+}
+
+.evaluarComprenderObjeto:hover{
+    border-color: black;
 }
 
 .Seleccionador{
@@ -240,5 +239,103 @@
 }
 
 /* ********************    Métodos    ************************ */
+
+.preguntaComprenderMetodo{
+    border-color: black;
+    border-style: solid;
+    top: 1%;
+    left: 0.5%;
+    position: absolute;
+    width: 30%;
+    height: 97%;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.MetodoComprenderOpcion1{
+    top: 2%;
+    left: 35%;
+    position: absolute;
+    width: 60%;
+    height: 28%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+
+.MetodoComprenderOpcion1:hover{
+    transform: scale(1.5);
+    left: 50%;
+    top: 30%;
+    z-index: 2;
+}
+
+.MetodoComprenderOpcion2{
+    top: 32%;
+    left: 35%;
+    position: absolute;
+    width: 60%;
+    height: 28%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.MetodoComprenderOpcion2:hover{
+    transform: scale(1.5);
+    left: 50%;
+    top: 30%;
+    z-index: 2;
+}
+
+.MetodoComprenderOpcion3{
+    top: 62%;
+    left: 35%;
+    position: absolute;
+    width: 60%;
+    height: 28%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.MetodoComprenderOpcion3:hover{
+    transform: scale(1.5);
+    left: 50%;
+    top: 30%;
+    z-index: 2;
+}
+
+
+
+.evaluarcomprenderMetodo{
+    position: absolute;
+    top: 88%;
+    left: 10%;
+    width: 10%;
+    height: 7%;
+    z-index: 10%;
+    background-color: #f44336;
+    border-radius: 7%;
+    border-color: #f44336;
+}
+
+.evaluarcomprenderMetodo:hover{
+    border-color: black;
+}
+
+.SeleccionadorComprenderMetodo{
+    position: absolute;
+    top: 92%;
+    left: 35%;
+    z-index: 100;
+    color: BLACK;
+}
 
 /* ********************    Atributos    ************************ */

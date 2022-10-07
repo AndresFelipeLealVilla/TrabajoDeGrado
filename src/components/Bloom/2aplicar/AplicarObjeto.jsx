@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import './Aplicar.css'
-import { useStopwatch } from "react-timer-hook";
 import swal from 'sweetalert'
+import ProgressButton from '../../progressBar/ProgressButton'
+import ProyeccionProgress from '../../progressBar/ProyeccionProgress'
 
+import './Aplicar.css'
 
 /* Creación drag and drop */
 
@@ -74,44 +75,33 @@ const onDragEnd = (result, columns, setColumns) => {
 };
 
 function AplicarObjeto(props) {
-
-
-  /* Temporizador */
-
-const stopwatchOffset = new Date();
-stopwatchOffset.setSeconds(stopwatchOffset.getSeconds() + 300);
-const {
-  seconds,
-  pause,
-  isRunning,
-
-} = useStopwatch({ autoStart: true, offsetTimestamp: stopwatchOffset });
-const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
-
+/* Declaraciones */
   const [puntos, setPuntos] = useState(0);
-
-  const mensajeCorrecto = (points) => {
-    swal({
-      icon: "success",
-      title: "¡Gran Trabajo!",
-
-      text: "Obtuviste: " + points + " puntos y tu tiempo es de: " + secondTime + " segundos",
-      button: "OK",
-    });
-
-  };
-
-  const mensajeIncorrecto = () => {
-    swal({
-      icon: "error",
-      title: "¡Upss!",
-      text: "Recuerda usar el chatbot para obtener ayuda, ¡Intentalo de nuevo! "+ puntos + secondTime,
-      button: "OK",
-    });
-  };
-
   const [arreglo1, setArreglo] = useState ([]);
   const [arreglo2, setArreglo2] = useState ([]);
+  const [state, setState] = useState(20)
+
+/* Mensaje Correcto */
+  const mensajeCorrecto = (points) => {
+      swal({
+          icon: "success",
+          title: "¡Gran Trabajo!",
+          text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
+          button: "OK",
+      });
+  };
+
+/* Mensaje Incorrecto */
+  const mensajeIncorrecto = () => {
+      swal({
+          icon: "error",
+          title: "¡Upss!",
+          text: "Recuerda usar el chatbot para obtener ayuda",
+          button: "OK",
+      });
+  };
+
+  
 
   const evaluarAplicarObjeto = () => {
     if (arreglo1.length >= 5){
@@ -141,27 +131,15 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
                           if(arreglo2.includes("Primero")){
                               if(arreglo2.includes("Quinto")){
                                 if(arreglo2.includes("Sexto")){
-                                  pause();
-                                  if (secondTime < 20){
-                                    setPuntos(10);
-                                    mensajeCorrecto(10);
-                                  }
-                                  if (secondTime >=20 && secondTime < 40){
-                                    setPuntos(7);
-                                    mensajeCorrecto(7);
-                                  }
-                                  if (secondTime >=40 && secondTime < 60){
                                     setPuntos(5);
                                     mensajeCorrecto(5);
-                                  }
-                                  props.evento();
                                 }
                                 else{
-                                  mensajeIncorrecto();
+                                    mensajeIncorrecto();
                                 }
                               }
                               else{
-                                mensajeIncorrecto();
+                                  mensajeIncorrecto();
                               }
                           }
                           else{
@@ -171,22 +149,23 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
                       else{
                         mensajeIncorrecto();
                       }
-                    }
-                    else{
+                  }
+                  else{
                       mensajeIncorrecto();
-                    }
-                }
-                else{
+                  }
+              }
+              else{
                   mensajeIncorrecto();
-                }
-            }
-            else{
+              }
+          }
+          else{
               mensajeIncorrecto();
-            }
-        }
-        else{
+          }
+      }
+      else{
           mensajeIncorrecto();
-        }              
+      }
+      props.evento();              
     }
   }
 
@@ -196,14 +175,9 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
     <div className="containerAplicarObjeto">
-      <button onClick={evaluarAplicarObjeto} className='evaluar-AplicarObjeto'>Evaluar</button>
-      <div style={{ fontSize: "100px", zIndex:"100" }}>
-        <span className='Timer'>{secondTime}</span>
-        <p>{isRunning ? "Running" : "Not running"}</p>
-      </div>
-    <div className='PreguntaAplicarObjeto'>
+      <button onClick={evaluarAplicarObjeto} className='evaluarAplicarObjeto'>Evaluar</button>
 
-      <span className="Prueba"></span>
+    <div className='PreguntaAplicarObjeto'>
              
     </div>
 
@@ -261,8 +235,8 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
                                       margin: "0 0 8px 0",
                                       minHeight: "5px",
                                       backgroundColor: snapshot.isDragging
-                                        ? "#263B4A"
-                                        : "#456C86",
+                                        ? "red"
+                                        : "#f44336",
                                       color: "white",
                                       ...provided.draggableProps.style
                                     }}
@@ -288,6 +262,25 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
 
 
       
+    </div>
+    <div className="contenedorBarra">
+      <h2 className="porcentaje"
+        style={{
+          color: state === 100 ? "#e84118" : "Black"
+        }}
+      >
+        {state === 100
+          ? "Completo"
+          : `${state}%`}
+      </h2>
+
+      <ProyeccionProgress width={state} />
+      <ProgressButton
+        progress={state}
+        makeProgress={() => {
+          state < 100 ? setState(state + 20) : setState(0);
+        }}
+      />
     </div>
 
     </div>

@@ -13,6 +13,18 @@
     border-radius: 3%;
 }
 
+.evaluarAnalizarClase{
+    position: absolute;
+    top: 88%;
+    left: 10%;
+    width: 10%;
+    height: 7%;
+    z-index: 100;
+    background-color: #f44336;
+    border-radius: 7%;
+    border-color: #f44336;
+}
+
 .bloqueAnalizarClase{
     display: flex;
     flex-direction: column;
@@ -129,11 +141,11 @@
 .orientacionAnalizarClase{
     border-color: black;
     border-style: solid;
-    top: 51%;
+    top: 50%;
     left: 0.5%;
     position: absolute;
-    width: 30%;
-    height: 47%;
+    width: 29%;
+    height: 48%;
     justify-content: center;
     text-align: center;
     border: 1px solid;
@@ -141,4 +153,58 @@
     border-radius: 3%;
 }
 
+/* ***************** Objetos ******************** */
+
+.DiagramaAnaliarObjeto{
+    top: 40%;
+    left: 3%;
+    position: absolute;
+    width: 25%;
+    height: 50%;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+    border-radius: 3%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+
+
+.preguntaAnalizarrObjeto{
+    border-color: black;
+    border-style: solid;
+    top: 1%;
+    left: 0.5%;
+    position: absolute;
+    width: 30%;
+    height: 97%;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.img1, .img2, .img3, .img4, .img5, .img6{
+    position: relative;
+    width: 100%;
+    height: 50%;
+}
+
+.img1{
+    top: 0%;
+    left: 0%;
+}
+
+.BloqueAnalizarObjeto:nth-child(1){
+    position: relative;
+    top: 0%;
+    left: -15%;
+}
+
+.BloqueAnalizarObjeto:nth-child(2){
+    position: relative;
+    top: 0%;
+    left: -10%;
+}
 

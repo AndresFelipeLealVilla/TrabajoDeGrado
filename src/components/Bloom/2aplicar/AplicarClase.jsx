@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import './Aplicar.css'
-import { useStopwatch } from "react-timer-hook";
 import swal from 'sweetalert'
+import ProgressButton from "../../progressBar/ProgressButton";
+import ProyeccionProgress from "../../progressBar/ProyeccionProgress";
+
+import './Aplicar.css'
 
 
 /* Creación drag and drop */
@@ -68,46 +70,37 @@ const onDragEnd = (result, columns, setColumns) => {
 };
 
 function AplicarClase(props) {
-
-
-  /* Temporizador */
-
-const stopwatchOffset = new Date();
-stopwatchOffset.setSeconds(stopwatchOffset.getSeconds() + 300);
-const {
-  seconds,
-  pause,
-  isRunning,
-
-} = useStopwatch({ autoStart: true, offsetTimestamp: stopwatchOffset });
-const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
-
+/* Declaraciones */
   const [puntos, setPuntos] = useState(0);
+  const [arreglo, setArreglo] = useState ([]);
+  const [dato, setDato] = useState(40);
+  const [state, setState] = useState(20);
 
+
+/* Mensaje Correcto */
   const mensajeCorrecto = (points) => {
     swal({
       icon: "success",
       title: "¡Gran Trabajo!",
-
-      text: "Obtuviste: " + points + " puntos y tu tiempo es de: " + secondTime + " segundos",
+      text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
       button: "OK",
-    });
+  });
 
-  };
+};
 
+/* Mensaje Incorrecto */
   const mensajeIncorrecto = () => {
     swal({
       icon: "error",
       title: "¡Upss!",
-      text: "Recuerda usar el chatbot para obtener ayuda, ¡Intentalo de nuevo! "+ puntos + secondTime,
+      text: "Recuerda usar el chatbot para obtener ayuda",
       button: "OK",
     });
   };
 
-  const [arreglo, setArreglo] = useState ([]);
-
+/* Ejercicio */
   const evaluarAplicarClase = () => {
-    if (arreglo.length >= 4){
+    if (arreglo.length !== 4){
         setArreglo([]);        
     }
     if (arreglo.length === 0){
@@ -121,65 +114,43 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
           if(arreglo.includes("Tercero")){
               if(arreglo.includes("Quinto")){
                   if(arreglo.includes("Sexto")){
-                      pause();
-                      if (secondTime < 20){
-                          setPuntos(10);
-                          mensajeCorrecto(10);
-                      }
-                      if (secondTime >=20 && secondTime < 40){
-                          setPuntos(7);
-                          mensajeCorrecto(7);
-                      }
-                      if (secondTime >=40 && secondTime < 60){
-                          setPuntos(5);
-                          mensajeCorrecto(5);
-                      }
-                      props.evento();
-                    }
-                    else{
-                        mensajeIncorrecto();
-                    }
-                }
-                else{
-                    mensajeIncorrecto();
-                }
-            }
-        else{
-            mensajeIncorrecto();
-        }
+                      setPuntos(5);
+                      mensajeCorrecto(5);
+                  }
+                  else{
+                      mensajeIncorrecto();
+                  }
+              }
+              else{
+                  mensajeIncorrecto();
+              }
+          }
+          else{
+              mensajeIncorrecto();
+          }
+      }
+      else{
+          mensajeIncorrecto();
+      }
     }
-    else{
-        mensajeIncorrecto();
-    }
+    props.evento();
   }
-}
 
 
             
-
+/* Contenido */
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
     <div className="containerAplicarClase">
-      <button onClick={evaluarAplicarClase} className='evaluar-AplicarClase'>Evaluar</button>
-      <div style={{ fontSize: "100px", zIndex:"100" }}>
-        <span className='Timer'>{secondTime}</span>
-        <p>{isRunning ? "Running" : "Not running"}</p>
-      </div>
+        <button onClick={evaluarAplicarClase} className='evaluarAplicarClase'>Evaluar</button>
+      
     <div className='PreguntaAplicarClase'>
-
-      <span className="Prueba"></span>
-             
+        
     </div>
 
     <div style={{ display: "flex", justifyContent: "center", height: "10%", color:"black", position:"absolute", left:"40%", top:"0%"}}>
       <DragDropContext
-        onDragEnd={result => onDragEnd(result, columns, setColumns)}
-      >
-
-
-
-
-
+        onDragEnd={result => onDragEnd(result, columns, setColumns)}>
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
             <div
@@ -200,10 +171,12 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
                         ref={provided.innerRef}
                         style={{
                           background: snapshot.isDraggingOver
-                            ? "lightblue"
-                            : "lightgrey",
+                            ? "white"
+                            : "white",
                           width: 150,
                           minHeight: 350,
+                          borderColor: "black",
+                          borderWidth: "20px",
                         }}
                       >
                         {column.items.map((item, index) => {
@@ -225,8 +198,8 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
                                       margin: "0 0 8px 0",
                                       minHeight: "5px",
                                       backgroundColor: snapshot.isDragging
-                                        ? "#263B4A"
-                                        : "#456C86",
+                                        ? "red"
+                                        : "#f44336",
                                       color: "white",
                                       ...provided.draggableProps.style
                                     }}
@@ -247,20 +220,30 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
             </div>
           );
         })}
-      </DragDropContext>
-
-
-
-      
-    </div>
+      </DragDropContext> 
 
     </div>
+    <div className="contenedorBarra">
+      <h2 className="porcentaje"
+        style={{
+          color: state === 100 ? "#e84118" : "Black"
+        }}
+      >
+        {state === 100
+          ? "Completo"
+          : `${state}%`}
+      </h2>
+      <ProyeccionProgress width={state} />
+      <ProgressButton
+        progress={state}
+        makeProgress={() => {
+          state < 100 ? setState(state + 20) : setState(0);
+        }}
+      />
+    </div>
+  </div>
     
   );
 }
-
-
-
-
 
 export default AplicarClase;

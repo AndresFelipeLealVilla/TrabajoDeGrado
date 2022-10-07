@@ -1,75 +1,17 @@
 import React, {useState} from 'react'
-import './Comprender.css'
-import claseVehiculo from '../../../img/taxonomia/1Comprender/PreguntaComprenderClase.jpg'
-import opcionesComprenderObjeto from '../../../img/taxonomia/1Comprender/opcionesComprenderObjetos.PNG'
+import claseVehiculo from '../../../img/taxonomia/1Comprender/Objetos/DiagramaComprenderObjeto.png'
+import opcionesComprenderObjeto from '../../../img/taxonomia/1Comprender/Objetos/opcionesComprenderObjetos.PNG'
 import swal from 'sweetalert'
-import { useEffect } from 'react'
-import { useStopwatch } from "react-timer-hook";
+import ProgressButton from '../../progressBar/ProgressButton'
+import ProyeccionProgress from '../../progressBar/ProyeccionProgress'
 
+import './Comprender.css'
 
 function ComprenderObjeto(props){
-
-
-/* Temporizador */
-
-const stopwatchOffset = new Date();
-  stopwatchOffset.setSeconds(stopwatchOffset.getSeconds() + 300);
-  const {
-    seconds,
-    isRunning,
-    pause,
-
-  } = useStopwatch({ autoStart: true, offsetTimestamp: stopwatchOffset });
-  const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
- 
-/* Ejercicio */
-
-  const evaluar = () => { 
-    if (seleccionador === 3){
-        pause();
-        if (secondTime < 20){
-          setPuntos(10);
-          mensajeCorrecto(10);
-        }
-        if (secondTime >=20 && secondTime < 40){
-          setPuntos(7);
-          mensajeCorrecto(7);
-        }
-        if (secondTime >=40 && secondTime < 60){
-          setPuntos(5);
-          mensajeCorrecto(5);
-        }
-        props.evento();
-    }
-    else{
-      mensajeIncorrecto();
-    }
-    
-} 
-  
-  const mensajeCorrecto = (points) => {
-    swal({
-      icon: "success",
-      title: "¡Gran Trabajo!",
-
-      text: "Obtuviste: " + points + " puntos y tu tiempo es de: " + secondTime + " segundos",
-      button: "OK",
-    });
-
-  };
-
-  const mensajeIncorrecto = () => {
-    swal({
-      icon: "error",
-      title: "¡Upss!",
-      text: "Recuerda usar el chatbot para obtener ayuda, ¡Intentalo de nuevo! "+ puntos + secondTime,
-      button: "OK",
-    });
-  };
-
-  const [puntos, setPuntos] = useState(0);
-  
+/* Declaraciones */
+const [puntos, setPuntos] = useState(0);
 const [seleccionador, setSeleccionador] = useState(0)
+const [state, setState] = useState(0)
 
 const seleccionar1 = () => {
   setSeleccionador(1);
@@ -86,7 +28,42 @@ const seleccionar3 = () => {
 const seleccionar4 = () => {
   setSeleccionador(4);
 }
+ 
+/* Ejercicio */
 
+  const evaluar = () => { 
+    if (seleccionador === 3){
+        setPuntos(5);
+        mensajeCorrecto(5);
+    }
+    else{
+        mensajeIncorrecto();
+    }
+    props.evento();
+  } 
+
+ /* Mensaje Correcto */
+  const mensajeCorrecto = (points) => {
+      swal({
+          icon: "success",
+          title: "¡Gran Trabajo!",
+          text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
+          button: "OK",
+      });
+  };
+
+/* Mensaje Incorrecto */
+  const mensajeIncorrecto = () => {
+      swal({
+          icon: "error",
+          title: "¡Upss!",
+          text: "Recuerda usar el chatbot para obtener ayuda",
+          button: "OK",
+      });
+  };
+
+
+/* Ejercicio */
   return (
     <div className='container-Bloom-comprender'>
 
@@ -109,14 +86,28 @@ const seleccionar4 = () => {
             <button className='ObjetoComprenderOpcion4' onClick={seleccionar4}>Opción 4</button>
         </div>
           
-          
-        <div style={{ fontSize: "100px", zIndex:"100" }}>
-        <span className='Timer'>{secondTime}</span>
-      </div>
-      <p>{isRunning ? "Running" : "Not running"}</p>
-        <button onClick={evaluar} className='evaluar-comprenderObjeto'>Evaluar</button>
+        <button onClick={evaluar} className='evaluarComprenderObjeto'>Evaluar</button>
         <span className='Seleccionador'>Opción seleccionado: {seleccionador}</span>
          
+        <div className="contenedorBarra">
+      <h2 className="porcentaje"
+        style={{
+          color: state === 100 ? "#e84118" : "Black"
+        }}
+      >
+        {state === 100
+          ? "Completo"
+          : `${state}%`}
+      </h2>
+
+      <ProyeccionProgress width={state} />
+      <ProgressButton
+        progress={state}
+        makeProgress={() => {
+          state < 100 ? setState(state + 20) : setState(0);
+        }}
+      />
+    </div>
     </div>
   )
 }

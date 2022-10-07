@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import './Evaluar.css'
 import imagen1 from '../../../img/taxonomia/4Evaluar/Evaluar1.png'
+import ProyeccionProgress from "../../progressBar/ProyeccionProgress";
+import ProgressButton from "../../progressBar/ProgressButton";
 
 const itemsFromBackend = [
   { id: "primero", content: <img src={imagen1} alt='preguntaEvaluarClase' className='preguntaEvaluarClase'/> },
@@ -61,6 +63,9 @@ const onDragEnd = (result, columns, setColumns) => {
 };
 
 function EvaluarClase() {
+
+  const [state, setState] = useState(60);
+
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
 
@@ -143,6 +148,26 @@ function EvaluarClase() {
       <p>prueba de texto</p>
      </div>
      <button className="btn-Bloom">Analizar</button>
+
+
+     <div className="contenedorBarra">
+      <h2 className="porcentaje"
+        style={{
+          color: state === 100 ? "#e84118" : "Black"
+        }}
+      >
+        {state === 100
+          ? "Completo"
+          : `${state}%`}
+      </h2>
+      <ProyeccionProgress width={state} />
+      <ProgressButton
+        progress={state}
+        makeProgress={() => {
+          state < 100 ? setState(state + 20) : setState(0);
+        }}
+      />
+    </div>
     </div>
     
   );

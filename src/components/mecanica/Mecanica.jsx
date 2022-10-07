@@ -22,7 +22,9 @@ import AplicarAtributo from '../Bloom/2aplicar/AplicarAtributo'
 import AnalizarAtributo from '../Bloom/3analizar/AnalizarAtributo'
 import EvaluarAtributo from '../Bloom/4evaluar/EvaluarAtributo'
 import CrearAtributo from '../Bloom/5crear/CrearAtributo'
-import Temporizador from '../temporizador/Temporizador'
+import ProgressBar from '../progressBar/ProgressBar'
+import ProgressButton from '../progressBar/ProgressButton'
+import ProyeccionProgress from '../progressBar/ProyeccionProgress'
 
 
 function Mecanica() {
@@ -81,6 +83,7 @@ function Mecanica() {
 
   return (
     <div>
+        
         {fase === 0 ? <h1>{Eleccion}</h1>:
         (tema === "Clases" && fase === 1 ? <ComprenderClase evento={contador}/> : 
         (tema === "Clases" && fase === 2 ? <AplicarClase evento={contador} /> : 
@@ -90,21 +93,22 @@ function Mecanica() {
 
         (tema === "Objetos" && fase === 1 ? <ComprenderObjeto evento={contador} /> :
         (tema === "Objetos" && fase === 2 ? <AplicarObjeto evento={contador} /> : 
-        (tema === "Objetos" && fase === 3 ? <AnalizarObjeto evento={contador} /> : 
+        (tema === "Objetos" && fase === 3 ? <AnalizarObjeto evento={contador} />: 
         (tema === "Objetos" && fase === 4 ? <EvaluarObjeto evento={contador} /> :
         (tema === "Objetos" && fase === 5 ? <CrearObjeto evento={contador} /> : 
          
-        (tema === "Metodos" && fase === 1 ? <ComprenderMetodo/> :
-        (tema === "Metodos" && fase === 2 ? <AplicarMetodo/> :
-        (tema === "Metodos" && fase === 3 ? <AnalizarMetodo/> : 
-        (tema === "Metodos" && fase === 4 ? <EvaluarMetodo/> :
-        (tema === "Metodos" && fase === 5 ? <CrearMetodo/> : 
+        (tema === "Metodos" && fase === 1 ? <ComprenderMetodo evento={contador} /> :
+        (tema === "Metodos" && fase === 2 ? <AplicarMetodo evento={contador} /> :
+        (tema === "Metodos" && fase === 3 ? <AnalizarMetodo evento={contador} /> : 
+        (tema === "Metodos" && fase === 4 ? <EvaluarMetodo evento={contador} /> :
+        (tema === "Metodos" && fase === 5 ? <CrearMetodo evento={contador} /> : 
          
-        (tema === "Atributos" && fase === 1 ? <ComprenderAtributo/> :
-        (tema === "Atributos" && fase === 2 ? <AplicarAtributo/> :
-        (tema === "Atributos" && fase === 3 ? <AnalizarAtributo/> : 
-        (tema === "Atributos" && fase === 4 ? <EvaluarAtributo/> :
-        (tema === "Atributos" && fase === 5 ? <CrearAtributo/> : null ))))))))))))))))))))}
+        (tema === "Atributos" && fase === 1 ? <ComprenderAtributo evento={contador} /> :
+        (tema === "Atributos" && fase === 2 ? <AplicarAtributo evento={contador} /> :
+        (tema === "Atributos" && fase === 3 ? <AnalizarAtributo evento={contador} /> : 
+        (tema === "Atributos" && fase === 4 ? <EvaluarAtributo evento={contador} /> :
+        (tema === "Atributos" && fase === 5 ? <CrearAtributo evento={contador} /> : null ))))))))))))))))))))}
+        
     </div>
   )
 }
