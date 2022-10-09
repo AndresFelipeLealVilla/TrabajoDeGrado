@@ -25,6 +25,7 @@ import CrearAtributo from '../Bloom/5crear/CrearAtributo'
 import ProgressBar from '../progressBar/ProgressBar'
 import ProgressButton from '../progressBar/ProgressButton'
 import ProyeccionProgress from '../progressBar/ProyeccionProgress'
+import Positions from '../PositionsTable/Positions'
 
 
 function Mecanica() {
@@ -61,18 +62,14 @@ function Mecanica() {
     const Eleccion = [botonClase, botonObjetos, botonMetodos, botonAtributos];
 
     const [evaluador, setEvaluador] = useState(0)
-  const evaluar = () => {
-    setEvaluador(1);
-  }
 
-    const revisar = () => {
-    setEvaluador(1);
-    contador()
-    }
 
     const contador = () => {
         if (fase < 5) {
-            setFase(fase + 1)
+            setFase(fase + 1);
+            <Positions/>;
+            <Positions/>;
+            <Positions/>;
         } else {
             setFase(0)
         }

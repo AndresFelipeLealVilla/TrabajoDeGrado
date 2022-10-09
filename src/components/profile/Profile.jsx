@@ -1,6 +1,6 @@
 /* *************** Paquetes importados **************** */
 import React, { useState, useEffect } from 'react'
-import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc, setDoc } from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import './Profile.css'
 import {app} from '../../Firebase'
@@ -10,19 +10,19 @@ import fondo from '../../img/imgProfile/fondoPerfil.PNG'
 import hombre from '../../img/imgProfile/HombreG.PNG'
 import mujer from '../../img/imgProfile/MujerG.PNG'
 import silueta from '../../img/imgProfile/SiluetaG.PNG'
-import { render } from '@testing-library/react';
+
 
 export function Profile() {
 
 /* ************ Datos de entrada ************* */
   const db = getFirestore(app)
-  const user = getAuth().currentUser;
+  const Usuario = getAuth().currentUser;
   const datosEstudiante = collection(db, "Estudiantes");
-  const qu = query(datosEstudiante, where("Email", "==", user.email));
+  const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
   const [activador, setActivador] = useState(0)
   
   const [estudiante, setEstudiante] = useState({
-    Correo: user.email,
+    Correo: Usuario.email,
     Nombre: '',
     Apellido: '',
     NombreUsuario: '',
@@ -32,30 +32,37 @@ export function Profile() {
     Trofeos: 0,
   });
 
+  const [obtId, setObtId] = useState('')
 
 /* ************ Traer datos de la base de datos ************* */
 const obtenerEstudiante = async () => {
   const querySnapshot = await getDocs(qu);
-  querySnapshot.forEach((doc) => {
-    setEstudiante(doc.data())
-    console.log(estudiante)
+  querySnapshot.forEach((documento) => {
+    setEstudiante(documento.data())
+    setObtId(documento.id)
+    console.log(documento.data())
+    console.log(documento.id)
+    console.log(obtId)
   }
   );};
 
 /* ************  ************* */
   const handleInputChange = async (e) => {
     const {name, value} = e.target;
-    setEstudiante({...estudiante, [name]: value})
+    setEstudiante({...estudiante, [name]: value}) 
     
   };
 
-
+  /* Actualizar los datos de un estudiante en firestore */
+  const ActualizarDatos = async () => {
+    obtenerEstudiante();
+    console.log(obtId);
+      await updateDoc(doc(db, "Estudiantes", obtId), {...estudiante});
+   }
 
 /* ************ Función actualizar base de datos ************* */
-  const ActualizarDatos = async (e) => { 
-    e.preventDefault();
- 
-  }
+
+
 
 
 /* ************* Activar la opcion de actualizar ************* */
@@ -65,8 +72,9 @@ const activarActualizacion = () => {
 
 /* ************ Traer datos al cargar el perfil ************* */    
   useEffect (() => {
-      obtenerEstudiante();    
-},[]);
+      obtenerEstudiante();
+      ActualizarDatos();    
+},[activador]);
 
 
 /* ************ Return del perfil ************* */
@@ -130,7 +138,7 @@ const activarActualizacion = () => {
         {activador === 0 ? null : 
           <div>
             <form className='FormularioActualizacion'>
-              <input name="Email" type="Email" placeholder=" Email" onChange={handleInputChange} value={user.email} readOnly/>
+              <input name="Email" type="Email" placeholder=" Email" onChange={handleInputChange} value={Usuario.email} readOnly/>
               <input name="Nombre" type="name" placeholder=" Nombre" onChange={handleInputChange} value={estudiante.Nombre}/>
               <input name="Apellido" type="lastname" placeholder=" Apellido" onChange={handleInputChange} value={estudiante.Apellido}/>
               <input name="NombreUsuario" type="userName"  placeholder="  Nombre de usuario" onChange={handleInputChange} value={estudiante.NombreUsuario} />

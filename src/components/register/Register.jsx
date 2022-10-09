@@ -22,7 +22,8 @@ export function Register() {
     Email: '',
     Password: '',
     Genero: '',
-    Puntos: '',
+    Puntos: 0,
+    Trofeos: 0,
   })
 
 /** ************* Context ************** */

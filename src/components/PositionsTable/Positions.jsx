@@ -3,7 +3,7 @@ import './Positions.css'
 import {app} from '../../Firebase'
 import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
 
-function Positions() {
+function Positions(props) {
 
 /* ************ Datos de entrada ************* */
 const db = getFirestore(app)
@@ -39,7 +39,9 @@ function ordenar() {
 }
 
 
-
+useEffect (() => {
+  obtenerEstudiante();   
+},[props.dato]);
 
 
 
@@ -65,7 +67,7 @@ function ordenar() {
             </tbody>
           </table>
     </div>
-    
+  
   )
 }
 

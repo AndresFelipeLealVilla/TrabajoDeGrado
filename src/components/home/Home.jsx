@@ -11,6 +11,7 @@ import Carousel from '../mecanica/Carousel'
 export function Home() {
   const [state, setState] = useState(0);
   const {loading} = useAuth()
+  const[activador, setActivador] = useState(1)
 
   if (loading) {
     return <div>Loading...</div>
@@ -24,9 +25,10 @@ export function Home() {
   return ( 
     
     <> 
+      <Positions dato={activador}/>
       <Navbar />
       <Chatbot/>
-      <Positions/>
+      <Positions dato={activador}/>
       <div className="container-Bloom1">
       {state === 0 ? <Carousel/> : <Mecanica/>}
       {state === 0 ? boton : null}

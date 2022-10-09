@@ -24,7 +24,7 @@
 .titulosPosicion:nth-child(2){
     position: absolute;
     top: 0;
-    left: 40%;
+    left: 72%;
     width: 100%;
     height: 10%;
     text-align: left;
@@ -57,7 +57,7 @@
 .posicion:nth-child(1){
     position: relative;
     top: 0%;
-    left: 20%;
+    left: -12%;
     width: 10%;
     height: 30%;
 }
@@ -65,7 +65,7 @@
 .posicion:nth-child(2){
     position: relative;
     top: 0%;
-    left: 15%;
+    left: 0%;
     width: 10%;
     height: 30%;
 }
@@ -77,4 +77,17 @@
     width: 100%;
     height: 30%;
     margin: 10px;
+}
+
+.Actualizar{
+    position: absolute;
+    top: 90%;
+    left: 10%;
+    width: 10%;
+    height: 10%;
+    color: black;
+    border-radius: 3%;
+    border-color:gray;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
 }

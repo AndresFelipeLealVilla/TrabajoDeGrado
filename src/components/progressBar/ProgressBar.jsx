@@ -3,7 +3,7 @@ import ProgressButton from "./ProgressButton";
 import ProyeccionProgress from "./ProyeccionProgress";
 import './ProgressBar.css';
 
-function ProgressBar(props) {
+function ProgressBar() {
   const [state, setState] = useState();
 
   return (

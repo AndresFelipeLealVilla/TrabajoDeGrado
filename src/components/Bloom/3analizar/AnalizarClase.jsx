@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import preguntaAnalizarClase from '../../../img/taxonomia/3Analizar/ClaseVehiculoAnalizarClase.png'
 import swal from 'sweetalert'
 import './Analizar.css'
 import ProyeccionProgress from "../../progressBar/ProyeccionProgress";
 import ProgressButton from "../../progressBar/ProgressButton";
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
+import { getAuth } from 'firebase/auth'
+import {app} from '../../../Firebase'
 
 const itemsFromBackend = [
   { id: "Primero", content: "Nombre" },
@@ -87,7 +90,43 @@ function AnalizarMetodosAtributos(props) {
 /* Declaraciones */  
     const [puntos, setPuntos] = useState(0);
     const [state , setState] = useState(40);
-  
+    const [temporal, setTemporal] = useState(0)
+
+const db = getFirestore(app)
+
+const [seleccionador, setSeleccionador] = useState(0)
+const Usuario = getAuth().currentUser;
+const datosEstudiante = collection(db, "Estudiantes");
+const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
+const [obtId, setObtId] = useState('')
+ 
+
+
+/* ************ Traer datos de la base de datos ************* */
+const obtenerEstudiante = async () => {
+  const querySnapshot = await getDocs(qu);
+  querySnapshot.forEach((documento) => {
+    setTemporal(parseInt(documento.data().Puntos));
+    setObtId(documento.id)
+  },);
+};
+
+
+  /* Actualizar los datos de un estudiante en firestore */
+const ActualizarDatos = async () => {
+  obtenerEstudiante();
+    await updateDoc(doc(db, "Estudiantes", obtId), {
+      Puntos: 5 + temporal
+    });
+ }
+
+ useEffect (() => {
+  obtenerEstudiante();
+  ActualizarDatos();    
+},[]);
+
+
+
 /* Mensaje Correcto */
   const mensajeCorrecto = (points) => {
     swal({
@@ -117,6 +156,7 @@ function AnalizarMetodosAtributos(props) {
                 if(columns[7].items[0].id === "Quinto"){
                     setPuntos(5);
                     mensajeCorrecto(5);
+                    ActualizarDatos();
                 }
                 else{
                     mensajeIncorrecto();

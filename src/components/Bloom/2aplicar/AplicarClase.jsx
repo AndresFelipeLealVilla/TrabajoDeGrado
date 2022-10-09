@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import swal from 'sweetalert'
 import ProgressButton from "../../progressBar/ProgressButton";
 import ProyeccionProgress from "../../progressBar/ProyeccionProgress";
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
+import { getAuth } from 'firebase/auth'
+import {app} from '../../../Firebase'
 
 import './Aplicar.css'
+import Positions from "../../PositionsTable/Positions";
 
 
 /* Creación drag and drop */
@@ -74,7 +78,42 @@ function AplicarClase(props) {
   const [puntos, setPuntos] = useState(0);
   const [arreglo, setArreglo] = useState ([]);
   const [dato, setDato] = useState(40);
-  const [state, setState] = useState(20);
+  const[temporal, setTemporal] = useState(0);
+const db = getFirestore(app)
+
+const [activador, setActivador] = useState(1)
+const [state, setState] = useState(20)
+const Usuario = getAuth().currentUser;
+const datosEstudiante = collection(db, "Estudiantes");
+const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
+const [obtId, setObtId] = useState('')
+
+
+ /* ************ Traer datos de la base de datos ************* */
+  const obtenerEstudiante = async () => {
+      const querySnapshot = await getDocs(qu);
+      querySnapshot.forEach((documento) => {
+        setTemporal(parseInt(documento.data().Puntos));
+        setObtId(documento.id)
+      },);
+    };
+  
+  
+      /* Actualizar los datos de un estudiante en firestore */
+    const ActualizarDatos = async () => {
+      obtenerEstudiante();
+        await updateDoc(doc(db, "Estudiantes", obtId), {
+          Puntos: 5 + temporal
+        });
+     }
+  
+     useEffect (() => {
+      obtenerEstudiante();
+      ActualizarDatos();    
+  },[]);
+
+
+
 
 
 /* Mensaje Correcto */
@@ -114,8 +153,11 @@ function AplicarClase(props) {
           if(arreglo.includes("Tercero")){
               if(arreglo.includes("Quinto")){
                   if(arreglo.includes("Sexto")){
+                      ActualizarDatos();
+                      mensajeCorrecto(5);
                       setPuntos(5);
                       mensajeCorrecto(5);
+                      <Positions dato={activador}/>
                   }
                   else{
                       mensajeIncorrecto();

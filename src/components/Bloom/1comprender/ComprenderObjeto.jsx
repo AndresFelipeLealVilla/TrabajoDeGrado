@@ -1,9 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import claseVehiculo from '../../../img/taxonomia/1Comprender/Objetos/DiagramaComprenderObjeto.png'
 import opcionesComprenderObjeto from '../../../img/taxonomia/1Comprender/Objetos/opcionesComprenderObjetos.PNG'
 import swal from 'sweetalert'
 import ProgressButton from '../../progressBar/ProgressButton'
 import ProyeccionProgress from '../../progressBar/ProyeccionProgress'
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
+import { getAuth } from 'firebase/auth'
+import {app} from '../../../Firebase'
 
 import './Comprender.css'
 
@@ -12,6 +15,13 @@ function ComprenderObjeto(props){
 const [puntos, setPuntos] = useState(0);
 const [seleccionador, setSeleccionador] = useState(0)
 const [state, setState] = useState(0)
+const [temporal, setTemporal] = useState(0)
+
+const db = getFirestore(app)
+const Usuario = getAuth().currentUser;
+const datosEstudiante = collection(db, "Estudiantes");
+const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
+const [obtId, setObtId] = useState('')
 
 const seleccionar1 = () => {
   setSeleccionador(1);
@@ -31,10 +41,38 @@ const seleccionar4 = () => {
  
 /* Ejercicio */
 
+/* ************ Traer datos de la base de datos ************* */
+const obtenerEstudiante = async () => {
+  const querySnapshot = await getDocs(qu);
+  querySnapshot.forEach((documento) => {
+    setTemporal(parseInt(documento.data().Puntos));
+    setObtId(documento.id)
+  },);
+};
+
+
+  /* Actualizar los datos de un estudiante en firestore */
+const ActualizarDatos = async () => {
+  obtenerEstudiante();
+    await updateDoc(doc(db, "Estudiantes", obtId), {
+      Puntos: 5 + temporal
+    });
+ }
+
+ useEffect (() => {
+  obtenerEstudiante();
+  ActualizarDatos();    
+},[]);
+
+
+
+
+
   const evaluar = () => { 
     if (seleccionador === 3){
         setPuntos(5);
         mensajeCorrecto(5);
+        ActualizarDatos();
     }
     else{
         mensajeIncorrecto();
