@@ -56,14 +56,19 @@ useEffect (() => {
           </thead>
             <tbody>
               <div className='resultadosposicion'>
+              <hr className="lineaPositions"/>
               {posicion.map((posicion, index) => (
+                
                 <tr key={posicion.id}>
-                  <td className='posicion'>{posicion.Nombre}</td>
+                  
+                  <td className='posicion'>{posicion.NombreUsuario}</td>
                   <td className='posicion'>{posicion.Puntos}</td>
+                  <br/>
+                  <hr className="lineaSeparaciones"/>
                 </tr>
               ))}
               </div>
-              <button className='Actualizar' onClick={obtenerEstudiante}></button>
+              <button className='ActualizarTabla' onClick={obtenerEstudiante}>Actualizar</button>
             </tbody>
           </table>
     </div>

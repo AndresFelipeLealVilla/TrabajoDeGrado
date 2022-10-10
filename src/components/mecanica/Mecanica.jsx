@@ -22,9 +22,6 @@ import AplicarAtributo from '../Bloom/2aplicar/AplicarAtributo'
 import AnalizarAtributo from '../Bloom/3analizar/AnalizarAtributo'
 import EvaluarAtributo from '../Bloom/4evaluar/EvaluarAtributo'
 import CrearAtributo from '../Bloom/5crear/CrearAtributo'
-import ProgressBar from '../progressBar/ProgressBar'
-import ProgressButton from '../progressBar/ProgressButton'
-import ProyeccionProgress from '../progressBar/ProyeccionProgress'
 import Positions from '../PositionsTable/Positions'
 
 

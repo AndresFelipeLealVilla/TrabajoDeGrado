@@ -87,7 +87,7 @@ const activarActualizacion = () => {
           <img src={fondo} alt='fondoSperfil' className='fondo'/>
 
           <img src={imagen1} alt='Logo' className='LogoApp'/>
-          <p className='Nombre-Logo'>NombreLogo</p>
+          <p className='Nombre-Logo'>Blip</p>
 
           <div className='container-datos'>
             <img  className='Img-Perfil' src={estudiante.Genero === 'Hombre'

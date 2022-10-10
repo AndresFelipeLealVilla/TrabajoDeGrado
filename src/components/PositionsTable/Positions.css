@@ -5,7 +5,7 @@
     width: 20%;
     height: 80%;
     color: black;
-    border-radius: 3%;
+    border-radius: 2%;
     border-color:gray;
     border: 1px solid;
     box-shadow: 5px 10px 8px #888888;
@@ -24,7 +24,7 @@
 .titulosPosicion:nth-child(2){
     position: absolute;
     top: 0;
-    left: 72%;
+    right: -72%;
     width: 100%;
     height: 10%;
     text-align: left;
@@ -62,10 +62,11 @@
     height: 30%;
 }
 
+
 .posicion:nth-child(2){
     position: relative;
     top: 0%;
-    left: 0%;
+    right: -20%;
     width: 10%;
     height: 30%;
 }
@@ -91,3 +92,31 @@
     border: 1px solid;
     box-shadow: 5px 10px 8px #888888;
 }
+
+.lineaPositions{
+    position: relative;
+    top: 0%;
+    left: -13%;
+    
+}
+
+.lineaSeparaciones{
+    position: relative;
+    width: 175%;
+    top: 0%;
+    left: -100%;
+}
+
+
+.ActualizarTabla{
+    position: absolute;
+    top: 88%;
+    left: 40%;
+    width: 30%;
+    height: 7%;
+    z-index: 10%;
+    background-color: #f44336;
+    border-radius: 7%;
+    border-color: #f44336;
+}
+

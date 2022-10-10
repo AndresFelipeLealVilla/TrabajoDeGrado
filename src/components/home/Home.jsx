@@ -20,15 +20,15 @@ export function Home() {
   const incrementar = () => {
     setState(state + 1);
   }
-  const boton = <button defaultChecked={false} onClick={incrementar}>Saltar</button>
+  const boton = <button defaultChecked={false} className='Saltar' onClick={incrementar}>Saltar</button>
 
   return ( 
     
     <> 
-      <Positions dato={activador}/>
       <Navbar />
-      <Chatbot/>
+      <Chatbot />
       <Positions dato={activador}/>
+      <ProyeccionProgress />
       <div className="container-Bloom1">
       {state === 0 ? <Carousel/> : <Mecanica/>}
       {state === 0 ? boton : null}
