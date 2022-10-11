@@ -112,11 +112,11 @@ const ActualizarDatos = async () => {
             </div>
 
             <div className='Diagrama'>
-              <span> <img src={claseVehiculo} className='diagramaClase' alt='diagrama de clase vehiculo' /></span>
+              <span> <img src={claseVehiculo} className='DiagramaComprenderClase' alt='diagrama de clase vehiculo' /></span>
             </div>
 
         </div>
-        <div className='opcionesObjeto'>
+        <div className='opcionesComprenderObjeto'>
         <img src={opcionesComprenderObjeto} alt='opcionesComprenderObjetos' className='opcionesComprenderObjetos'/>
             <button className='ObjetoComprenderOpcion1' onClick={seleccionar1}>Opción 1</button>
             <button className='ObjetoComprenderOpcion2' onClick={seleccionar2}>Opción 2</button>

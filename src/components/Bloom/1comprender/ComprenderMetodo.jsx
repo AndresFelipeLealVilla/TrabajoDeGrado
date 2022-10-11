@@ -76,7 +76,7 @@ function ComprenderMetodo(props){
           
             </div>
         </div>
-        <div className='opcionesMetodo'>
+        <div className='opcionesComprenderMetodo'>
             <img src={opcion1} onClick={seleccionar1} alt='opcion1' className='MetodoComprenderOpcion1'/>
             <img src={opcion2} onClick={seleccionar2} alt='opcion2' className='MetodoComprenderOpcion2'/>
             <img src={opcion3} onClick={seleccionar3} alt='opcion3' className='MetodoComprenderOpcion3'/>

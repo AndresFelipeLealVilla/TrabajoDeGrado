@@ -1,14 +1,16 @@
 import { useAuth } from "../../context/authContext" 
 import Navbar from "../navbar/Navbar"
 import './Home.css'
-import Chatbot from "../chatbot/Chatbot"
+
 import ProyeccionProgress from "../progressBar/ProyeccionProgress"
 import Positions from "../PositionsTable/Positions"
 import React, { useState } from "react";
 import Mecanica from "../mecanica/Mecanica"
 import Carousel from '../mecanica/Carousel'
+import Chat from "../chatbot/Chatbot"
 
-export function Home() {
+
+export function Home(props) {
   const [state, setState] = useState(0);
   const {loading} = useAuth()
   const[activador, setActivador] = useState(1)
@@ -26,7 +28,7 @@ export function Home() {
     
     <> 
       <Navbar />
-      <Chatbot />
+      <Chat/>
       <Positions dato={activador}/>
       <ProyeccionProgress />
       <div className="container-Bloom1">
