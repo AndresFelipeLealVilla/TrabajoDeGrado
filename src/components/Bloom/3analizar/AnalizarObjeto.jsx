@@ -1,28 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import './Analizar.css'
-import { useStopwatch } from "react-timer-hook";
 import swal from 'sweetalert'
 import preguntaAnalizarObjeto from '../../../img/taxonomia/3Analizar/AnalizarObjeto.PNG'
-import img1 from '../../../img/taxonomia/3Analizar/1.PNG'
-import img2 from '../../../img/taxonomia/3Analizar/2.PNG'
-import img3 from '../../../img/taxonomia/3Analizar/3.PNG'
-import img4 from '../../../img/taxonomia/3Analizar/4.PNG'
-import img5 from '../../../img/taxonomia/3Analizar/5.PNG'
-import img6 from '../../../img/taxonomia/3Analizar/6.PNG'
-import ProgressButton from '../../progressBar/ProgressButton'
-import ProyeccionProgress from '../../progressBar/ProyeccionProgress'
+import img1 from '../../../img/taxonomia/3Analizar/opcion1.png'
+import img2 from '../../../img/taxonomia/3Analizar/opcion2.png'
+import img3 from '../../../img/taxonomia/3Analizar/opcion3.png'
+import img4 from '../../../img/taxonomia/3Analizar/opcion4.png'
+import img5 from '../../../img/taxonomia/3Analizar/opcion5.png'
+import img6 from '../../../img/taxonomia/3Analizar/opcion6.png'
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
+import {app} from '../../../Firebase'
+import { getAuth } from 'firebase/auth'
 
 
 /* Creación drag and drop */
 
 const itemsFromBackend = [
   { id: "Primero", content: <img src={img1} alt="img1"  className="img1"/> },
-  { id: "Segundo", content: <img src={img1} alt="img1"  className="img2"/> },
-  { id: "Tercero", content: <img src={img1} alt="img1"  className="img3"/> },
-  { id: "Cuarto", content: <img src={img1} alt="img1"  className="img4"/> },
-  { id: "Quinto", content: <img src={img1} alt="img1"  className="img5"/> },
-  { id: "Sexto", content: <img src={img1} alt="img1"  className="img6"/> }
+  { id: "Segundo", content: <img src={img2} alt="img1"  className="img2"/> },
+  { id: "Tercero", content: <img src={img3} alt="img1"  className="img3"/> },
+  { id: "Cuarto", content: <img src={img4} alt="img1"  className="img4"/> },
+  { id: "Quinto", content: <img src={img5} alt="img1"  className="img5"/> },
+  { id: "Sexto", content: <img src={img6} alt="img1"  className="img6"/> }
 
 ];
 
@@ -78,104 +78,145 @@ const onDragEnd = (result, columns, setColumns) => {
 
 function AnalizarObjeto(props) {
 
+  const[temporal, setTemporal] = useState(0);
+const db = getFirestore(app)
 
-  /* Temporizador */
+const Usuario = getAuth().currentUser;
+const datosEstudiante = collection(db, "Estudiantes");
+const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
+const [obtId, setObtId] = useState('')
 
-const stopwatchOffset = new Date();
-stopwatchOffset.setSeconds(stopwatchOffset.getSeconds() + 300);
-const {
-  seconds,
-  pause,
-  isRunning,
 
-} = useStopwatch({ autoStart: true, offsetTimestamp: stopwatchOffset });
-const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
 
-  const [puntos, setPuntos] = useState(0);
-  const [state, setState] = useState(40)
+ /* ************ Traer datos de la base de datos ************* */
+ const obtenerEstudiante = async () => {
+  const querySnapshot = await getDocs(qu);
+  querySnapshot.forEach((documento) => {
+    setTemporal(parseInt(documento.data().Puntos));
+    setObtId(documento.id)
+  },);
+};
 
-  const mensajeCorrecto = (points) => {
-    swal({
-      icon: "success",
-      title: "¡Gran Trabajo!",
 
-      text: "Obtuviste: " + points + " puntos y tu tiempo es de: " + secondTime + " segundos",
-      button: "OK",
+  /* Actualizar los datos de un estudiante en firestore */
+const ActualizarDatos = async () => {
+  obtenerEstudiante();
+    await updateDoc(doc(db, "Estudiantes", obtId), {
+      Puntos: 5 + temporal
     });
+ }
 
-  };
+ useEffect (() => {
+  obtenerEstudiante();
+  ActualizarDatos();    
+},[]);
 
-  const mensajeIncorrecto = () => {
-    swal({
-      icon: "error",
-      title: "¡Upss!",
-      text: "Recuerda usar el chatbot para obtener ayuda, ¡Intentalo de nuevo! "+ puntos + secondTime,
-      button: "OK",
-    });
-  };
+
+
+/* Mensaje Correcto */
+const mensajeCorrecto = (points) => {
+  swal({
+    icon: "success",
+    title: "¡Gran Trabajo!",
+
+    text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
+    button: "OK",
+  });
+
+};
+
+/* Mensaje Incorrecto */
+const mensajeIncorrecto = () => {
+  swal({
+    icon: "error",
+    title: "¡Upss!",
+    text: "Recuerda usar el chatbot para obtener ayuda",
+    button: "OK",
+    
+  });
+};
+
 
   const [arreglo, setArreglo] = useState ([]);
 
-  const evaluarAplicarClase = () => {
-    if (arreglo.length >= 4){
-        setArreglo([]);        
-    }
-    if (arreglo.length === 0){
+  const evaluarAnalizarObjeto = () => {
+    if(columns[2].items.length === 4){
       arreglo.push(columns[2].items[0].id);
       arreglo.push(columns[2].items[1].id);
       arreglo.push(columns[2].items[2].id);
       arreglo.push(columns[2].items[3].id);
+      console.log(arreglo);
+
+      if(arreglo.includes("Primero")){
+        if(arreglo.includes("Tercero")){
+            if(arreglo.includes("Quinto")){
+              if(arreglo.includes("Sexto")){
+                ActualizarDatos();
+                mensajeCorrecto(5);
+                props.evento();
+            }else{
+                mensajeIncorrecto();
+                props.evento();
+            }
+        }else{
+            mensajeIncorrecto();
+            props.evento();
+        }
+      }else{
+        mensajeIncorrecto();
+        props.evento();
+      }
+    }else{
+      mensajeIncorrecto();
+      props.evento();
+    }
+  }else{
+    mensajeIncorrecto();
+    props.evento();
+  }
+
+
+
+
+
+    if (arreglo.length === 0 && columns[2].items === 3) {
+      arreglo.push(columns[2].items[0].id);
+      arreglo.push(columns[2].items[1].id);
+      arreglo.push(columns[2].items[2].id);
       console.log(arreglo)
 
       if(arreglo.includes("Primero")){
           if(arreglo.includes("Tercero")){
               if(arreglo.includes("Quinto")){
-                  if(arreglo.includes("Sexto")){
-                      pause();
-                      if (secondTime < 20){
-                          setPuntos(10);
-                          mensajeCorrecto(10);
-                      }
-                      if (secondTime >=20 && secondTime < 40){
-                          setPuntos(7);
-                          mensajeCorrecto(7);
-                      }
-                      if (secondTime >=40 && secondTime < 60){
-                          setPuntos(5);
-                          mensajeCorrecto(5);
-                      }
-                      props.evento();
-                    }
-                    else{
-                        mensajeIncorrecto();
-                    }
-                }
-                else{
-                    mensajeIncorrecto();
-                }
-            }
-        else{
-            mensajeIncorrecto();
-        }
+                  ActualizarDatos();
+                  mensajeCorrecto(5);     
+              }
+              else{
+                  mensajeIncorrecto();
+              }            
+          }
+          else{
+               mensajeIncorrecto();
+          }
+      }
+      else{
+          mensajeIncorrecto();
+      }
     }
-    else{
-        mensajeIncorrecto();
-    }
+    props.evento();
   }
-}
+
 
 
             
 
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
-    <div className="container-Bloom-Analizar">
+    <div className="container-Boom-Analizar">
 
         <div className="PreguntaAnalizarObjeto">
 
-            <div className="bloque-pregunta">
-
-            </div>
+           
             
             <div className="Diagrama">
                 <span><img src={preguntaAnalizarObjeto} alt="pregunta" className="DiagramaAnaliarObjeto" /></span>
@@ -183,26 +224,19 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
             
         </div>
       
-      <button onClick={evaluarAplicarClase} className='evaluar-AplicarClase'>Evaluar</button>
-      <div style={{ fontSize: "100px", zIndex:"100" }}>
-        <span className='Timer'>{secondTime}</span>
-        <p>{isRunning ? "Running" : "Not running"}</p>
-      </div>
+      <button onClick={evaluarAnalizarObjeto} className='evaluarAnalizarObjeto'>Evaluar</button>
     <div className='PreguntaAplicarClase'>
-
-      <span className="Prueba"></span>
-             
+    <div className="bloque-pregunta">
+            <h1 className='TituloPregunta'>Actividad #3</h1>
+            <span className='TextoPregunta'>Agrupe los objetos que sean instancia de la clase Persona que se 
+            presenta a continuación, recuerde arrastrar y soltar en la columna de "Objetos Aceptados".</span>
+            </div> 
     </div>
 
     <div style={{ display: "flex", justifyContent: "center", height: "10%", color:"black", position:"absolute", left:"40%", top:"0%"}}>
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
       >
-
-
-
-
-
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
             <div className="BloqueAnalizarObjeto"
@@ -214,7 +248,7 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
               key={columnId}
             >
               <h2>{column.name}</h2>
-              <div style={{ margin: 8 }}>
+              <div style={{ margin: 2 }}>
                 <Droppable droppableId={columnId} key={columnId}>
                   {(provided, snapshot) => {
                     return (
@@ -225,8 +259,8 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
                           background: snapshot.isDraggingOver
                             ? "lightblue"
                             : "lightgrey",
-                          width: 300,
-                          minHeight: 350,
+                          width: 250,
+                          minHeight: 120,
                         }}
                       >
                         {column.items.map((item, index) => {
@@ -238,13 +272,13 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
                             >
                               {(provided, snapshot) => {
                                 return (
-                                  <div
+                                  <div className="bloquesito"
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
                                     style={{
                                       userSelect: "none",
-                                      padding: 10,
+                                      padding: 5,
                                       margin: "0 0 8px 0",
                                       minHeight: "10px",
                                       width: "100%",
@@ -271,31 +305,9 @@ const secondTime = seconds < 10 ? `0${seconds}` : `${seconds}`;
             </div>
           );
         })}
-      </DragDropContext>
-
-
-
-      
+      </DragDropContext>  
     </div>
-    <div className="contenedorBarra">
-      <h2 className="porcentaje"
-        style={{
-          color: state === 100 ? "#e84118" : "Black"
-        }}
-      >
-        {state === 100
-          ? "Completo"
-          : `${state}%`}
-      </h2>
-
-      <ProyeccionProgress width={state} />
-      <ProgressButton
-        progress={state}
-        makeProgress={() => {
-          state < 100 ? setState(state + 20) : setState(0);
-        }}
-      />
-    </div>
+    
     </div>
     
   );

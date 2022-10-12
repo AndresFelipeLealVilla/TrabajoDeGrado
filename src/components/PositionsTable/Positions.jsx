@@ -9,7 +9,7 @@ function Positions(props) {
 const db = getFirestore(app)
 const datosEstudiante = collection(db, "Estudiantes");
 const qu = query(datosEstudiante, where("Puntos", ">", 0));
-const [ciclo, setCiclo] = useState(0);
+
 
 const [estudiantes, setEstudiantes] = useState([]);
 

@@ -1,16 +1,72 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import opcionesComprenderObjeto from '../../../img/taxonomia/2Aplicar/Metodos/DiagramaAplicarMetodo.png'
 import swal from 'sweetalert'
-import ProgressButton from '../../progressBar/ProgressButton'
-import ProyeccionProgress from '../../progressBar/ProyeccionProgress'
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
+import {app} from '../../../Firebase'
+import { getAuth } from 'firebase/auth'
 
 import './Aplicar.css'
 
 function ComprenderObjeto(props){
 /* Declaraciones */
-const [puntos, setPuntos] = useState(0);
 const [seleccionador, setSeleccionador] = useState(0)
-const [state, setState] = useState(20)
+  const[temporal, setTemporal] = useState(0);
+  const db = getFirestore(app)
+const Usuario = getAuth().currentUser;
+const datosEstudiante = collection(db, "Estudiantes");
+const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
+const [obtId, setObtId] = useState('')
+
+
+
+ /* ************ Traer datos de la base de datos ************* */
+ const obtenerEstudiante = async () => {
+  const querySnapshot = await getDocs(qu);
+  querySnapshot.forEach((documento) => {
+    setTemporal(parseInt(documento.data().Puntos));
+    setObtId(documento.id)
+  },);
+};
+
+
+  /* Actualizar los datos de un estudiante en firestore */
+const ActualizarDatos = async () => {
+  obtenerEstudiante();
+    await updateDoc(doc(db, "Estudiantes", obtId), {
+      Puntos: 5 + temporal
+    });
+ }
+
+ useEffect (() => {
+  obtenerEstudiante();
+  ActualizarDatos();    
+},[]);
+
+
+
+/* Mensaje Correcto */
+const mensajeCorrecto = (points) => {
+  swal({
+    icon: "success",
+    title: "¡Gran Trabajo!",
+
+    text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
+    button: "OK",
+  });
+
+};
+
+/* Mensaje Incorrecto */
+const mensajeIncorrecto = () => {
+  swal({
+    icon: "error",
+    title: "¡Upss!",
+    text: "Recuerda usar el chatbot para obtener ayuda",
+    button: "OK",
+    
+  });
+};
+
 
 const seleccionar1 = () => {
   setSeleccionador(1);
@@ -32,35 +88,15 @@ const seleccionar4 = () => {
 
   const evaluar = () => { 
     if (seleccionador === 4){
-        setPuntos(5);
+        ActualizarDatos();
         mensajeCorrecto(5);
+        props.evento();
     }
     else{
         mensajeIncorrecto();
+        props.evento();
     }
-    props.evento();
   } 
-
- /* Mensaje Correcto */
-  const mensajeCorrecto = (points) => {
-      swal({
-          icon: "success",
-          title: "¡Gran Trabajo!",
-          text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
-          button: "OK",
-      });
-  };
-
-/* Mensaje Incorrecto */
-  const mensajeIncorrecto = () => {
-      swal({
-          icon: "error",
-          title: "¡Upss!",
-          text: "Recuerda usar el chatbot para obtener ayuda",
-          button: "OK",
-      });
-  };
-
 
 /* Ejercicio */
   return (
@@ -68,7 +104,10 @@ const seleccionar4 = () => {
 
         <div className='preguntaComprenderObjeto'>
             
-            <div className='bloque-pregunta'>
+        <div className='bloque-pregunta'>
+            <h1 className='TituloPregunta'>Actividad #2</h1>
+            <span className='TextoPregunta'>Partiendo del ejercicio anterior, determine el resultado producido por 
+            el siguiente método con valores preestablecidos.</span>
           
             </div>
 
@@ -83,26 +122,6 @@ const seleccionar4 = () => {
           
         <button onClick={evaluar} className='evaluarComprenderObjeto'>Evaluar</button>
         <span className='Seleccionador'>Opción seleccionado: {seleccionador}</span>
-
-           <div className="contenedorBarra">
-      <h2 className="porcentaje"
-        style={{
-          color: state === 100 ? "#e84118" : "Black"
-        }}
-      >
-        {state === 100
-          ? "Completo"
-          : `${state}%`}
-      </h2>
-
-      <ProyeccionProgress width={state} />
-      <ProgressButton
-        progress={state}
-        makeProgress={() => {
-          state < 100 ? setState(state + 20) : setState(0);
-        }}
-      />
-    </div>  
     </div>
   )
 }

@@ -1,95 +1,366 @@
-.bloque{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    left: 180px;
-    top: 18px;
-    position: relative;
+/* *************************   Clases ************************ */
+.preguntaEvaluarClase{
     border-color: black;
     border-style: solid;
-    height: 33px;
-    margin: 5px;
-   padding: 0;
-   list-style-type: none;
-   orientation: horizontal;
-   display: flex;
-    align-items: right;
-    gap: 1.8rem;
-}
-
-.bloque:nth-child(1){
-    left: 180px;
-    top: 18px;
-    width: 150px;
-    height: 300px;
-}
-
-
-.container-Bloom{
-    align-items: center;
-    justify-content: center;
-    border-color: rgb(0, 0, 0);
-    width: 940px;
-    height: 500px;
-    border-style: solid;
-    top: 90px;
-    left: 20px;
+    top: 1%;
+    left: 0.5%;
     position: absolute;
-}
-
-.orientacion{
-    border-color: black;
-    border-style: solid;
-    top: 20px;
-    left: 20px;
-    position: absolute;
-    width: 330px;
-    height: 463px;
+    width: 30%;
+    height: 97%;
     justify-content: center;
     text-align: center;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
 }
 
-.btn-Bloom{
+.ClaseEvaluarOpcion1{
+    top: 2%;
+    left: 32%;
+    position: absolute;
+    width: 32%;
+    height: 35%;
     border-color: black;
     border-style: solid;
-    top: 440px;
-    left: 620px;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+
+.ClaseEvaluarOpcion1:hover{
+    transform: scale(1.5);
+    left: 45%;
+    top: 25%;
+    width: 40%;
+    z-index: 2;
+}
+
+.ClaseEvaluarOpcion2{
+    top: 2%;
+    left: 66%;
     position: absolute;
-    width: 70px;
-    height: 43px;
+    width: 32%;
+    height: 35%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ClaseEvaluarOpcion2:hover{
+    transform: scale(1.5);
+    left: 45%;
+    top: 25%;
+    width: 40%;
+    z-index: 2;
+}
+
+.ClaseEvaluarOpcion3{
+    top: 40%;
+    left: 32%;
+    position: absolute;
+    width: 32%;
+    height: 35%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ClaseEvaluarOpcion3:hover{
+    transform: scale(1.5);
+    left: 45%;
+    top: 25%;
+    width: 40%;
+    z-index: 2;
+}
+
+.ClaseEvaluarOpcion4{
+    top: 40%;
+    left: 66%;
+    position: absolute;
+    width: 32%;
+    height: 35%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ClaseEvaluarOpcion4:hover{
+    transform: scale(1.5);
+    left: 45%;
+    top: 25%;
+    width: 40%;
+    z-index: 2;
+}
+
+
+
+.evaluarEvaluarClase{
+    position: absolute;
+    top: 88%;
+    left: 10%;
+    width: 10%;
+    height: 7%;
+    z-index: 10%;
+    background-color: #f44336;
+    border-radius: 7%;
+    border-color: #f44336;
+}
+
+.evaluarEvaluarClase:hover{
+    border-color: black;
+}
+
+.SeleccionadorEvaluarClase{
+    position: absolute;
+    top: 92%;
+    left: 35%;
+    z-index: 100;
+    color: BLACK;
+}
+
+.codigoEvaluarClase{
+    top: 35%;
+    left: 2%;
+    position: absolute;
+    width: 95%;
+    height: 50%;
     justify-content: center;
-}
-
-.bloqueEvaluarClase{
-    position: absolute;
-    width: 100%;
-}
-
-.bloqueEvaluarClase:nth-child(1){
-    position: absolute;
-    left: 1%;
-    top: 1%;
-    width: 15%;
-    height: 45%;
-}
-/* Nombre Clase */
-.bloqueEvaluarClase:nth-child(2){
-    position: absolute;
-    left: 65%;
-    top: 10%;
-    width: 15%;
-    height: 5%;
+    text-align: center;
+    z-index: 1;
     border-radius: 3%;
-    border-color: rgb(0, 0, 0);
-    border-width: 1px;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
 }
 
-.Container-draganddropEvaluarClase{
-    position: relative;
-    left: 1%;
+
+.codigoEvaluarClase:hover{
+    transform: scale(1.8);
+    left: 30%;
+    top: 20%;
+    z-index: 2;
+}
+
+/* ********************    Atributos    ************************ */
+
+.preguntaComprenderAtributo{
+    border-color: black;
+    border-style: solid;
     top: 1%;
-    width: 100%;
+    left: 0.5%;
+    position: absolute;
+    width: 30%;
+    height: 97%;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.diagramaAtributo{
+    top: 37%;
+    left: 10%;
+    position: absolute;
+    width: 80%;
+    height: 50%;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+    border-radius: 3%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.AtributoComprenderOpcion1{
+    top: 3%;
+    left: 40%;
+    position: absolute;
+    width: 50%;
+    height: 25%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+
+.AtributoComprenderOpcion1:hover{
+    transform: scale(1.5);
+    left: 50%;
+    top: 22%;
+    z-index: 2;
+}
+
+.AtributoComprenderOpcion2{
+    top: 32%;
+    left: 40%;
+    position: absolute;
+    width: 50%;
+    height: 25%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.AtributoComprenderOpcion2:hover{
+    transform: scale(1.5);
+    left: 50%;
+    top: 22%;
+    z-index: 2;
+}
+
+.AtributoComprenderOpcion3{
+    top: 61%;
+    left: 40%;
+    position: absolute;
+    width: 50%;
+    height: 25%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.AtributoComprenderOpcion3:hover{
+    transform: scale(1.5);
+    left: 50%;
+    top: 22%;
+    z-index: 2;
+}
+
+.AtributoComprenderOpcion4{
+    top: 47%;
+    left: 67%;
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    border-style: solid;
+    z-index: 500px;
+    border-radius: 5%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+
+}
+
+.AtributoComprenderOpcion4:hover{
+    transform: scale(1.5);
+    left: 50%;
+    top: 22%;
+    z-index: 2;
+}
+
+.evaluarcomprenderAtributo{
+    position: absolute;
+    top: 88%;
+    left: 10%;
+    width: 10%;
+    height: 7%;
+    z-index: 10%;
+    background-color: #f44336;
+    border-radius: 7%;
+    border-color: #f44336;
+}
+
+.evaluarcomprenderAtributo:hover{
+    border-color: black;
+}
+
+.SeleccionadorComprenderAtributo{
+    position: absolute;
+    top: 90%;
+    left: 35%;
+    z-index: 100;
+    color: BLACK;
 }
 
 
 
+/* *************************   Métodos ************************ */
+
+.EvaluarMetodo1{
+    top: 2%;
+    left: 32%;
+    position: absolute;
+    width: 32%;
+    height: 35%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+
+.EvaluarMetodo1:hover{
+    transform: scale(1.5);
+    left: 45%;
+    top: 25%;
+    width: 40%;
+    z-index: 2;
+}
+
+.EvaluarMetodo2{
+    top: 2%;
+    left: 66%;
+    position: absolute;
+    width: 32%;
+    height: 35%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.EvaluarMetodo2:hover{
+    transform: scale(1.5);
+    left: 45%;
+    top: 25%;
+    width: 40%;
+    z-index: 2;
+}
+
+.EvaluarMetodo3{
+    top: 40%;
+    left: 32%;
+    position: absolute;
+    width: 32%;
+    height: 35%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.EvaluarMetodo3:hover{
+    transform: scale(1.5);
+    left: 45%;
+    top: 25%;
+    width: 40%;
+    z-index: 2;
+}
+
+.EvaluarMetodo4{
+    top: 40%;
+    left: 66%;
+    position: absolute;
+    width: 32%;
+    height: 35%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.EvaluarMetodo4:hover{
+    transform: scale(1.5);
+    left: 45%;
+    top: 25%;
+    width: 40%;
+    z-index: 2;
+}
+
+
+/* *************************   Objetos ************************ */
+
+/* *************************   Objetos ************************ */

@@ -20,6 +20,7 @@ export function Profile() {
   const datosEstudiante = collection(db, "Estudiantes");
   const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
   const [activador, setActivador] = useState(0)
+  const [estudiantes, setEstudiantes] = useState([]);
   
   const [estudiante, setEstudiante] = useState({
     Correo: Usuario.email,
@@ -60,11 +61,6 @@ const obtenerEstudiante = async () => {
       await updateDoc(doc(db, "Estudiantes", obtId), {...estudiante});
    }
 
-/* ************ Función actualizar base de datos ************* */
-
-
-
-
 /* ************* Activar la opcion de actualizar ************* */
 const activarActualizacion = () => {
   setActivador(1)
@@ -75,6 +71,12 @@ const activarActualizacion = () => {
       obtenerEstudiante();
       ActualizarDatos();    
 },[activador]);
+
+
+
+
+
+
 
 
 /* ************ Return del perfil ************* */

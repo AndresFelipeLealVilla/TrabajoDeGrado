@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import swal from 'sweetalert'
-import ProgressButton from '../../progressBar/ProgressButton'
-import ProyeccionProgress from '../../progressBar/ProyeccionProgress'
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
+import { getAuth } from 'firebase/auth'
+import {app} from '../../../Firebase'
 
 import './Aplicar.css'
 
@@ -76,52 +77,75 @@ const onDragEnd = (result, columns, setColumns) => {
 
 function AplicarObjeto(props) {
 /* Declaraciones */
-  const [puntos, setPuntos] = useState(0);
   const [arreglo1, setArreglo] = useState ([]);
   const [arreglo2, setArreglo2] = useState ([]);
-  const [state, setState] = useState(20)
+  const[temporal, setTemporal] = useState(0);
+const db = getFirestore(app)
+const Usuario = getAuth().currentUser;
+const datosEstudiante = collection(db, "Estudiantes");
+const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
+const [obtId, setObtId] = useState('')
+
+
+ /* ************ Traer datos de la base de datos ************* */
+  const obtenerEstudiante = async () => {
+      const querySnapshot = await getDocs(qu);
+      querySnapshot.forEach((documento) => {
+        setTemporal(parseInt(documento.data().Puntos));
+        setObtId(documento.id)
+      },);
+    };
+  
+  
+      /* Actualizar los datos de un estudiante en firestore */
+    const ActualizarDatos = async () => {
+      obtenerEstudiante();
+        await updateDoc(doc(db, "Estudiantes", obtId), {
+          Puntos: 5 + temporal
+        });
+     }
+  
+     useEffect (() => {
+      obtenerEstudiante();
+      ActualizarDatos();    
+  },[]);
+
+
+
+
 
 /* Mensaje Correcto */
   const mensajeCorrecto = (points) => {
-      swal({
-          icon: "success",
-          title: "¡Gran Trabajo!",
-          text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
-          button: "OK",
-      });
-  };
+    swal({
+      icon: "success",
+      title: "¡Gran Trabajo!",
+      text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
+      button: "OK",
+  });
+
+};
 
 /* Mensaje Incorrecto */
   const mensajeIncorrecto = () => {
-      swal({
-          icon: "error",
-          title: "¡Upss!",
-          text: "Recuerda usar el chatbot para obtener ayuda",
-          button: "OK",
-      });
+    swal({
+      icon: "error",
+      title: "¡Upss!",
+      text: "Recuerda usar el chatbot para obtener ayuda",
+      button: "OK",
+    });
   };
 
-  
-
   const evaluarAplicarObjeto = () => {
-    if (arreglo1.length >= 5){
-        setArreglo([]);        
-    }
-    if (arreglo2.length >= 4){
-        setArreglo2([]);
-    }
-    if ((arreglo1.length === 0) && (arreglo2.length === 0)){
+    if(columns[2].items.length === 5 && columns[3].items.length === 3){
       arreglo1.push(columns[2].items[0].id);
       arreglo1.push(columns[2].items[1].id);
       arreglo1.push(columns[2].items[2].id);
       arreglo1.push(columns[2].items[3].id);
       arreglo1.push(columns[2].items[4].id);
 
-      console.log(arreglo1);
       arreglo2.push(columns[3].items[0].id);
       arreglo2.push(columns[3].items[1].id);
       arreglo2.push(columns[3].items[2].id);
-      console.log(arreglo2)
 
       if(arreglo1.includes("Segundo")){
           if(arreglo1.includes("Tercero")){
@@ -131,46 +155,56 @@ function AplicarObjeto(props) {
                           if(arreglo2.includes("Primero")){
                               if(arreglo2.includes("Quinto")){
                                 if(arreglo2.includes("Sexto")){
-                                    setPuntos(5);
                                     mensajeCorrecto(5);
+                                    ActualizarDatos();
+                                    props.evento(); 
                                 }
                                 else{
                                     mensajeIncorrecto();
+                                    props.evento(); 
                                 }
                               }
                               else{
                                   mensajeIncorrecto();
+                                  props.evento(); 
                               }
                           }
                           else{
                             mensajeIncorrecto();
+                            props.evento(); 
                           }
                       }
                       else{
                         mensajeIncorrecto();
+                        props.evento(); 
                       }
                   }
                   else{
                       mensajeIncorrecto();
+                      props.evento(); 
                   }
               }
               else{
                   mensajeIncorrecto();
+                  props.evento(); 
               }
           }
           else{
               mensajeIncorrecto();
+              props.evento(); 
           }
       }
       else{
           mensajeIncorrecto();
-      }
-      props.evento();              
+          props.evento(); 
+      }             
+    }
+    else{
+        mensajeIncorrecto();
+        props.evento(); 
     }
   }
-
-
-            
+           
 
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
@@ -178,6 +212,12 @@ function AplicarObjeto(props) {
       <button onClick={evaluarAplicarObjeto} className='evaluarAplicarObjeto'>Evaluar</button>
 
     <div className='PreguntaAplicarObjeto'>
+    <div className='bloque-pregunta'>
+            <h1 className='TituloPregunta'>Actividad #2</h1>
+            <span className='TextoPregunta'>Determine las diferencias entre las clases y los objetos, 
+            ubique cada una de las opciones disponibles en la columna correspondiente.</span>
+          
+            </div>
              
     </div>
 
@@ -258,31 +298,7 @@ function AplicarObjeto(props) {
           );
         })}
       </DragDropContext>
-
-
-
-      
     </div>
-    <div className="contenedorBarra">
-      <h2 className="porcentaje"
-        style={{
-          color: state === 100 ? "#e84118" : "Black"
-        }}
-      >
-        {state === 100
-          ? "Completo"
-          : `${state}%`}
-      </h2>
-
-      <ProyeccionProgress width={state} />
-      <ProgressButton
-        progress={state}
-        makeProgress={() => {
-          state < 100 ? setState(state + 20) : setState(0);
-        }}
-      />
-    </div>
-
     </div>
     
   );

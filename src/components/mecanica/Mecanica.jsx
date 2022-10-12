@@ -62,7 +62,7 @@ function Mecanica() {
 
 
     const contador = () => {
-        if (fase < 5) {
+        if (fase < 4) {
             setFase(fase + 1);
             <Positions/>;
         } else {
@@ -95,10 +95,10 @@ function Mecanica() {
         (tema === "Metodos" && fase === 4 ? <EvaluarMetodo evento={contador} /> :
         (tema === "Metodos" && fase === 5 ? <CrearMetodo evento={contador} /> : 
          
-        (tema === "Atributos" && fase === 1 ? <EvaluarAtributo evento={contador} /> :
+        (tema === "Atributos" && fase === 1 ? <ComprenderAtributo evento={contador} /> :
         (tema === "Atributos" && fase === 2 ? <AplicarAtributo evento={contador} /> :
-        (tema === "Atributos" && fase === 3 ? <ComprenderAtributo evento={contador} /> : 
-        (tema === "Atributos" && fase === 4 ? <AnalizarAtributo evento={contador} /> :
+        (tema === "Atributos" && fase === 3 ? <AnalizarAtributo evento={contador} /> : 
+        (tema === "Atributos" && fase === 4 ? <EvaluarAtributo evento={contador} /> :
         (tema === "Atributos" && fase === 5 ? <CrearAtributo evento={contador} /> : null ))))))))))))))))))))}
         
     </div>

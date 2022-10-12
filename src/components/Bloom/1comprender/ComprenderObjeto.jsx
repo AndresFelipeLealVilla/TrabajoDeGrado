@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react'
 import claseVehiculo from '../../../img/taxonomia/1Comprender/Objetos/DiagramaComprenderObjeto.png'
 import opcionesComprenderObjeto from '../../../img/taxonomia/1Comprender/Objetos/opcionesComprenderObjetos.PNG'
 import swal from 'sweetalert'
-import ProgressButton from '../../progressBar/ProgressButton'
-import ProyeccionProgress from '../../progressBar/ProyeccionProgress'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
@@ -14,7 +12,6 @@ function ComprenderObjeto(props){
 /* Declaraciones */
 const [puntos, setPuntos] = useState(0);
 const [seleccionador, setSeleccionador] = useState(0)
-const [state, setState] = useState(0)
 const [temporal, setTemporal] = useState(0)
 
 const db = getFirestore(app)
@@ -70,14 +67,14 @@ const ActualizarDatos = async () => {
 
   const evaluar = () => { 
     if (seleccionador === 3){
-        setPuntos(5);
-        mensajeCorrecto(5);
         ActualizarDatos();
+        mensajeCorrecto(5);
+        props.evento();
     }
     else{
         mensajeIncorrecto();
-    }
-    props.evento();
+        props.evento();
+    } 
   } 
 
  /* Mensaje Correcto */
@@ -108,7 +105,8 @@ const ActualizarDatos = async () => {
         <div className='preguntaComprenderObjeto'>
             
             <div className='bloque-pregunta'>
-          
+            <h1 className='TituloPregunta'>Actividad #1</h1>
+                <span className='TextoPregunta'>Observe el siguiente diagrama de clases y determine la forma correcta de instanciar la clase Vehículo.</span>
             </div>
 
             <div className='Diagrama'>
@@ -126,26 +124,6 @@ const ActualizarDatos = async () => {
           
         <button onClick={evaluar} className='evaluarComprenderObjeto'>Evaluar</button>
         <span className='Seleccionador'>Opción seleccionado: {seleccionador}</span>
-         
-        <div className="contenedorBarra">
-      <h2 className="porcentaje"
-        style={{
-          color: state === 100 ? "#e84118" : "Black"
-        }}
-      >
-        {state === 100
-          ? "Completo"
-          : `${state}%`}
-      </h2>
-
-      <ProyeccionProgress width={state} />
-      <ProgressButton
-        progress={state}
-        makeProgress={() => {
-          state < 100 ? setState(state + 20) : setState(0);
-        }}
-      />
-    </div>
     </div>
   )
 }

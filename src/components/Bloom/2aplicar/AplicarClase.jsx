@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import swal from 'sweetalert'
-import ProgressButton from "../../progressBar/ProgressButton";
-import ProyeccionProgress from "../../progressBar/ProyeccionProgress";
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
-
 import './Aplicar.css'
-import Positions from "../../PositionsTable/Positions";
+
 
 
 /* Creación drag and drop */
@@ -75,13 +72,9 @@ const onDragEnd = (result, columns, setColumns) => {
 
 function AplicarClase(props) {
 /* Declaraciones */
-  const [puntos, setPuntos] = useState(0);
   const [arreglo, setArreglo] = useState ([]);
-  const [dato, setDato] = useState(40);
   const[temporal, setTemporal] = useState(0);
 const db = getFirestore(app)
-
-const [activador, setActivador] = useState(1)
 const [state, setState] = useState(20)
 const Usuario = getAuth().currentUser;
 const datosEstudiante = collection(db, "Estudiantes");
@@ -139,15 +132,11 @@ const [obtId, setObtId] = useState('')
 
 /* Ejercicio */
   const evaluarAplicarClase = () => {
-    if (arreglo.length !== 4){
-        setArreglo([]);        
-    }
-    if (arreglo.length === 0){
+    if(columns[2].items.length === 4){
       arreglo.push(columns[2].items[0].id);
       arreglo.push(columns[2].items[1].id);
       arreglo.push(columns[2].items[2].id);
       arreglo.push(columns[2].items[3].id);
-      console.log(arreglo)
 
       if(arreglo.includes("Primero")){
           if(arreglo.includes("Tercero")){
@@ -155,27 +144,31 @@ const [obtId, setObtId] = useState('')
                   if(arreglo.includes("Sexto")){
                       ActualizarDatos();
                       mensajeCorrecto(5);
-                      setPuntos(5);
-                      mensajeCorrecto(5);
-                      <Positions dato={activador}/>
+                      props.evento();
                   }
                   else{
                       mensajeIncorrecto();
+                      props.evento();
                   }
               }
               else{
                   mensajeIncorrecto();
+                  props.evento();
               }
           }
           else{
               mensajeIncorrecto();
+              props.evento();
           }
       }
       else{
           mensajeIncorrecto();
+          props.evento();
       }
+    }else{
+      mensajeIncorrecto();
+      props.evento();
     }
-    props.evento();
   }
 
 
@@ -187,6 +180,12 @@ const [obtId, setObtId] = useState('')
         <button onClick={evaluarAplicarClase} className='evaluarAplicarClase'>Evaluar</button>
       
     <div className='PreguntaAplicarClase'>
+    <div className='bloque-pregunta'>
+            <h1 className='TituloPregunta'>Actividad #2</h1>
+            <span className='TextoPregunta'>Determine las características que tienen las clases, arrastrando y soltando entre 
+            las opciones disponibles.</span>
+          
+            </div>
         
     </div>
 
@@ -213,8 +212,8 @@ const [obtId, setObtId] = useState('')
                         ref={provided.innerRef}
                         style={{
                           background: snapshot.isDraggingOver
-                            ? "white"
-                            : "white",
+                          ? "lightblue"
+                          : "lightgrey",
                           width: 150,
                           minHeight: 350,
                           borderColor: "black",
@@ -264,24 +263,6 @@ const [obtId, setObtId] = useState('')
         })}
       </DragDropContext> 
 
-    </div>
-    <div className="contenedorBarra">
-      <h2 className="porcentaje"
-        style={{
-          color: state === 100 ? "#e84118" : "Black"
-        }}
-      >
-        {state === 100
-          ? "Completo"
-          : `${state}%`}
-      </h2>
-      <ProyeccionProgress width={state} />
-      <ProgressButton
-        progress={state}
-        makeProgress={() => {
-          state < 100 ? setState(state + 20) : setState(0);
-        }}
-      />
     </div>
   </div>
     

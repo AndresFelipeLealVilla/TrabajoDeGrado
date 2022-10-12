@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import swal from 'sweetalert'
 
 import opcion1 from '../../../img/taxonomia/1Comprender/Metodos/opcion1ComprenderMetodo.png'
 import opcion2 from '../../../img/taxonomia/1Comprender/Metodos/opcion1ComprenderMetodo.png'
 import opcion3 from '../../../img/taxonomia/1Comprender/Metodos/opcion1ComprenderMetodo.png'
-import ProgressButton from '../../progressBar/ProgressButton'
-import ProyeccionProgress from '../../progressBar/ProyeccionProgress'
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
+import {app} from '../../../Firebase'
+import { getAuth } from 'firebase/auth'
 
 import './Comprender.css'
 
@@ -15,6 +16,64 @@ function ComprenderMetodo(props){
   const [puntos, setPuntos] = useState(0);
   const [seleccionador, setSeleccionador] = useState(0)
   const [state, setState] = useState(0)
+
+  const[temporal, setTemporal] = useState(0);
+const db = getFirestore(app)
+const Usuario = getAuth().currentUser;
+const datosEstudiante = collection(db, "Estudiantes");
+const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
+const [obtId, setObtId] = useState('')
+
+
+
+ /* ************ Traer datos de la base de datos ************* */
+ const obtenerEstudiante = async () => {
+  const querySnapshot = await getDocs(qu);
+  querySnapshot.forEach((documento) => {
+    setTemporal(parseInt(documento.data().Puntos));
+    setObtId(documento.id)
+  },);
+};
+
+
+  /* Actualizar los datos de un estudiante en firestore */
+const ActualizarDatos = async () => {
+  obtenerEstudiante();
+    await updateDoc(doc(db, "Estudiantes", obtId), {
+      Puntos: 5 + temporal
+    });
+ }
+
+ useEffect (() => {
+  obtenerEstudiante();
+  ActualizarDatos();    
+},[]);
+
+
+
+/* Mensaje Correcto */
+const mensajeCorrecto = (points) => {
+  swal({
+    icon: "success",
+    title: "¡Gran Trabajo!",
+
+    text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
+    button: "OK",
+  });
+
+};
+
+/* Mensaje Incorrecto */
+const mensajeIncorrecto = () => {
+  swal({
+    icon: "error",
+    title: "¡Upss!",
+    text: "Recuerda usar el chatbot para obtener ayuda",
+    button: "OK",
+    
+  });
+};
+
 
   const seleccionar1 = () => {
     setSeleccionador(1);
@@ -27,53 +86,36 @@ function ComprenderMetodo(props){
   const seleccionar3 = () => {
     setSeleccionador(3);
   }
-  
-  const seleccionar4 = () => {
-    setSeleccionador(4);
-  }
  
 /* Ejercicio */
 
   const evaluar = () => { 
     if (seleccionador === 1){
-          setPuntos(5);
-          mensajeCorrecto(5);
+        ActualizarDatos();
+        mensajeCorrecto(5);
+        props.evento();
     }
     else{
       mensajeIncorrecto();
-        setPuntos(0);
-    }
-    props.evento();    
+      props.evento();
+    } 
   } 
-  
-/* Mensaje Correcto */
-  const mensajeCorrecto = (points) => {
-    swal({
-      icon: "success",
-      title: "¡Gran Trabajo!",
 
-      text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
-      button: "OK",
-    });
-
-  };
-
-/* Mensaje Incorrecto */
-  const mensajeIncorrecto = () => {
-    swal({
-      icon: "error",
-      title: "¡Upss!",
-      text: "Recuerda usar el chatbot para obtener ayuda",
-      button: "OK",
-    });
-  };
-
-/* Resultados */
+  /* Resultados */
   return (
     <div className='container-Bloom-comprender'>
         <div className='preguntaComprenderMetodo'>
-            <div className='bloque-pregunta'>
-          
+            <div className='bloque-preguntaComprenderMetodo'>
+            <h1 className='TituloPregunta'>Actividad #1</h1>
+                <span className='TextoPreguntaComprenderMetodo'>Observe los tres segmentos de codigo y resuelva lo siguiente: 
+                <p>Se presenta la clase Cuenta, en la cual se debe implementar un método que retorne el valor total 
+                  de la compra de 5 artículos, los cuales tienen los siguientes descuentos:</p>
+                  <p>10%</p>
+                  <p>25%</p>
+                  <p>18%</p>
+                  <p>12%</p>
+                  <p>7%</p>
+                  </span>
             </div>
         </div>
         <div className='opcionesComprenderMetodo'>
@@ -84,25 +126,6 @@ function ComprenderMetodo(props){
           
         <button onClick={evaluar} className='evaluarcomprenderMetodo'>Evaluar</button>
         <span className='SeleccionadorComprenderMetodo'>Opción seleccionada: {seleccionador}</span>
-
-            <div className="contenedorBarra">
-      <h2 className="porcentaje"
-        style={{
-          color: state === 100 ? "#e84118" : "Black"
-        }}
-      >
-        {state === 100
-          ? "Completo"
-          : `${state}%`}
-      </h2>
-      <ProyeccionProgress width={state} />
-      <ProgressButton
-        progress={state}
-        makeProgress={() => {
-          state < 100 ? setState(state + 20) : setState(0);
-        }}
-      />
-    </div> 
     </div>
   )
 }

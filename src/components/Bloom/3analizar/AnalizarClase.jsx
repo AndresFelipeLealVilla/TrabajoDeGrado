@@ -3,8 +3,6 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import preguntaAnalizarClase from '../../../img/taxonomia/3Analizar/ClaseVehiculoAnalizarClase.png'
 import swal from 'sweetalert'
 import './Analizar.css'
-import ProyeccionProgress from "../../progressBar/ProyeccionProgress";
-import ProgressButton from "../../progressBar/ProgressButton";
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
@@ -88,13 +86,8 @@ const onDragEnd = (result, columns, setColumns) => {
 
 function AnalizarMetodosAtributos(props) {
 /* Declaraciones */  
-    const [puntos, setPuntos] = useState(0);
-    const [state , setState] = useState(40);
     const [temporal, setTemporal] = useState(0)
-
 const db = getFirestore(app)
-
-const [seleccionador, setSeleccionador] = useState(0)
 const Usuario = getAuth().currentUser;
 const datosEstudiante = collection(db, "Estudiantes");
 const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
@@ -148,47 +141,58 @@ const ActualizarDatos = async () => {
    };
   
     const evaluarAnalizarClase = () => {
-      if(columns[2].items[0].id === "Primero"){
-        if(columns[3].items[0].id === "Segundo"){
-          if(columns[4].items[0].id === "Sexto"){
-            if(columns[5].items[0].id === "Cuarto"){
-              if(columns[6].items[0].id === "Tercero"){
-                if(columns[7].items[0].id === "Quinto"){
-                    setPuntos(5);
-                    mensajeCorrecto(5);
-                    ActualizarDatos();
-                }
-                else{
-                    mensajeIncorrecto();
-                }
+      if (columns[2].items.length === 1 && columns[3].items.length === 1 && columns[4].items.length === 1 && columns[5].items.length === 1 && columns[6].items.length === 1 && columns[7].items.length === 1 ){ 
+          if(columns[2].items[0].id === "Primero"){
+              if(columns[3].items[0].id === "Segundo"){
+                  if(columns[4].items[0].id === "Sexto"){
+                      if(columns[5].items[0].id === "Cuarto"){
+                          if(columns[6].items[0].id === "Tercero"){
+                              if(columns[7].items[0].id === "Quinto"){
+                                  mensajeCorrecto(5);
+                                  ActualizarDatos();
+                                  props.evento();
+                              }
+                              else{
+                                  mensajeIncorrecto();
+                                  props.evento();
+                              }
+                          }
+                          else{
+                              mensajeIncorrecto();
+                              props.evento();
+                          }
+                      }
+                      else{
+                          mensajeIncorrecto();
+                          props.evento();
+                      }
+                  }
+                  else{
+                      mensajeIncorrecto();
+                      props.evento();
+                  }
               }
               else{
                   mensajeIncorrecto();
+                  props.evento();
               }
-            }
-            else{
-                mensajeIncorrecto();
-            }
           }
           else{
               mensajeIncorrecto();
+              props.evento();
           }
-        }
-        else{
+      }else{
           mensajeIncorrecto();
-        }
+          props.evento();
       }
-      else{
-        mensajeIncorrecto();
-      }
-      props.evento();
-    }
+  }
 
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
     <div className='container-BloomAnalizarClase'>
         <img src={preguntaAnalizarClase} alt='preguntaAnalizarClase' className='preguntaAnalizarClase'/>
         <button onClick={evaluarAnalizarClase} className='evaluarAnalizarClase'>Evaluar</button>
+
     <div className="Container-draganddrop">
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
@@ -261,25 +265,13 @@ const ActualizarDatos = async () => {
         })}
       </DragDropContext>
       <div className="orientacionAnalizarClase">
+      <div className='bloque-preguntaAnalizar'>
+            <h1 className='TituloPregunta'>Actividad #3</h1>
+            <span className='TextoPregunta'>Diferenciar las partes de las que se compone la clase Vehículo. 
+            Para ello usa la opción de arrastrar y soltar.</span>
+          
+            </div>
      </div>
-    </div>
-    <div className="contenedorBarra">
-      <h2 className="porcentaje"
-        style={{
-          color: state === 100 ? "#e84118" : "Black"
-        }}
-      >
-        {state === 100
-          ? "Completo"
-          : `${state}%`}
-      </h2>
-      <ProyeccionProgress width={state} />
-      <ProgressButton
-        progress={state}
-        makeProgress={() => {
-          state < 100 ? setState(state + 20) : setState(0);
-        }}
-      />
     </div>
     </div>
   );

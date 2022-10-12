@@ -13,6 +13,15 @@
     border-radius: 3%;
 }
 
+
+.bloque-preguntaAnalizar{
+    position: relative;
+    top: 0%;
+    left: 1%;
+    width: 100%;
+    height: 30%;
+}
+
 .evaluarAnalizarClase{
     position: absolute;
     top: 88%;
@@ -156,7 +165,7 @@
 /* ***************** Objetos ******************** */
 
 .DiagramaAnaliarObjeto{
-    top: 40%;
+    top: 35%;
     left: 3%;
     position: absolute;
     width: 25%;
@@ -169,7 +178,11 @@
     box-shadow: 5px 10px 8px #888888;
 }
 
-
+.bloquesito:hover{
+    position: absolute;
+    transform: scale(1.5);
+    z-index: 100;
+}
 
 .preguntaAnalizarrObjeto{
     border-color: black;
@@ -183,6 +196,24 @@
     text-align: center;
     border: 1px solid;
     box-shadow: 5px 10px 8px #888888;
+}
+
+
+
+.evaluarAnalizarObjeto{
+    position: absolute;
+    top: 88%;
+    left: 10%;
+    width: 10%;
+    height: 7%;
+    z-index: 1000;
+    background-color: #f44336;
+    border-radius: 7%;
+    border-color: #f44336;
+}
+
+.evaluarAnalizarObjeto:hover{
+    border-color: black;
 }
 
 .img1, .img2, .img3, .img4, .img5, .img6{

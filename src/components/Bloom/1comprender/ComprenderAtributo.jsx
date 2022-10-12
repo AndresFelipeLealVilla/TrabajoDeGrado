@@ -1,16 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import swal from 'sweetalert'
-import opcion1 from '../../../img/taxonomia/1Comprender/Atributos/ComprenderAtributos1.png'
-import opcion2 from '../../../img/taxonomia/1Comprender/Atributos/ComprenderAtributos2.png'
-import opcion3 from '../../../img/taxonomia/1Comprender/Atributos/ComprenderAtributos3.png'
 
-import ProgressButton from '../../progressBar/ProgressButton'
-import ProyeccionProgress from '../../progressBar/ProyeccionProgress'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
 import './Comprender.css'
-import Positions from '../../PositionsTable/Positions'
 
 function ComprenderAtributo(props){
 
@@ -22,12 +16,10 @@ const [temporal, setTemporal] = useState(0)
 const db = getFirestore(app)
 
 const [seleccionador, setSeleccionador] = useState(0)
-const [state, setState] = useState(0)
 const Usuario = getAuth().currentUser;
 const datosEstudiante = collection(db, "Estudiantes");
 const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
 const [obtId, setObtId] = useState('')
-const [activador, setActivador] = useState(1)
 
 
 /* ************ Traer datos de la base de datos ************* */
@@ -69,21 +61,24 @@ const obtenerEstudiante = async () => {
   const seleccionar3 = () => {
     setSeleccionador(3);
   }
+
+  const seleccionar4 = () => {
+    setSeleccionador(4);
+  }
  
 /* Ejercicio */
 
   const evaluar = () => { 
-    if (seleccionador === 1){
+    if (seleccionador === 4){
       ActualizarDatos();
       mensajeCorrecto(5);
-      <Positions dato={activador}/>
+      props.evento();
           
     }
     else{
       mensajeIncorrecto();
+      props.evento();
     }
-    props.evento();
-    setTemporal(0);  
   } 
   
 /* Mensaje Correcto */
@@ -113,41 +108,21 @@ const obtenerEstudiante = async () => {
     <div className='container-Bloom-comprender'>
         <div className='preguntaComprenderAtributo'>
             <div className='bloque-pregunta'>
-          
+                <h1 className='TituloPregunta'>Actividad #1</h1>
+                <span className='TextoPregunta'>¿Por qué es incorrecto declarar al atributo -FechaNacimiento = 2001 como un double?.</span>
             </div>
 
 
         </div>
         <div className='opcionesComprenderAtributo'>
-            <img src={opcion1} onClick={seleccionar1} alt='opcion1' className='AtributoComprenderOpcion1'/>
-            <img src={opcion2} onClick={seleccionar2} alt='opcion2' className='AtributoComprenderOpcion2'/>
-            <img src={opcion3} onClick={seleccionar3} alt='opcion3' className='AtributoComprenderOpcion3'/>
+        <button className='AplicarAtributoOpcion1' onClick={seleccionar1}>Porque -FechaNacimiento es un número muy grande</button>
+            <button className='AplicarAtributoOpcion2' onClick={seleccionar2}>Porque -FechaNacimiento es un número muy pequeño</button>
+            <button className='AplicarAtributoOpcion3' onClick={seleccionar3}>Porque las operaciones matemáticas se realizan con "char"</button>
+            <button className='AplicarAtributoOpcion4' onClick={seleccionar4}>Porque el 2001 es un entero que debe definirse como "int"</button>
         </div>
           
         <button onClick={evaluar} className='evaluarcomprenderAtributo'>Evaluar</button>
         <span className='SeleccionadorComprenderAtributo'>Opción seleccionada: {seleccionador}</span>
-
-
-        <div className="contenedorBarra">
-      <h2 className="porcentaje"
-        style={{
-          color: state === 100 ? "#e84118" : "Black"
-        }}
-      >
-        {state === 100
-          ? "Completo"
-          : `${state}%`}
-      </h2>
-
-      <ProyeccionProgress width={state} />
-      <ProgressButton
-        progress={state}
-        makeProgress={() => {
-          state < 100 ? setState(state + 20) : setState(0);
-        }}
-      />
-    </div>
-
     </div>
   )
 }

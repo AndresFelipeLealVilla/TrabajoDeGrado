@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import swal from 'sweetalert'
-import ProgressButton from '../../progressBar/ProgressButton'
-import ProyeccionProgress from '../../progressBar/ProyeccionProgress'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
@@ -10,9 +8,7 @@ import './Aplicar.css'
 
 function AplicarAtributo(props){
 /* Declaraciones */
-const [puntos, setPuntos] = useState(0);
 const [seleccionador, setSeleccionador] = useState(0)
-const [state, setState] = useState(0)
 const [temporal, setTemporal] = useState(0)
 
 const db = getFirestore(app)
@@ -68,7 +64,6 @@ const ActualizarDatos = async () => {
 
   const evaluar = () => { 
     if (seleccionador === 3){
-        setPuntos(5);
         mensajeCorrecto(5);
         ActualizarDatos();
     }
@@ -104,8 +99,11 @@ const ActualizarDatos = async () => {
     <div className='container-Bloom-Aplicar'>
 
         <div className='preguntaAplicarAtributo'>
-            
+
             <div className='bloque-pregunta'>
+            <h1 className='TituloPregunta'>Actividad #2</h1>
+            <span className='TextoPregunta'>Determine el tipo de dato adecuado para el atributo denominado -peso, el 
+            cual recibirá números decimales.</span>
           
             </div>
 
@@ -119,26 +117,6 @@ const ActualizarDatos = async () => {
           
         <button onClick={evaluar} className='evaluarAplicarAtributo'>Evaluar</button>
         <span className='Seleccionador'>Opción seleccionado: {seleccionador}</span>
-         
-        <div className="contenedorBarra">
-      <h2 className="porcentaje"
-        style={{
-          color: state === 100 ? "#e84118" : "Black"
-        }}
-      >
-        {state === 100
-          ? "Completo"
-          : `${state}%`}
-      </h2>
-
-      <ProyeccionProgress width={state} />
-      <ProgressButton
-        progress={state}
-        makeProgress={() => {
-          state < 100 ? setState(state + 20) : setState(0);
-        }}
-      />
-    </div>
     </div>
   )
 }

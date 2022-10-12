@@ -1,5 +1,70 @@
 /* ********************    Clases    ************************ */
 
+.bloque-pregunta{
+    background-color: gray;
+    position: absolute;
+    top: 3%;
+    left: 5%;
+    width: 90%;
+    height: 35%;
+    border-width: 1.5px;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+    border-radius: 5%;
+}
+
+.bloque-preguntaComprenderMetodo{
+    background-color: gray;
+    position: absolute;
+    top: 3%;
+    left: 5%;
+    width: 90%;
+    height: 70%;
+    border-width: 1.5px;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+    border-radius: 5%;
+}
+
+.TextoPreguntaComprenderMetodo{
+    position: absolute;
+    top: 10%;
+    left: 1%;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+
+
+
+.TituloPregunta{
+    top: 5%;
+    left: 5%;
+    font-size: 1.5em;
+    color: #291414;
+}
+
+.TextoPregunta{
+    position: absolute;
+    top: 30%;
+    left: 1%;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+
 .preguntaComprenderClase{
     border-color: black;
     border-style: solid;

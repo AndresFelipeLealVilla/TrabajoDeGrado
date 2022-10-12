@@ -1,176 +1,134 @@
-import React, { useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import React, {useState, useEffect} from 'react'
+import swal from 'sweetalert'
+
+import opcion2 from '../../../img/taxonomia/4Evaluar/Clases/Evaluar1.png'
+import opcion1 from '../../../img/taxonomia/4Evaluar/Clases/Evaluar2.png'
+import opcion3 from '../../../img/taxonomia/4Evaluar/Clases/Evaluar3.png'
+import opcion4 from '../../../img/taxonomia/4Evaluar/Clases/Evaluar4.png'
+import codigoEvaluarClase from '../../../img/taxonomia/4Evaluar/Clases/PreguntaAnimal.png'
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
+import { getAuth } from 'firebase/auth'
+import {app} from '../../../Firebase'
+
 import './Evaluar.css'
-import imagen1 from '../../../img/taxonomia/4Evaluar/Evaluar1.png'
-import ProyeccionProgress from "../../progressBar/ProyeccionProgress";
-import ProgressButton from "../../progressBar/ProgressButton";
 
-const itemsFromBackend = [
-  { id: "primero", content: <img src={imagen1} alt='preguntaEvaluarClase' className='preguntaEvaluarClase'/> },
-  { id: "Segundo", content: "Second task" },
-  { id: "Tercero", content: "Third task" },
-  { id: "Cuarto", content: "Fourth task" },
-  { id: "Quinto", content: "Fifth task" }
-];
+function EvaluarClase(props){
 
-const columnsFromBackend = {
-  1: {
-    name: "",
-    items: itemsFromBackend
-  },
-  2: {
-    name: "",
-    items: []
-  },
+/* Declaraciones */
+  const [seleccionador, setSeleccionador] = useState(0)
+  /* Declaraciones */
+  const[temporal, setTemporal] = useState(0);
+const db = getFirestore(app)
+const Usuario = getAuth().currentUser;
+const datosEstudiante = collection(db, "Estudiantes");
+const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
+const [obtId, setObtId] = useState('')
 
-};
 
-const onDragEnd = (result, columns, setColumns) => {
-  if (!result.destination) return;
-  const { source, destination } = result;
+ /* ************ Traer datos de la base de datos ************* */
+  const obtenerEstudiante = async () => {
+      const querySnapshot = await getDocs(qu);
+      querySnapshot.forEach((documento) => {
+        setTemporal(parseInt(documento.data().Puntos));
+        setObtId(documento.id)
+      },);
+    };
+  
+  
+      /* Actualizar los datos de un estudiante en firestore */
+    const ActualizarDatos = async () => {
+      obtenerEstudiante();
+        await updateDoc(doc(db, "Estudiantes", obtId), {
+          Puntos: 5 + temporal
+        });
+     }
+  
+     useEffect (() => {
+      obtenerEstudiante();
+      ActualizarDatos();    
+  },[]);
 
-  if (source.droppableId !== destination.droppableId) {
-    const sourceColumn = columns[source.droppableId];
-    const destColumn = columns[destination.droppableId];
-    const sourceItems = [...sourceColumn.items];
-    const destItems = [...destColumn.items];
-    const [removed] = sourceItems.splice(source.index, 1);
-    destItems.splice(destination.index, 0, removed);
-    setColumns({
-      ...columns,
-      [source.droppableId]: {
-        ...sourceColumn,
-        items: sourceItems
-      },
-      [destination.droppableId]: {
-        ...destColumn,
-        items: destItems
-      }
-    });
-  } else {
-    const column = columns[source.droppableId];
-    const copiedItems = [...column.items];
-    const [removed] = copiedItems.splice(source.index, 1);
-    copiedItems.splice(destination.index, 0, removed);
-    setColumns({
-      ...columns,
-      [source.droppableId]: {
-        ...column,
-        items: copiedItems
-      }
-    });
+
+  const seleccionar1 = () => {
+    setSeleccionador(1);
   }
-};
+  
+  const seleccionar2 = () => {
+    setSeleccionador(2);
+  }
+  
+  const seleccionar3 = () => {
+    setSeleccionador(3);
+  }
+  
+  const seleccionar4 = () => {
+    setSeleccionador(4);
+  }
+ 
+/* Ejercicio */
 
-function EvaluarClase() {
+  const evaluar = () => { 
+    if (seleccionador === 2){
+          mensajeCorrecto(5);
+          ActualizarDatos();
+          props.evento();
+    }
+    else{
+      mensajeIncorrecto();
+      props.evento();
+    }  
+  } 
+  
+/* Mensaje Correcto */
+  const mensajeCorrecto = (points) => {
+    swal({
+      icon: "success",
+      title: "¡Gran Trabajo!",
 
-  const [state, setState] = useState(60);
+      text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
+      button: "OK",
+    });
 
-  const [columns, setColumns] = useState(columnsFromBackend);
+  };
+
+/* Mensaje Incorrecto */
+  const mensajeIncorrecto = () => {
+    swal({
+      icon: "error",
+      title: "¡Upss!",
+      text: "Recuerda usar el chatbot para obtener ayuda",
+      button: "OK",
+    });
+  };
+
+/* Resultados */
   return (
-
-    <div className="Container-draganddropEvaluarClase">
-      <DragDropContext
-        onDragEnd={result => onDragEnd(result, columns, setColumns)}
-      >
-        {Object.entries(columns).map(([columnId, column], index) => {
-          return (
-            <div className="bloqueEvaluarClase" key={columnId}>
-              <h2>{column.name}</h2>
-              <div>
-                <Droppable droppableId={columnId} key={columnId}>
-                  {(provided, snapshot) => {
-                    return (
-                      <div  className="container"
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        style={{
-                          background: snapshot.isDraggingOver
-                            ? "lightblue"
-                            : "lightgrey",
-                          padding: 0,
-                          width: 300,
-                          height: 200,
-                          top: -70,
-                          position: "relative",
-                          margin:"0",
-                          
-
-                        }}
-                      >
-                        {column.items.map((item, index) => {
-                          return (
-                            <Draggable
-                              key={item.id}
-                              draggableId={item.id}
-                              index={index}
-                            >
-                              {(provided, snapshot) => {
-                                return (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    style={{
-                                      userSelect: "none",
-                                      padding: 8,
-                                      margin: "0 0 8px 0",
-                                      minHeight: "85px",
-                                      width: "100px",
-                                      left: 0,
-                                      position: "absolute",
-                                      backgroundColor: snapshot.isDragging
-                                        ? "#263B4A"
-                                        : "#456C86",
-                                      color: "white",
-                                      ...provided.draggableProps.style
-                                    }}
-                                  >
-                                    {item.content}
-                                  </div>
-                                );
-                              }}
-                            </Draggable>
-                          );
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    );
-                  }}
-                </Droppable>
-              </div>
+    <div className='container-Bloom-Evaluar'>
+        <div className='preguntaEvaluarClase'>
+        <div className='bloque-pregunta'>
+            <h1 className='TituloPregunta'>Actividad #4</h1>
+            <span className='TextoPregunta'>Determine cuál de los constructores mostrados fue extraído de la clase Animal que se encuentra a continuación.</span>
             </div>
-          );
-        })}
-      </DragDropContext>
-      <div className="orientacion">
-      <h2>Evaluar:</h2>
-      <p>prueba de texto</p>
-     </div>
-     <button className="btn-Bloom">Analizar</button>
-
-
-     <div className="contenedorBarra">
-      <h2 className="porcentaje"
-        style={{
-          color: state === 100 ? "#e84118" : "Black"
-        }}
-      >
-        {state === 100
-          ? "Completo"
-          : `${state}%`}
-      </h2>
-      <ProyeccionProgress width={state} />
-      <ProgressButton
-        progress={state}
-        makeProgress={() => {
-          state < 100 ? setState(state + 20) : setState(0);
-        }}
-      />
+                <div className='pregunta'>
+                    <div>
+                        <img src={codigoEvaluarClase} alt='codigoEvaluarClase' className='codigoEvaluarClase'/>
+                    </div>
+                </div>
+          
+            
+        </div>
+        <div className='opcionesEvaluarClase'>
+            <img src={opcion1} onClick={seleccionar1} alt='opcion1' className='ClaseEvaluarOpcion1'/>
+            <img src={opcion2} onClick={seleccionar2} alt='opcion2' className='ClaseEvaluarOpcion2'/>
+            <img src={opcion3} onClick={seleccionar3} alt='opcion3' className='ClaseEvaluarOpcion3'/>
+            <img src={opcion4} onClick={seleccionar4} alt='opcion4' className='ClaseEvaluarOpcion4'/>
+        </div>
+          
+        <button onClick={evaluar} className='evaluarEvaluarClase'>Evaluar</button>
+        <span className='SeleccionadorEvaluarClase'>Opción seleccionada: {seleccionador}</span>
     </div>
-    </div>
-    
-  );
+  )
 }
 
-export default EvaluarClase;
+export default EvaluarClase
+
