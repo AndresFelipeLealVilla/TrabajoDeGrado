@@ -3,6 +3,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import './Analizar.css'
 import swal from 'sweetalert'
 import preguntaObjeto from '../../../img/taxonomia/3Analizar/AnalizarObjeto.PNG'
+import preguntaObjeto2 from '../../../img/taxonomia/4Evaluar/AnalizarObjeto.PNG'
 import img1 from '../../../img/taxonomia/3Analizar/opcion1.png'
 import img2 from '../../../img/taxonomia/3Analizar/opcion2.png'
 import img3 from '../../../img/taxonomia/3Analizar/opcion3.png'
@@ -194,7 +195,8 @@ const mensajeIncorrecto = () => {
            
             
             <div className="Diagrama">
-                <span><img src={preguntaObjeto} alt="pregunta" className="DiagramaObjeto" /></span>
+               
+                <span><img src={preguntaObjeto2} alt="pregunta" className="DiagramaObjeto2" /></span>
             </div>
             
         </div>

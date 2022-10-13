@@ -98,6 +98,13 @@
     border-width: 1px;
 }
 
+.DiagramaObjeto2{
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    width: 20%;
+    height: 40%;
+}
 /* Zona privada */
 .bloqueAnalizarClase:nth-child(5){
     position: absolute;

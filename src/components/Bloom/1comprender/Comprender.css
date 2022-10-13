@@ -324,6 +324,14 @@
     z-index: 1000;
 }
 
+.opcionesComprenderObjetos2{
+    Position: absolute;
+    top: 15%;
+    left: 36%;
+    width: 55%;
+    height: 28%;
+}
+
 
 /* ********************    Métodos    ************************ */
 
