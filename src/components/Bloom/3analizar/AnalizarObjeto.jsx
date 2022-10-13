@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import './Analizar.css'
 import swal from 'sweetalert'
-import preguntaAnalizarObjeto from '../../../img/taxonomia/3Analizar/AnalizarObjeto.PNG'
+import preguntaObjeto from '../../../img/taxonomia/3Analizar/AnalizarObjeto.PNG'
 import img1 from '../../../img/taxonomia/3Analizar/opcion1.png'
 import img2 from '../../../img/taxonomia/3Analizar/opcion2.png'
 import img3 from '../../../img/taxonomia/3Analizar/opcion3.png'
@@ -219,7 +219,7 @@ const mensajeIncorrecto = () => {
            
             
             <div className="Diagrama">
-                <span><img src={preguntaAnalizarObjeto} alt="pregunta" className="DiagramaAnaliarObjeto" /></span>
+                <span><img src={preguntaObjeto} alt="pregunta" className="DiagramaAnaliarObjeto" /></span>
             </div>
             
         </div>
