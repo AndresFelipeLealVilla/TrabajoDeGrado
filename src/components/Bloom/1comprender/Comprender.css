@@ -308,7 +308,13 @@
     color: BLACK;
 }
 
-
+.opcionesComprenderObjetos{
+    Position: absolute;
+    top: 1%;
+    left: 35.5%;
+    width: 55%;
+    height: 28%;
+}
 
 .opcionesComprenderObjetos2{
     Position: absolute;

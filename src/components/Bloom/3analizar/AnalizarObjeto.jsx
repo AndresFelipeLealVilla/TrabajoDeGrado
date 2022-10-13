@@ -195,7 +195,7 @@ const mensajeIncorrecto = () => {
            
             
             <div className="Diagrama">
-               
+              <span><img src={preguntaObjeto} alt="pregunta" className="DiagramaObjeto" /></span>
                 <span><img src={preguntaObjeto2} alt="pregunta" className="DiagramaObjeto2" /></span>
             </div>
             

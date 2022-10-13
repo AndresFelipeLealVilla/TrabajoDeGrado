@@ -250,3 +250,18 @@
     left: -10%;
 }
 
+.DiagramaObjeto2{
+    top: 38%;
+    left: 4%;
+    position: absolute;
+    width: 22%;
+    height: 40%;
+    justify-content: center;
+    text-align: center;
+    z-index: 1000;
+    border-radius: 3%;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+
