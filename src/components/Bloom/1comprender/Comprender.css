@@ -16,7 +16,7 @@
 }
 
 .bloque-preguntaComprenderMetodo{
-    background-color: gray;
+    background-color: #b6bec5;
     position: absolute;
     top: 3%;
     left: 5%;
@@ -310,7 +310,7 @@
 
 .opcionesComprenderObjetos{
     position: absolute;
-    top: 3%;
+    top: 5%;
     left: 32%;
     width: 65%;
     height: 35%;

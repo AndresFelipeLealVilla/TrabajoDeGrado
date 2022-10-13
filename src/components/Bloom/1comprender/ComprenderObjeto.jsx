@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import claseVehiculo from '../../../img/taxonomia/1Comprender/Objetos/DiagramaComprenderObjeto.png'
-import opcionesComprenderObjeto from '../../../img/taxonomia/1Comprender/Objetos/opcionesComprenderObjetos.PNG'
+import ComprenderObjCodigo from '../../../img/taxonomia/1Comprender/Objetos/opcionesComprenderObjetos.PNG'
 import swal from 'sweetalert'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
@@ -115,7 +115,7 @@ const ActualizarDatos = async () => {
 
         </div>
         <div className='opcionesComprenderObjeto'>
-        <img src={opcionesComprenderObjeto} alt='opcionesComprenderObjetos' className='opcionesComprenderObjetos'/>
+        <img src={ComprenderObjCodigo} alt='opcionesComprenderObjetos' className='opcionesComprenderObjetos'/>
             <button className='ObjetoComprenderOpcion1' onClick={seleccionar1}>Opción 1</button>
             <button className='ObjetoComprenderOpcion2' onClick={seleccionar2}>Opción 2</button>
             <button className='ObjetoComprenderOpcion3' onClick={seleccionar3}>Opción 3</button>

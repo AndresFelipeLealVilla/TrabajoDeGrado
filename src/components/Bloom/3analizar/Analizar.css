@@ -165,11 +165,11 @@
 /* ***************** Objetos ******************** */
 
 .DiagramaAnaliarObjeto{
-    top: 35%;
-    left: 3%;
+    top: 40%;
+    left: 5%;
     position: absolute;
-    width: 25%;
-    height: 50%;
+    width: 20%;
+    height: 45%;
     justify-content: center;
     text-align: center;
     z-index: 1;
