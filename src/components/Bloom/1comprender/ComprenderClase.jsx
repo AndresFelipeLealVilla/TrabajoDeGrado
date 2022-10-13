@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import swal from 'sweetalert'
+import swal from 'sweetalert2'
 import claseVehiculo from '../../../img/taxonomia/1Comprender/Clases/DiagramaComprenderClase.png'
 import opcion1 from '../../../img/taxonomia/1Comprender/Clases/ClaseVehiculo1.png'
 import opcion2 from '../../../img/taxonomia/1Comprender/Clases/ClaseVehiculo2.png'
@@ -84,7 +84,7 @@ function ComprenderClase(props) {
 
   /* Mensaje Correcto */
   const mensajeCorrecto = (points) => {
-    swal({
+    swal.fire({
       icon: "success",
       title: "¡Gran Trabajo!",
 
@@ -94,9 +94,12 @@ function ComprenderClase(props) {
 
   };
 
+
+
+
   /* Mensaje Incorrecto */
   const mensajeIncorrecto = () => {
-    swal({
+    swal.fire({
       icon: "error",
       title: "¡Upss!",
       text: "Recuerda usar el chatbot para obtener ayuda",
@@ -111,7 +114,7 @@ function ComprenderClase(props) {
         <div className='bloque-pregunta'>
           <h1 className='TituloPregunta'>Actividad #1</h1>
             <span className='TextoPregunta'>Determine el código que representa al diagrama de clases expuesto a 
-            continuación, seleccionando la imagen correcta.</span>
+            continuación, seleccione la imagen correcta.</span>
         </div>
         <div className='Diagrama'>
           <img src={claseVehiculo} className='DiagramaComprenderClase' alt='diagrama de clase vehiculo' />

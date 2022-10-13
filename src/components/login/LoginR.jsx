@@ -16,7 +16,7 @@ export function Login() {
   })
 
 /** ************* Context ************** */
-  const { login, loginWithGoogle, resetPassword } = useAuth()
+  const { login, resetPassword } = useAuth()
   const navigate = useNavigate()
 
 /* ****** Actualizar datos de usuario ****** */
@@ -42,12 +42,6 @@ export function Login() {
         toast.error("Datos invalidos")
       }
     }
-  }
-
-/* ********* Iniciar sesion con Google ******** */
-  const handleGoogleLogin = async () => {
-      await loginWithGoogle()
-      navigate('/')
   }
 
 /* ********* Reiniciar contraseña ******** */
@@ -79,7 +73,6 @@ export function Login() {
       </div>
         <Toaster/>
       <p><Link to='/register' className="a">¿No tienes una cuenta?</Link></p>
-      <button className="buttonGoogle" onClick={handleGoogleLogin}>Inicio con google</button>
       </div>
     </div>
   )

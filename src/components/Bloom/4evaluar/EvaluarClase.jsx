@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import swal from 'sweetalert'
+import swal from 'sweetalert2'
 
 import opcion2 from '../../../img/taxonomia/4Evaluar/Clases/Evaluar1.png'
 import opcion1 from '../../../img/taxonomia/4Evaluar/Clases/Evaluar2.png'
@@ -9,6 +9,7 @@ import codigoEvaluarClase from '../../../img/taxonomia/4Evaluar/Clases/PreguntaA
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
+import TrofeoClases from '../../../img/imgTrofeo/Clases.png'
 
 import './Evaluar.css'
 
@@ -23,6 +24,7 @@ const Usuario = getAuth().currentUser;
 const datosEstudiante = collection(db, "Estudiantes");
 const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
 const [obtId, setObtId] = useState('')
+const [trofeo, setTrofeo] = useState(0)
 
 
  /* ************ Traer datos de la base de datos ************* */
@@ -30,7 +32,10 @@ const [obtId, setObtId] = useState('')
       const querySnapshot = await getDocs(qu);
       querySnapshot.forEach((documento) => {
         setTemporal(parseInt(documento.data().Puntos));
-        setObtId(documento.id)
+        if(documento.data().TrofeoClase === 0){
+          setTrofeo(parseInt(documento.data().TrofeoClase));
+          setObtId(documento.id)
+        }
       },);
     };
   
@@ -39,7 +44,8 @@ const [obtId, setObtId] = useState('')
     const ActualizarDatos = async () => {
       obtenerEstudiante();
         await updateDoc(doc(db, "Estudiantes", obtId), {
-          Puntos: 5 + temporal
+          Puntos: 5 + temporal,
+          TrofeoClase: 1 + trofeo
         });
      }
   
@@ -69,7 +75,7 @@ const [obtId, setObtId] = useState('')
 
   const evaluar = () => { 
     if (seleccionador === 2){
-          mensajeCorrecto(5);
+          mensajeCorrecto();
           ActualizarDatos();
           props.evento();
     }
@@ -79,18 +85,17 @@ const [obtId, setObtId] = useState('')
     }  
   } 
   
-/* Mensaje Correcto */
-  const mensajeCorrecto = (points) => {
-    swal({
-      icon: "success",
-      title: "¡Gran Trabajo!",
-
-      text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
-      button: "OK",
-    });
-
-  };
-
+ /* Mensaje Correcto */
+ const mensajeCorrecto = () => {
+  swal.fire({
+    title: '¡¡Felicitaciones!!',
+    text: 'Completaste la fase de Clases',
+    imageUrl: TrofeoClases,
+    imageWidth: 300,
+    imageHeight: 200,
+    imageAlt: 'Custom image',
+  })
+};
 /* Mensaje Incorrecto */
   const mensajeIncorrecto = () => {
     swal({

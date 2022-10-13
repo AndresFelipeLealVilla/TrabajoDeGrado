@@ -1,9 +1,9 @@
 /* ********************    Clases    ************************ */
 
 .bloque-pregunta{
-    background-color: gray;
+    background-color: #b6bec5;
     position: absolute;
-    top: 3%;
+    top: 1%;
     left: 5%;
     width: 90%;
     height: 35%;
@@ -42,25 +42,25 @@
 
 }
 
-
-
-
 .TituloPregunta{
     top: 5%;
     left: 5%;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: #291414;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .TextoPregunta{
     position: absolute;
-    top: 30%;
-    left: 1%;
-    font-weight: bold;
+    top: 23%;
+    left: 2%;
+    right: 2%;
     color: #000000;
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
+    font-family: Vegur, 'PT Sans', Verdana, sans-serif;
+
 
 }
 
@@ -80,11 +80,11 @@
 }
 
 .DiagramaComprenderClase{
-    top: 37%;
-    left: 10%;
+    top: 40%;
+    left: 15%;
     position: absolute;
-    width: 80%;
-    height: 50%;
+    width: 70%;
+    height: 45%;
     justify-content: center;
     text-align: center;
     z-index: 1;
@@ -549,4 +549,85 @@
     left: 35%;
     z-index: 100;
     color: BLACK;
+}
+
+
+
+
+
+
+.ComprenderAtributoOpcion1{
+    position: absolute;
+    top: 30%;
+    left: 38%;
+    width: 25%;
+    height: 15%;
+    z-index: 10%;
+    background-color: #f44336;
+    border-color: #f44336;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ComprenderAtributoOpcion1:hover{
+    border-color: black;
+}
+
+.ComprenderAtributoOpcion2{
+    position: absolute;
+    top: 30%;
+    left: 68%;
+    width: 25%;
+    height: 15%;
+    z-index: 10%;
+    background-color: #f44336;
+    border-color: #f44336;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ComprenderAtributoOpcion2:hover{
+    border-color: black;
+}
+
+.ComprenderAtributoOpcion3{
+    position: absolute;
+    top: 53%;
+    left: 38%;
+    width: 25%;
+    height: 15%;
+    z-index: 10%;
+    background-color: #f44336;
+    border-color: #f44336;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ComprenderAtributoOpcion3:hover{
+    border-color: black;
+}
+
+.ComprenderAtributoOpcion4{
+    position: absolute;
+    top: 53%;
+    left: 68%;
+    width: 25%;
+    height: 15%;
+    z-index: 10%;
+    background-color: #f44336;
+    border-color: #f44336;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ComprenderAtributoOpcion4:hover{
+    border-color: black;
 }

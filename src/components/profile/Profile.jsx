@@ -11,8 +11,17 @@ import hombre from '../../img/imgProfile/HombreG.PNG'
 import mujer from '../../img/imgProfile/MujerG.PNG'
 import silueta from '../../img/imgProfile/SiluetaG.PNG'
 
+import NClases from '../../img/imgTrofeo/NClases.png'
+import NObjetos from '../../img/imgTrofeo/NObjetos.png'
+import NMetodos from '../../img/imgTrofeo/NMetodos.png'
+import NAtributos from '../../img/imgTrofeo/NAtributos.png'
+import Clases from '../../img/imgTrofeo/Clases.png'
+import Objetos from '../../img/imgTrofeo/Objetos.png'
+import Metodos from '../../img/imgTrofeo/Metodos.png'
+import Atributos from '../../img/imgTrofeo/Atributos.png'
 
-export function Profile() {
+
+export function Profile(props) {
 
 /* ************ Datos de entrada ************* */
   const db = getFirestore(app)
@@ -20,17 +29,20 @@ export function Profile() {
   const datosEstudiante = collection(db, "Estudiantes");
   const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
   const [activador, setActivador] = useState(0)
-  const [estudiantes, setEstudiantes] = useState([]);
   
   const [estudiante, setEstudiante] = useState({
-    Correo: Usuario.email,
     Nombre: '',
     Apellido: '',
     NombreUsuario: '',
     Edad: '',
-    Puntos: 0,
+    Email: Usuario.email,
+    Password: '',
     Genero: '',
-    Trofeos: 0,
+    Puntos: 0,
+    TrofeoClase: 0,
+    TrofeoObjeto: 0,
+    TrofeoMetodo: 0,
+    TrofeoAtributo: 0,
   });
 
   const [obtId, setObtId] = useState('')
@@ -72,16 +84,9 @@ const activarActualizacion = () => {
       ActualizarDatos();    
 },[activador]);
 
-
-
-
-
-
-
-
 /* ************ Return del perfil ************* */
   return (    
-    <div className='Container'>
+    <div className='ContainerProfile'>
       <Navbar/>
       <div className='margenExterior'>
         <div className='margenInterior'>
@@ -122,16 +127,15 @@ const activarActualizacion = () => {
           <table className='tabla2'>
             <tbody>
               <tr>
-                <td><span className='etiqueta'>Puntos:</span>{estudiante.Puntos}</td>
-              </tr>
-              <tr>
-                <td><span className='etiqueta'>Trofeos:</span>{estudiante.Trofeos}</td>
-              </tr>
-              <tr>
-                <td><span className='etiqueta'>Posición:</span>{estudiante.Trofeos}</td>
+                  <td><span className='etiqueta'>Puntos:</span>{estudiante.Puntos}</td>
               </tr>
             </tbody>
           </table>
+
+          <img src={estudiante.TrofeoClase === 1 ? Clases : NClases} alt='NClases' className='TrofeoClase'/>
+          <img src={estudiante.TrofeoObjeto === 1 ? Objetos : NObjetos} alt='NObjetos' className='TrofeoObjeto'/>
+          <img src={estudiante.TrofeoMetodo === 1 ? Metodos : NMetodos} alt='NMetodos' className='TrofeoMetodo'/>
+          <img src={estudiante.TrofeoAtributo === 1 ? Atributos : NAtributos} alt='NAtributos' className='TrofeoAtributo'/>
 
           <button className='buttonEdit' onClick={activarActualizacion}>Editar</button>
         </div>

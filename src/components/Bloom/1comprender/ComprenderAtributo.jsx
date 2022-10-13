@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import swal from 'sweetalert'
+import swal from 'sweetalert2'
 
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
@@ -83,7 +83,7 @@ const obtenerEstudiante = async () => {
   
 /* Mensaje Correcto */
   const mensajeCorrecto = (points) => {
-    swal({
+    swal.fire({
       icon: "success",
       title: "¡Gran Trabajo!",
 
@@ -95,7 +95,7 @@ const obtenerEstudiante = async () => {
 
 /* Mensaje Incorrecto */
   const mensajeIncorrecto = () => {
-    swal({
+    swal.fire({
       icon: "error",
       title: "¡Upss!",
       text: "Recuerda usar el chatbot para obtener ayuda",
@@ -109,16 +109,16 @@ const obtenerEstudiante = async () => {
         <div className='preguntaComprenderAtributo'>
             <div className='bloque-pregunta'>
                 <h1 className='TituloPregunta'>Actividad #1</h1>
-                <span className='TextoPregunta'>¿Por qué es incorrecto declarar al atributo -FechaNacimiento = 2001 como un double?.</span>
+                <span className='TextoPregunta'>¿Por qué es incorrecto declarar al atributo AñoNacimiento como un double?.</span>
             </div>
 
 
         </div>
         <div className='opcionesComprenderAtributo'>
-        <button className='AplicarAtributoOpcion1' onClick={seleccionar1}>Porque -FechaNacimiento es un número muy grande</button>
-            <button className='AplicarAtributoOpcion2' onClick={seleccionar2}>Porque -FechaNacimiento es un número muy pequeño</button>
-            <button className='AplicarAtributoOpcion3' onClick={seleccionar3}>Porque las operaciones matemáticas se realizan con "char"</button>
-            <button className='AplicarAtributoOpcion4' onClick={seleccionar4}>Porque el 2001 es un entero que debe definirse como "int"</button>
+        <button className='ComprenderAtributoOpcion1' onClick={seleccionar1}>Porque AñoNacimiento es un número muy grande</button>
+            <button className='ComprenderAtributoOpcion2' onClick={seleccionar2}>Porque AñoNacimiento es un número muy pequeño</button>
+            <button className='ComprenderAtributoOpcion3' onClick={seleccionar3}>Porque las operaciones matemáticas se realizan con el tipo de dato "char"</button>
+            <button className='ComprenderAtributoOpcion4' onClick={seleccionar4}>Porque el 2001 es un entero que debe definirse como "int"</button>
         </div>
           
         <button onClick={evaluar} className='evaluarcomprenderAtributo'>Evaluar</button>

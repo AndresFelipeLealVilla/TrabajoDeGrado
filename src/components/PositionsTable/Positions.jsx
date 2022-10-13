@@ -31,11 +31,13 @@ const obtenerEstudiante = async () => {
 
 
 const [posicion, setPosicion] = useState([]);
+const [temporal, setTemporal] = useState([]);
 
 function ordenar() {
   const orden = estudiantes.sort((a, b) => b.Puntos - a.Puntos);
   setPosicion(orden);
   console.log(posicion);
+  setTemporal(posicion.slice(0, 10));
 }
 
 
@@ -57,7 +59,7 @@ useEffect (() => {
             <tbody>
               <div className='resultadosposicion'>
               <hr className="lineaPositions"/>
-              {posicion.map((posicion, index) => (
+              {temporal.map((posicion, index) => (
                 
                 <tr key={posicion.id}>
                   

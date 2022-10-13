@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import swal from 'sweetalert'
+import swal from 'sweetalert2'
 
 import opcion1 from '../../../img/taxonomia/4Evaluar/Objetos/opcion1.png'
 import opcion2 from '../../../img/taxonomia/4Evaluar/Objetos/opcion2.png'
@@ -7,6 +7,7 @@ import opcion3 from '../../../img/taxonomia/4Evaluar/Objetos/opcion3.png'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import {app} from '../../../Firebase'
 import { getAuth } from 'firebase/auth'
+import TrofeoObjetos from '../../../img/imgTrofeo/Objetos.png'
 
 import './Evaluar.css'
 
@@ -20,6 +21,7 @@ const Usuario = getAuth().currentUser;
 const datosEstudiante = collection(db, "Estudiantes");
 const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
 const [obtId, setObtId] = useState('')
+const [trofeo, setTrofeo] = useState(0)
 
 
 
@@ -28,7 +30,11 @@ const [obtId, setObtId] = useState('')
   const querySnapshot = await getDocs(qu);
   querySnapshot.forEach((documento) => {
     setTemporal(parseInt(documento.data().Puntos));
-    setObtId(documento.id)
+    if(documento.data().TrofeoObjeto === 0){
+      setTrofeo(parseInt(documento.data().TrofeoObjeto));
+      setObtId(documento.id)
+    }
+    
   },);
 };
 
@@ -37,7 +43,8 @@ const [obtId, setObtId] = useState('')
 const ActualizarDatos = async () => {
   obtenerEstudiante();
     await updateDoc(doc(db, "Estudiantes", obtId), {
-      Puntos: 5 + temporal
+      Puntos: 5 + temporal,
+      TrofeoObjeto: 1 + trofeo
     });
  }
 
@@ -48,16 +55,15 @@ const ActualizarDatos = async () => {
 
 
 
-/* Mensaje Correcto */
-const mensajeCorrecto = (points) => {
-  swal({
-    icon: "success",
-    title: "¡Gran Trabajo!",
-
-    text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
-    button: "OK",
-  });
-
+const mensajeCorrecto = () => {
+  swal.fire({
+    title: '¡¡Felicitaciones!!',
+    text: 'Completaste la fase de Objetos',
+    imageUrl: TrofeoObjetos,
+    imageWidth: 300,
+    imageHeight: 200,
+    imageAlt: 'Custom image',
+  })
 };
 
 /* Mensaje Incorrecto */

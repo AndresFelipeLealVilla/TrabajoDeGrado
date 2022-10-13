@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import claseVehiculo from '../../../img/taxonomia/1Comprender/Objetos/DiagramaComprenderObjeto.png'
-import swal from 'sweetalert'
+import swal from 'sweetalert2'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
+import TrofeoAtributos from '../../../img/imgTrofeo/Atributos.png'
 
 import './Evaluar.css'
+
 
 function EvaluarAtributo(props){
 /* Declaraciones */
@@ -17,6 +18,8 @@ const Usuario = getAuth().currentUser;
 const datosEstudiante = collection(db, "Estudiantes");
 const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
 const [obtId, setObtId] = useState('')
+const [activador, setActivador] = useState(4)
+const [trofeo, setTrofeo] = useState(0)
 
 const seleccionar1 = () => {
   setSeleccionador(1);
@@ -41,7 +44,11 @@ const obtenerEstudiante = async () => {
   const querySnapshot = await getDocs(qu);
   querySnapshot.forEach((documento) => {
     setTemporal(parseInt(documento.data().Puntos));
-    setObtId(documento.id)
+    if(documento.data().TrofeoAtributo === 0){
+      setTrofeo(parseInt(documento.data().TrofeoAtributo));
+      setObtId(documento.id)
+    }
+    
   },);
 };
 
@@ -50,7 +57,8 @@ const obtenerEstudiante = async () => {
 const ActualizarDatos = async () => {
   obtenerEstudiante();
     await updateDoc(doc(db, "Estudiantes", obtId), {
-      Puntos: 5 + temporal
+      Puntos: 5 + temporal,
+      TrofeoAtributo: 1 + trofeo,
     });
  }
 
@@ -67,6 +75,7 @@ const ActualizarDatos = async () => {
     if (seleccionador === 3){
         mensajeCorrecto(5);
         ActualizarDatos();
+        props.evento();
     }
     else{
         mensajeIncorrecto();
@@ -75,13 +84,15 @@ const ActualizarDatos = async () => {
   } 
 
  /* Mensaje Correcto */
-  const mensajeCorrecto = (points) => {
-      swal({
-          icon: "success",
-          title: "¡Gran Trabajo!",
-          text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
-          button: "OK",
-      });
+  const mensajeCorrecto = () => {
+      swal.fire({
+        title: '¡¡Felicitaciones!!',
+        text: 'Completaste la fase de Atributos',
+        imageUrl: TrofeoAtributos,
+        imageWidth: 300,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+      })
   };
 
 /* Mensaje Incorrecto */
@@ -94,7 +105,6 @@ const ActualizarDatos = async () => {
       });
   };
 
-
 /* Ejercicio */
   return (
     <div className='container-Bloom-comprender'>
@@ -102,14 +112,10 @@ const ActualizarDatos = async () => {
         <div className='preguntaComprenderObjeto'>
             
         <div className='bloque-pregunta'>
-            <h1 className='TituloPregunta'>Actividad #2</h1>
-            <span className='TextoPregunta'>Determine el código que representa al diagrama de clases expuesto a 
-            continuación.</span>
+            <h1 className='TituloPregunta'>Actividad #4</h1>
+            <span className='TextoPregunta'>Determine el tipo de dato que no hacer parte del lenguaje 
+            de programación c++ para definir atributos.</span>
           
-            </div>
-
-            <div className='Diagrama'>
-              <span> <img src={claseVehiculo} className='DiagramaComprenderClase' alt='diagrama de clase vehiculo' /></span>
             </div>
 
         </div>

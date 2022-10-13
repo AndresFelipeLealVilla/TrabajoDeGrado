@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import swal from 'sweetalert'
+import swal from 'sweetalert2'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import {app} from '../../../Firebase'
 import { getAuth } from 'firebase/auth'
+import TrofeoMetodos from '../../../img/imgTrofeo/Metodos.png'
 
 
 import opcion2 from '../../../img/taxonomia/4Evaluar/Metodos/opcion1.png'
@@ -22,6 +23,7 @@ const Usuario = getAuth().currentUser;
 const datosEstudiante = collection(db, "Estudiantes");
 const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
 const [obtId, setObtId] = useState('')
+const [trofeo, setTrofeo] = useState(0)
 
 
 
@@ -30,7 +32,11 @@ const [obtId, setObtId] = useState('')
   const querySnapshot = await getDocs(qu);
   querySnapshot.forEach((documento) => {
     setTemporal(parseInt(documento.data().Puntos));
-    setObtId(documento.id)
+    if(documento.data().TrofeoMetodo === 0){
+      setTrofeo(parseInt(documento.data().TrofeoMetodo));
+      setObtId(documento.id)
+    }
+    
   },);
 };
 
@@ -39,7 +45,8 @@ const [obtId, setObtId] = useState('')
 const ActualizarDatos = async () => {
   obtenerEstudiante();
     await updateDoc(doc(db, "Estudiantes", obtId), {
-      Puntos: 5 + temporal
+      Puntos: 5 + temporal,
+      TrofeoMetodo: 1 + trofeo
     });
  }
 
@@ -50,16 +57,15 @@ const ActualizarDatos = async () => {
 
 
 
-/* Mensaje Correcto */
-const mensajeCorrecto = (points) => {
-  swal({
-    icon: "success",
-    title: "¡Gran Trabajo!",
-
-    text: "Obtuviste: " + points + " puntos ¡¡¡FELICITACIONES!!!",
-    button: "OK",
-  });
-
+const mensajeCorrecto = () => {
+  swal.fire({
+    title: '¡¡Felicitaciones!!',
+    text: 'Completaste la fase de Métodos',
+    imageUrl: TrofeoMetodos,
+    imageWidth: 300,
+    imageHeight: 200,
+    imageAlt: 'Custom image',
+  })
 };
 
 /* Mensaje Incorrecto */

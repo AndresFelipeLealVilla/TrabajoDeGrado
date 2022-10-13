@@ -23,7 +23,10 @@ export function Register() {
     Password: '',
     Genero: '',
     Puntos: 0,
-    Trofeos: 0,
+    TrofeoClase: 0,
+    TrofeoObjeto: 0,
+    TrofeoMetodo: 0,
+    TrofeoAtributo: 0,
   })
 
 /** ************* Context ************** */
