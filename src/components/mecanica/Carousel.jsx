@@ -38,13 +38,7 @@ const Siguiente = () => {
       {Activador === 1 ? recorrido[0] : 
       (Activador === 2 ? recorrido[1] :
       (Activador === 3 ? recorrido[2] :
-      (Activador === 4 ? recorrido[3] :
-      (Activador === 5 ? 'imagen5' : 
-      (Activador === 6 ? 'imagen6' :
-      (Activador === 7 ? 'imagen7' :
-      (Activador === 8 ? 'imagen8' :
-      (Activador === 9 ? 'imagen9' : setActivador(1)))))))))}
-
+      (Activador === 4 ? recorrido[3] : setActivador(1))))}
     </div>
   )
 }

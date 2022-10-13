@@ -70,7 +70,7 @@ const mensajeCorrecto = () => {
 
 /* Mensaje Incorrecto */
 const mensajeIncorrecto = () => {
-  swal({
+  swal.fire({
     icon: "error",
     title: "¡Upss!",
     text: "Recuerda usar el chatbot para obtener ayuda",

@@ -1,6 +1,6 @@
 /* *************** Paquetes importados **************** */
 import React, { useState, useEffect } from 'react'
-import { getFirestore, collection, query, where, getDocs, updateDoc, doc, setDoc } from "firebase/firestore";
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import './Profile.css'
 import {app} from '../../Firebase'

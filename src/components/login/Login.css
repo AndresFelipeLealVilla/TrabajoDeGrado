@@ -55,27 +55,6 @@ body {
     transform: scale(0.98);
 }
 
-
-.buttonGoogle{
-    border-color: rgb(255, 255, 255);
-    height: 45px;
-    width: 100%;
-    background-image: url('../../img/LogoGoogle.png');
-    background-repeat:no-repeat;
-    background-size: 50px 45px;
-    background-color: white;
-    text-align: center;
-    font-size: 14px;
-    color: black;
-    position: relative;
-    border-radius: 5px;
-    top: -20px;
-}
-
-.buttonGoogle:hover{
-    border-color: blue;
-}
-
 .formularioLogin{
     width: 330px;
     height: 440px;

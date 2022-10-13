@@ -1,5 +1,5 @@
 /* *************** Paquetes importados **************** */
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { useAuth } from "../../context/authContext" 
 import {getAuth} from 'firebase/auth'
 import {Link} from 'react-router-dom'
