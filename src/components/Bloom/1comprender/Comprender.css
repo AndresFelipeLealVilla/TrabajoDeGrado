@@ -318,6 +318,13 @@
     border-radius: 3%;
 }
 
+.opcionesComprenderObjetos:hover{
+    border-color: black;
+    transform: scale(1.5);
+    z-index: 1000;
+}
+
+
 /* ********************    Métodos    ************************ */
 
 .preguntaComprenderMetodo{

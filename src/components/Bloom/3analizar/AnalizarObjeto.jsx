@@ -176,35 +176,10 @@ const mensajeIncorrecto = () => {
   }
 
 
-
-
-
-    if (arreglo.length === 0 && columns[2].items === 3) {
-      arreglo.push(columns[2].items[0].id);
-      arreglo.push(columns[2].items[1].id);
-      arreglo.push(columns[2].items[2].id);
-      console.log(arreglo)
-
-      if(arreglo.includes("Primero")){
-          if(arreglo.includes("Tercero")){
-              if(arreglo.includes("Quinto")){
-                  ActualizarDatos();
-                  mensajeCorrecto(5);     
-              }
-              else{
-                  mensajeIncorrecto();
-              }            
-          }
-          else{
-               mensajeIncorrecto();
-          }
-      }
-      else{
-          mensajeIncorrecto();
-      }
-    }
-    props.evento();
   }
+
+
+   
 
 
 
@@ -219,7 +194,7 @@ const mensajeIncorrecto = () => {
            
             
             <div className="Diagrama">
-                <span><img src={preguntaObjeto} alt="pregunta" className="DiagramaAnaliarObjeto" /></span>
+                <span><img src={preguntaObjeto} alt="pregunta" className="DiagramaObjeto" /></span>
             </div>
             
         </div>

@@ -10,7 +10,6 @@ import './Comprender.css'
 
 function ComprenderObjeto(props){
 /* Declaraciones */
-const [puntos, setPuntos] = useState(0);
 const [seleccionador, setSeleccionador] = useState(0)
 const [temporal, setTemporal] = useState(0)
 
@@ -60,10 +59,6 @@ const ActualizarDatos = async () => {
   obtenerEstudiante();
   ActualizarDatos();    
 },[]);
-
-
-
-
 
   const evaluar = () => { 
     if (seleccionador === 3){

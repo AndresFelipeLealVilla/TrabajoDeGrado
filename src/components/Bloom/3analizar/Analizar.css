@@ -178,6 +178,10 @@
     box-shadow: 5px 10px 8px #888888;
 }
 
+.DiagramaObjeto:hover{
+    transform: scale(1.2);
+}
+
 .bloquesito:hover{
     position: absolute;
     transform: scale(1.5);
