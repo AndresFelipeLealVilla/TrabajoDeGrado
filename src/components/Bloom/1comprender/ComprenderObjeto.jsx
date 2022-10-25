@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import claseVehiculo from '../../../img/taxonomia/1Comprender/Objetos/DiagramaComprenderObjeto.png'
-import ComprenderObjCodigo from '../../../img/taxonomia/1Comprender/Objetos/opcionesComprenderObjetos.PNG'
-import comprenderObjCodigo from '../../../img/taxonomia/1Comprender/opcionesComprenderObjetos.PNG'
+import ComprenderObjCodigo from '../../../img/taxonomia/4Evaluar/Objetos/opcion1.png'
+
 import swal from 'sweetalert'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
