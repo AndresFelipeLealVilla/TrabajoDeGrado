@@ -4,6 +4,7 @@ import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
 import TrofeoAtributos from '../../../img/imgTrofeo/Atributos.png'
+import progreso from '../../../img/Progreso/100.jpg'
 
 import './Evaluar.css'
 
@@ -111,15 +112,16 @@ const ActualizarDatos = async () => {
 
         <div className='preguntaComprenderObjeto'>
             
-        <div className='bloque-pregunta'>
+        <div className='bloque-preguntaComprenderMetodo'>
             <h1 className='TituloPregunta'>Actividad #4</h1>
             <span className='TextoPregunta'>Determine el tipo de dato que no hacer parte del lenguaje 
             de programación c++ para definir atributos.</span>
-          
+            <span className='Observacion'>Recuerda usar el chatbot para obtener información que te permita resolver 
+            los ejercicios planteados.</span>
             </div>
 
         </div>
-        <div className='opcionesComprenderObjeto'>
+        <div className='opcionesEvaluarAtributo'>
             <button className='ObjetoComprenderOpcion1' onClick={seleccionar1}>int</button>
             <button className='ObjetoComprenderOpcion2' onClick={seleccionar2}>long int</button>
             <button className='ObjetoComprenderOpcion3' onClick={seleccionar3}>varchar</button>
@@ -128,6 +130,7 @@ const ActualizarDatos = async () => {
           
         <button onClick={evaluar} className='evaluarComprenderObjeto'>Evaluar</button>
         <span className='Seleccionador'>Opción seleccionado: {seleccionador}</span>
+        <img className='Progreso' src={progreso} alt='Progreso'/>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "
 import {app} from '../../../Firebase'
 import { getAuth } from 'firebase/auth'
 import TrofeoMetodos from '../../../img/imgTrofeo/Metodos.png'
+import progreso from '../../../img/Progreso/100.jpg'
 
 
 import opcion2 from '../../../img/taxonomia/4Evaluar/Metodos/opcion1.png'
@@ -116,10 +117,12 @@ const seleccionar4 = () => {
 
         <div className='preguntaComprenderObjeto'>
             
-        <div className='bloque-pregunta'>
+        <div className='bloque-preguntaComprenderMetodo'>
             <h1 className='TituloPregunta'>Actividad #4</h1>
             <span className='TextoPregunta'>Determine cual de los siguientes segmentos de código retorna un correo 
             compuesto por el nombre y el apellido .</span>
+            <span className='Observacion'>Recuerda usar el chatbot para obtener información que te permita resolver 
+            los ejercicios planteados.</span>
           
             </div>
 
@@ -133,6 +136,7 @@ const seleccionar4 = () => {
           
         <button onClick={evaluar} className='evaluarComprenderObjeto'>Evaluar</button>
         <span className='Seleccionador'>Opción seleccionado: {seleccionador}</span>
+        <img src={progreso} alt='progreso' className='Progreso'/>
     </div>
   )
 }

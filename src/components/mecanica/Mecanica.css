@@ -17,9 +17,9 @@
     top: 45%;
     left: 0.5%;
     z-index: 100;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 }
 
 .Atras:hover{
@@ -33,9 +33,9 @@
     top: 45%;
     right: 0.5%;
     z-index: 100;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 }
 
 .Siguiente:hover{
@@ -63,8 +63,9 @@
     border: 2px solid #000000;
     border-radius: 8%;
     z-index: 100;
-    background-color: #f44336;
-    border-color: #f44336;
+    background-color: #456C86;
+    border-radius: 7%;
+    border-color: #456C86;
     
 }
 

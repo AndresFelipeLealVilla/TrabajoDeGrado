@@ -2,11 +2,12 @@ import React, {useState, useEffect} from 'react'
 import swal from 'sweetalert'
 
 import opcion1 from '../../../img/taxonomia/1Comprender/Metodos/opcion1ComprenderMetodo.png'
-import opcion2 from '../../../img/taxonomia/1Comprender/Metodos/opcion1ComprenderMetodo.png'
-import opcion3 from '../../../img/taxonomia/1Comprender/Metodos/opcion1ComprenderMetodo.png'
+import opcion2 from '../../../img/taxonomia/1Comprender/Metodos/opcion2ComprenderMetodo.png'
+import opcion3 from '../../../img/taxonomia/1Comprender/Metodos/opcion3ComprenderMetodo.png'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import {app} from '../../../Firebase'
 import { getAuth } from 'firebase/auth'
+import progreso from '../../../img/Progreso/25.jpg'
 
 import './Comprender.css'
 
@@ -109,12 +110,7 @@ const mensajeIncorrecto = () => {
             <h1 className='TituloPregunta'>Actividad #1</h1>
                 <span className='TextoPreguntaComprenderMetodo'>Observe los tres segmentos de codigo y resuelva lo siguiente: 
                 <p>Se presenta la clase Cuenta, en la cual se debe implementar un método que retorne el valor total 
-                  de la compra de 5 artículos, los cuales tienen los siguientes descuentos:</p>
-                  <p>10%</p>
-                  <p>25%</p>
-                  <p>18%</p>
-                  <p>12%</p>
-                  <p>7%</p>
+                  de la compra de 5 artículos. Cada uno de los artículos tiene un descuento diferente.</p>
                   </span>
             </div>
         </div>
@@ -126,6 +122,7 @@ const mensajeIncorrecto = () => {
           
         <button onClick={evaluar} className='evaluarcomprenderMetodo'>Evaluar</button>
         <span className='SeleccionadorComprenderMetodo'>Opción seleccionada: {seleccionador}</span>
+        <img src={progreso} alt='progreso' className='Progreso'/>
     </div>
   )
 }

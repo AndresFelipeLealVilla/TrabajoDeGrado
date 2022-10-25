@@ -6,6 +6,7 @@ import swal from 'sweetalert'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
+import progreso from '../../../img/Progreso/25.jpg'
 
 import './Comprender.css'
 
@@ -111,9 +112,8 @@ const ActualizarDatos = async () => {
             </div>
 
         </div>
-        <div className='opcionesComprenderObjeto'>
         <img src={ComprenderObjCodigo} alt='opcionesComprenderObjetos' className='opcionesComprenderObjetos'/>
-        <img src={comprenderObjCodigo} alt='opcionesComprenderObjetos' className='opcionesComprenderObjetos2'/>
+        <div className='opcionesComprenderObjeto'>
             <button className='ObjetoComprenderOpcion1' onClick={seleccionar1}>Opción 1</button>
             <button className='ObjetoComprenderOpcion2' onClick={seleccionar2}>Opción 2</button>
             <button className='ObjetoComprenderOpcion3' onClick={seleccionar3}>Opción 3</button>
@@ -122,6 +122,7 @@ const ActualizarDatos = async () => {
           
         <button onClick={evaluar} className='evaluarComprenderObjeto'>Evaluar</button>
         <span className='Seleccionador'>Opción seleccionado: {seleccionador}</span>
+        <img src={progreso} className='Progreso' alt='progreso' />
     </div>
   )
 }

@@ -1,5 +1,6 @@
 /*  ***************** Clases ******************** */
 .preguntaAnalizarClase{
+    background-color: #DBDBDB;
     border-style: solid;
     top: 1%;
     left: 30%;
@@ -15,11 +16,18 @@
 
 
 .bloque-preguntaAnalizar{
-    position: relative;
-    top: 0%;
-    left: 1%;
-    width: 100%;
-    height: 30%;
+    background-color: #b6bec5;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 45%;
+    border-width: 1.5px;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+    border-radius: 5%;
 }
 
 .evaluarAnalizarClase{
@@ -28,10 +36,14 @@
     left: 10%;
     width: 10%;
     height: 7%;
-    z-index: 100;
-    background-color: #f44336;
+    z-index: 1000;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
+}
+
+.evaluarAnalizarClase{
+    border-color: black;
 }
 
 .bloqueAnalizarClase{
@@ -155,6 +167,7 @@
 }
 
 .orientacionAnalizarClase{
+    background-color: #DBDBDB;
     border-color: black;
     border-style: solid;
     top: 50%;
@@ -196,6 +209,7 @@
 }
 
 .preguntaAnalizarrObjeto{
+    background-color: #DBDBDB;
     border-color: black;
     border-style: solid;
     top: 1%;
@@ -218,9 +232,9 @@
     width: 10%;
     height: 7%;
     z-index: 1000;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 }
 
 .evaluarAnalizarObjeto:hover{
@@ -241,13 +255,13 @@
 .BloqueAnalizarObjeto:nth-child(1){
     position: relative;
     top: 0%;
-    left: -15%;
+    left: -5%;
 }
 
 .BloqueAnalizarObjeto:nth-child(2){
     position: relative;
     top: 0%;
-    left: -10%;
+    left: 10%;
 }
 
 .DiagramaObjeto2{

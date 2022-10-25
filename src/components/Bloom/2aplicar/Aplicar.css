@@ -3,6 +3,7 @@
 .PreguntaAplicarClase{
     border-color: black;
     border-style: solid;
+    background-color: #DBDBDB;
     top: 1%;
     left: 0.5%;
     position: absolute;
@@ -21,9 +22,9 @@
     width: 10%;
     height: 7%;
     z-index: 100;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 }
 
 .evaluarAplicarClase:hover{
@@ -124,9 +125,9 @@
     width: 10%;
     height: 7%;
     z-index: 100;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 }
 
 
@@ -140,6 +141,7 @@
 }
 
 .PreguntaAplicarObjeto{
+    background-color: #DBDBDB;
     border-color: black;
     border-style: solid;
     top: 1%;
@@ -216,10 +218,28 @@
 }
 
 /* *************************   Métodos   ************************ */
+.opcionesAplicarMetodo{
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    width: 60%;
+    height: 45%;
+    border-color: black;
+    border-style: solid;
+}
+
+.opcionesAplicarMetodos{
+    Position: absolute;
+    top: 2%;
+    left: 33%;
+    width: 65%;
+    height: 35%;
+}
 
 
 /* *************************   Atributos ************************ */
 .preguntaAplicarAtributo{
+    background-color: #DBDBDB;
     border-color: black;
     border-style: solid;
     top: 1%;
@@ -245,9 +265,9 @@
     border-radius: 5%;
     border: 1px solid;
     z-index: 10%;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 }
 
 .AplicarAtributoOpcion1:hover, .AplicarAtributoOpcion2:hover, .AplicarAtributoOpcion3:hover, .AplicarAtributoOpcion4:hover{
@@ -265,9 +285,9 @@
     border-style: solid;
     border-radius: 5%;
     border: 1px solid;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 }
 
 .AplicarAtributoOpcion3{
@@ -281,9 +301,9 @@
     border-radius: 5%;
     border: 1px solid;
     z-index: 10%;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 }
 
 .AplicarAtributoOpcion4{
@@ -297,9 +317,9 @@
     border-radius: 5%;
     border: 1px solid;
     z-index: 10%;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 
 }
 
@@ -310,9 +330,9 @@
     width: 10%;
     height: 7%;
     z-index: 10%;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 }
 
 .evaluarAplicarAtributo:hover{

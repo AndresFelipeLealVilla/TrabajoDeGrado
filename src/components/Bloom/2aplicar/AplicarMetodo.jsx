@@ -4,6 +4,7 @@ import swal from 'sweetalert'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import {app} from '../../../Firebase'
 import { getAuth } from 'firebase/auth'
+import progreso from '../../../img/Progreso/50.jpg'
 
 import './Aplicar.css'
 
@@ -104,24 +105,31 @@ const seleccionar4 = () => {
 
         <div className='preguntaComprenderObjeto'>
             
-        <div className='bloque-pregunta'>
+        <div className='bloque-preguntaComprenderMetodo'>
             <h1 className='TituloPregunta'>Actividad #2</h1>
             <span className='TextoPregunta'>Partiendo del ejercicio anterior, determine el resultado producido por 
             el siguiente método con valores preestablecidos.</span>
+            <span className='Observacion'>"Recuerda usar el chatbot para obtener información que te permita resolver 
+            los ejercicios planteados".</span>
           
             </div>
 
         </div>
         <div className='opcionesObjeto'>
-        <img src={opcionesComprenderObjeto} alt='opcionesComprenderObjetos' className='opcionesComprenderObjetos'/>
+        <img src={opcionesComprenderObjeto} alt='opcionesComprenderObjetos' className='opcionesAplicarMetodos'/>
+        
+        <div className='opcionesAplicarMetodo'>
             <button className='ObjetoComprenderOpcion1' onClick={seleccionar1}>500</button>
             <button className='ObjetoComprenderOpcion2' onClick={seleccionar2}>450</button>
             <button className='ObjetoComprenderOpcion3' onClick={seleccionar3}>425</button>
             <button className='ObjetoComprenderOpcion4' onClick={seleccionar4}>428</button>
         </div>
+            
+        </div>
           
         <button onClick={evaluar} className='evaluarComprenderObjeto'>Evaluar</button>
         <span className='Seleccionador'>Opción seleccionado: {seleccionador}</span>
+        <img src={progreso} alt='progreso' className='Progreso'/>
     </div>
   )
 }

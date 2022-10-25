@@ -4,6 +4,7 @@ import swal from 'sweetalert'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
+import progreso from '../../../img/Progreso/50.jpg'
 
 import './Aplicar.css'
 
@@ -212,16 +213,18 @@ const [obtId, setObtId] = useState('')
       <button onClick={evaluarAplicarObjeto} className='evaluarAplicarObjeto'>Evaluar</button>
 
     <div className='PreguntaAplicarObjeto'>
-    <div className='bloque-pregunta'>
+    <div className='bloque-preguntaComprenderMetodo'>
             <h1 className='TituloPregunta'>Actividad #2</h1>
             <span className='TextoPregunta'>Determine las diferencias entre las clases y los objetos, 
             ubique cada una de las opciones disponibles en la columna correspondiente.</span>
+            <span className='Observacion'>Recuerda usar el drag and drop (arrastrar y solar) para llevar los 
+            recuadros elegidos de la columna "Opciones" a las columnas "Clase" u "Objeto".</span>
           
             </div>
              
     </div>
 
-    <div style={{ display: "flex", justifyContent: "center", height: "10%", color:"black", position:"absolute", left:"40%", top:"0%"}}>
+    <div style={{ display: "flex", justifyContent: "center", height: "10%", color:"black", position:"absolute", left:"32%", top:"0%"}}>
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
       >
@@ -252,8 +255,8 @@ const [obtId, setObtId] = useState('')
                           background: snapshot.isDraggingOver
                             ? "lightblue"
                             : "lightgrey",
-                          width: 150,
-                          minHeight: 350,
+                          width: 200,
+                          minHeight: 370,
                         }}
                       >
                         {column.items.map((item, index) => {
@@ -274,9 +277,10 @@ const [obtId, setObtId] = useState('')
                                       padding: 6,
                                       margin: "0 0 8px 0",
                                       minHeight: "5px",
+                                      textAlign: "center",
                                       backgroundColor: snapshot.isDragging
-                                        ? "red"
-                                        : "#f44336",
+                                      ? "#263B4A"
+                                      : "#456C86",
                                       color: "white",
                                       ...provided.draggableProps.style
                                     }}
@@ -299,6 +303,7 @@ const [obtId, setObtId] = useState('')
         })}
       </DragDropContext>
     </div>
+    <img src={progreso} className='Progreso' alt='progreso' />
     </div>
     
   );

@@ -23,16 +23,16 @@
     width: 7%;
     height: 7%;
     z-index: 10%;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 }
 
 
 
 .container-Bloom1{
     align-items: center;
-    background: #DBDBDB;
+    background: #ffffff;
     justify-content: center;
     border-color: black;
     border-style: solid;

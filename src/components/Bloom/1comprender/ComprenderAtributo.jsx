@@ -5,6 +5,7 @@ import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
 import './Comprender.css'
+import progreso from '../../../img/Progreso/25.jpg'
 
 function ComprenderAtributo(props){
 
@@ -107,9 +108,11 @@ const obtenerEstudiante = async () => {
   return (
     <div className='container-Bloom-comprender'>
         <div className='preguntaComprenderAtributo'>
-            <div className='bloque-pregunta'>
+            <div className='bloque-preguntaComprenderMetodo'>
                 <h1 className='TituloPregunta'>Actividad #1</h1>
                 <span className='TextoPregunta'>¿Por qué es incorrecto declarar al atributo AñoNacimiento como un double?.</span>
+                <span className='Observacion'>Recuerda usar el chatbot para obtener información que te permita resolver 
+            los ejercicios planteados.</span>
             </div>
 
 
@@ -118,11 +121,12 @@ const obtenerEstudiante = async () => {
         <button className='ComprenderAtributoOpcion1' onClick={seleccionar1}>Porque AñoNacimiento es un número muy grande</button>
             <button className='ComprenderAtributoOpcion2' onClick={seleccionar2}>Porque AñoNacimiento es un número muy pequeño</button>
             <button className='ComprenderAtributoOpcion3' onClick={seleccionar3}>Porque las operaciones matemáticas se realizan con el tipo de dato "char"</button>
-            <button className='ComprenderAtributoOpcion4' onClick={seleccionar4}>Porque el 2001 es un entero que debe definirse como "int"</button>
+            <button className='ComprenderAtributoOpcion4' onClick={seleccionar4}>Porque el los años son números enteros que deben definirse como "int"</button>
         </div>
           
         <button onClick={evaluar} className='evaluarcomprenderAtributo'>Evaluar</button>
         <span className='SeleccionadorComprenderAtributo'>Opción seleccionada: {seleccionador}</span>
+        <img className='Progreso' src={progreso} alt='Progreso'/>
     </div>
   )
 }

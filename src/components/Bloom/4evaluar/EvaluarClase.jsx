@@ -10,6 +10,7 @@ import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
 import TrofeoClases from '../../../img/imgTrofeo/Clases.png'
+import progreso from '../../../img/Progreso/100.jpg'
 
 import './Evaluar.css'
 
@@ -131,6 +132,7 @@ const [trofeo, setTrofeo] = useState(0)
           
         <button onClick={evaluar} className='evaluarEvaluarClase'>Evaluar</button>
         <span className='SeleccionadorEvaluarClase'>Opción seleccionada: {seleccionador}</span>
+        <img src={progreso} className='Progreso' alt='progreso' />
     </div>
   )
 }

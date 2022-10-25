@@ -1,5 +1,6 @@
 /* *************************   Clases ************************ */
 .preguntaEvaluarClase{
+    background-color: #DBDBDB;
     border-color: black;
     border-style: solid;
     top: 1%;
@@ -103,9 +104,9 @@
     width: 10%;
     height: 7%;
     z-index: 10%;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 }
 
 .evaluarEvaluarClase:hover{
@@ -121,11 +122,11 @@
 }
 
 .codigoEvaluarClase{
-    top: 35%;
+    top: 38%;
     left: 2%;
     position: absolute;
     width: 95%;
-    height: 50%;
+    height: 48%;
     justify-content: center;
     text-align: center;
     z-index: 1;
@@ -145,6 +146,7 @@
 /* ********************    Atributos    ************************ */
 
 .preguntaComprenderAtributo{
+    background-color: #DBDBDB;
     border-color: black;
     border-style: solid;
     top: 1%;
@@ -157,6 +159,20 @@
     border: 1px solid;
     box-shadow: 5px 10px 8px #888888;
 }
+
+
+.opcionesEvaluarAtributo{
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    width: 60%;
+    height: 55%;
+    border-color: black;
+    border-style: solid;
+}
+
+
+
 
 .diagramaAtributo{
     top: 37%;
@@ -258,9 +274,9 @@
     width: 10%;
     height: 7%;
     z-index: 10%;
-    background-color: #f44336;
+    background-color: #456C86;
     border-radius: 7%;
-    border-color: #f44336;
+    border-color: #456C86;
 }
 
 .evaluarcomprenderAtributo:hover{
@@ -362,5 +378,85 @@
 
 
 /* *************************   Objetos ************************ */
+
+.preguntaComprenderMetodo{
+    border-color: black;
+    border-style: solid;
+    background-color: #DBDBDB;
+    top: 1%;
+    left: 0.5%;
+    position: absolute;
+    width: 30%;
+    height: 97%;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.ObjetoEvaluarOpcion1{
+    top: 2%;
+    left: 35%;
+    position: absolute;
+    width: 60%;
+    height: 28%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+
+.ObjetoEvaluarOpcion2{
+    top: 32%;
+    left: 35%;
+    position: absolute;
+    width: 60%;
+    height: 28%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+
+.ObjetoEvaluarOpcion3{
+    top: 62%;
+    left: 35%;
+    position: absolute;
+    width: 60%;
+    height: 28%;
+    border-color: black;
+    border-style: solid;
+    border: 1px solid;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.evaluarcomprenderMetodo{
+    position: absolute;
+    top: 88%;
+    left: 10%;
+    width: 10%;
+    height: 7%;
+    z-index: 10%;
+    background-color: #456C86;
+    border-radius: 7%;
+    border-color: #456C86;
+}
+
+.evaluarcomprenderMetodo:hover{
+    border-color: black;
+}
+
+.SeleccionadorComprenderMetodo{
+    position: absolute;
+    top: 92%;
+    left: 35%;
+    z-index: 100;
+    color: BLACK;
+}
+
+
+
 
 /* *************************   Objetos ************************ */

@@ -8,6 +8,7 @@ import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "
 import {app} from '../../../Firebase'
 import { getAuth } from 'firebase/auth'
 import TrofeoObjetos from '../../../img/imgTrofeo/Objetos.png'
+import progreso from '../../../img/Progreso/100.jpg'
 
 import './Evaluar.css'
 
@@ -107,21 +108,24 @@ const mensajeIncorrecto = () => {
   return (
     <div className='container-Bloom-comprender'>
         <div className='preguntaComprenderMetodo'>
-        <div className='bloque-pregunta'>
+        <div className='bloque-preguntaComprenderMetodo'>
             <h1 className='TituloPregunta'>Actividad #4</h1>
             <span className='TextoPregunta'>Decida cuál de los siguientes segmentos de código incumple las reglas 
             de creación de los objetos.</span>
+            <span className='Observacion'>Recuerda usar el chatbot para obtener información que te permita resolver 
+            los ejercicios planteados.</span>
           
             </div>
         </div>
         <div className='opcionesComprenderMetodo'>
-            <img src={opcion1} onClick={seleccionar1} alt='opcion1' className='MetodoComprenderOpcion1'/>
-            <img src={opcion2} onClick={seleccionar2} alt='opcion2' className='MetodoComprenderOpcion2'/>
-            <img src={opcion3} onClick={seleccionar3} alt='opcion3' className='MetodoComprenderOpcion3'/>
+            <img src={opcion1} onClick={seleccionar1} alt='opcion1' className='ObjetoEvaluarOpcion1'/>
+            <img src={opcion2} onClick={seleccionar2} alt='opcion2' className='ObjetoEvaluarOpcion2'/>
+            <img src={opcion3} onClick={seleccionar3} alt='opcion3' className='ObjetoEvaluarOpcion3'/>
         </div>
           
         <button onClick={evaluar} className='evaluarcomprenderMetodo'>Evaluar</button>
         <span className='SeleccionadorComprenderMetodo'>Opción seleccionada: {seleccionador}</span>
+        <img src={progreso} alt='progreso' className='Progreso'/>
     </div>
   )
 }

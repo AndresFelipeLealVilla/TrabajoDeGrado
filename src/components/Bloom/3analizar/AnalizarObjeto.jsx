@@ -3,7 +3,6 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import './Analizar.css'
 import swal from 'sweetalert'
 import preguntaObjeto from '../../../img/taxonomia/3Analizar/AnalizarObjeto.PNG'
-import preguntaObjeto2 from '../../../img/taxonomia/4Evaluar/AnalizarObjeto.PNG'
 import img1 from '../../../img/taxonomia/3Analizar/opcion1.png'
 import img2 from '../../../img/taxonomia/3Analizar/opcion2.png'
 import img3 from '../../../img/taxonomia/3Analizar/opcion3.png'
@@ -13,6 +12,7 @@ import img6 from '../../../img/taxonomia/3Analizar/opcion6.png'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import {app} from '../../../Firebase'
 import { getAuth } from 'firebase/auth'
+import progreso from '../../../img/Progreso/75.jpg'
 
 
 /* Creación drag and drop */
@@ -196,7 +196,6 @@ const mensajeIncorrecto = () => {
             
             <div className="Diagrama">
               <span><img src={preguntaObjeto} alt="pregunta" className="DiagramaObjeto" /></span>
-                <span><img src={preguntaObjeto2} alt="pregunta" className="DiagramaObjeto2" /></span>
             </div>
             
         </div>
@@ -237,7 +236,7 @@ const mensajeIncorrecto = () => {
                             ? "lightblue"
                             : "lightgrey",
                           width: 250,
-                          minHeight: 120,
+                          minHeight: 450,
                         }}
                       >
                         {column.items.map((item, index) => {
@@ -284,7 +283,7 @@ const mensajeIncorrecto = () => {
         })}
       </DragDropContext>  
     </div>
-    
+        <img src={progreso} alt="progreso" className="Progreso" />
     </div>
     
   );

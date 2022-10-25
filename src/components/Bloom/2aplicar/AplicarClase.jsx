@@ -5,6 +5,7 @@ import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
 import './Aplicar.css'
+import progreso from '../../../img/Progreso/50.jpg'
 
 
 
@@ -75,7 +76,6 @@ function AplicarClase(props) {
   const [arreglo, setArreglo] = useState ([]);
   const[temporal, setTemporal] = useState(0);
 const db = getFirestore(app)
-const [state, setState] = useState(20)
 const Usuario = getAuth().currentUser;
 const datosEstudiante = collection(db, "Estudiantes");
 const qu = query(datosEstudiante, where("Email", "==", Usuario.email));
@@ -180,16 +180,16 @@ const [obtId, setObtId] = useState('')
         <button onClick={evaluarAplicarClase} className='evaluarAplicarClase'>Evaluar</button>
       
     <div className='PreguntaAplicarClase'>
-    <div className='bloque-pregunta'>
+    <div className='bloque-preguntaComprenderMetodo'>
             <h1 className='TituloPregunta'>Actividad #2</h1>
-            <span className='TextoPregunta'>Determine las características que tienen las clases, arrastrando y soltando entre 
-            las opciones disponibles.</span>
-          
+            <span className='TextoPregunta'>Determine las características que tienen las clases, seleccione las opciones correctas.</span>
+            <span className='Observacion'>Recuerde usar el drag and drop (arrastrar y solar) para llevar los 
+            recuadros elegidos de la columna "Opciones" a la columna "Características de clase".</span>
             </div>
         
     </div>
 
-    <div style={{ display: "flex", justifyContent: "center", height: "10%", color:"black", position:"absolute", left:"40%", top:"0%"}}>
+    <div style={{ display: "flex", justifyContent: "center", height: "10%", color:"black", position:"absolute", left:"38%", top:"0%"}}>
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}>
         {Object.entries(columns).map(([columnId, column], index) => {
@@ -214,8 +214,8 @@ const [obtId, setObtId] = useState('')
                           background: snapshot.isDraggingOver
                           ? "lightblue"
                           : "lightgrey",
-                          width: 150,
-                          minHeight: 350,
+                          width: 250,
+                          minHeight: 410,
                           borderColor: "black",
                           borderWidth: "20px",
                         }}
@@ -237,11 +237,12 @@ const [obtId, setObtId] = useState('')
                                       userSelect: "none",
                                       padding: 6,
                                       margin: "0 0 8px 0",
-                                      minHeight: "5px",
+                                      minHeight: "50px",
+                                      textAlign: "center",
                                       backgroundColor: snapshot.isDragging
-                                        ? "red"
-                                        : "#f44336",
-                                      color: "white",
+                                      ? "#263B4A"
+                                      : "#456C86",
+                                    color: "white",
                                       ...provided.draggableProps.style
                                     }}
                                   >
@@ -264,6 +265,7 @@ const [obtId, setObtId] = useState('')
       </DragDropContext> 
 
     </div>
+    <img src={progreso} className='Progreso' alt='progreso' />
   </div>
     
   );

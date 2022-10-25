@@ -10,6 +10,7 @@ import { getAuth } from 'firebase/auth'
 import { app } from '../../../Firebase'
 import './Comprender.css'
 import Positions from '../../PositionsTable/Positions'
+import progreso from '../../../img/Progreso/25.jpg'
 
 function ComprenderClase(props) {
 
@@ -113,8 +114,8 @@ function ComprenderClase(props) {
       <div className='preguntaComprenderClase'>
         <div className='bloque-pregunta'>
           <h1 className='TituloPregunta'>Actividad #1</h1>
-            <span className='TextoPregunta'>Determine el código que representa al diagrama de clases expuesto a 
-            continuación, seleccione la imagen correcta.</span>
+            <span className='TextoPregunta'>Observe el diagrama de clase y determine el segmento de código que lo representa,
+             seleccione la imagen correcta.</span>
         </div>
         <div className='Diagrama'>
           <img src={claseVehiculo} className='DiagramaComprenderClase' alt='diagrama de clase vehiculo' />
@@ -130,6 +131,7 @@ function ComprenderClase(props) {
 
       <button onClick={evaluar} className='evaluarcomprenderClase'>Evaluar</button>
       <span className='SeleccionadorComprenderClase'>Opción seleccionada: {seleccionador}</span>
+      <img src={progreso} className='Progreso' alt='progreso' />
     </div>
   )
 }

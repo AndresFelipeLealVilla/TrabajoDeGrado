@@ -6,6 +6,7 @@ import './Analizar.css'
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc} from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import {app} from '../../../Firebase'
+import progreso from '../../../img/Progreso/75.jpg'
 
 const itemsFromBackend = [
   { id: "Primero", content: "Nombre" },
@@ -238,11 +239,12 @@ const ActualizarDatos = async () => {
                                     style={{
                                       userSelect: "none",
                                       padding: 8,
+                                      textAlign: "center",
                                       margin: "0 0 8px 0",
                                       minHeight: "15px",
                                       backgroundColor: snapshot.isDragging
-                                        ? "red"
-                                        : "#f44336",
+                                      ? "#263B4A"
+                                      : "#456C86",
                                       color: "white",
                                       ...provided.draggableProps.style
                                     }}
@@ -273,6 +275,7 @@ const ActualizarDatos = async () => {
             </div>
      </div>
     </div>
+    <img src={progreso} className='Progreso' alt='progreso' />
     </div>
   );
 }
