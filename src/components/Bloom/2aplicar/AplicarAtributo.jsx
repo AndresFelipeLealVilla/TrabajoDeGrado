@@ -136,7 +136,7 @@ const [obtId, setObtId] = useState('')
 
 /* Ejercicio */
   const evaluarAplicarAtributo = () => {
-    if(columns[2].items.length === 3){        
+    if(columns[2].items.length === 4){        
       arreglo.push(columns[2].items[0].id);
       arreglo.push(columns[2].items[1].id);
       arreglo.push(columns[2].items[2].id);
