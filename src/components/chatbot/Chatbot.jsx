@@ -3,19 +3,13 @@ import React, {useEffect} from 'react'
 function Chatbot() {
   useEffect(() => {
     (function(d, m){
-      var kommunicateSettings = {
-        appId:"d0d1a73c5dc48e42eca8b5d8f27d124",
-        popupWidget:true,
-        automaticChatOpenOnNavigation:true};
-      var s = document.createElement("script"); 
-      s.type = "text/javascript"; 
-      s.async = true;
+      var kommunicateSettings = 
+          {"appId":"b0fefc0731042f4e07e49da3ecb9fb87","popupWidget":true,"automaticChatOpenOnNavigation":true};
+      var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
       s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
-      var h = document.getElementsByTagName("head")[0]; 
-      h.appendChild(s);
-      window.kommunicate = m; 
-      m._globals = kommunicateSettings;
-    })(document, window.kommunicate || {});
+      var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+      window.kommunicate = m; m._globals = kommunicateSettings;
+  })(document, window.kommunicate || {});
   },[])
   return (
     <div>
