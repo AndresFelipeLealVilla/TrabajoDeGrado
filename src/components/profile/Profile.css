@@ -279,3 +279,12 @@
     width: 13%;
     height: 20%;
 }
+
+.margenExterior{
+    background-color: gray;
+}
+
+
+.margenInterior{
+    background-color: #eee7e7;
+}

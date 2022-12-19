@@ -91,8 +91,6 @@ const activarActualizacion = () => {
       <div className='margenExterior'>
         <div className='margenInterior'>
 
-          <img src={fondo} alt='fondoSperfil' className='fondo'/>
-
           <img src={imagen1} alt='Logo' className='LogoApp'/>
           <p className='Nombre-Logo'>Blip</p>
 

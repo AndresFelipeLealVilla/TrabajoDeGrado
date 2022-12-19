@@ -2,15 +2,19 @@ import React, {useEffect} from 'react'
 
 function Chatbot() {
   useEffect(() => {
-    (function(d, m){
-        var kommunicateSettings = 
-            {"appId":"11e4ea20401922dab2a43e5d306890f6d","popupWidget":true,"automaticChatOpenOnNavigation":true};
-        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
-        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
-        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
-        window.kommunicate = m; m._globals = kommunicateSettings;
-    })(document, window.kommunicate || {});
+    window.watsonAssistantChatOptions = {
+      integrationID: "60ae545f-157e-46a3-8912-4255c6f66139", // The ID of this integration.
+      region: "us-south", // The region your integration is hosted in.
+      serviceInstanceID: "1dd30ec1-85bd-4b93-a3fe-73177731eb46", // The ID of your service instance.
+      onLoad: function(instance) { instance.render(); }
+    };
+    setTimeout(function(){
+      const t=document.createElement('script');
+      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+      document.head.appendChild(t);
+    });
   },[])
+
   return (
     <div>
       
